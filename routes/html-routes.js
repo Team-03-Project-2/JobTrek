@@ -15,6 +15,22 @@ module.exports = function (app) {
     res.render("index")
   });
 
+
+  app.get("/signup", function (req, res) {
+    // If the user already has an account send them to the members page
+    if (req.user) {
+      res.redirect("/members");
+    } else {
+      // res.sendFile(path.join(__dirname, "../public/login.html"));
+      res.render("signup")
+    }
+  });
+
+  app.get("/demo", function (req, res) {
+    // res.sendFile(path.join(__dirname, "../public/administrator.html"));
+    res.render("demo")
+  });
+
   app.get("/login", function (req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
@@ -32,8 +48,41 @@ module.exports = function (app) {
     res.render("members")
   });
 
+  app.get("/members/dashboard", isAuthenticated, function (req, res) {
+    // res.sendFile(path.join(__dirname, "../public/members.html"));
+    res.render("dashboard")
+  });
+
+  app.get("/members/jobboard", isAuthenticated, function (req, res) {
+    // res.sendFile(path.join(__dirname, "../public/members.html"));
+    res.render("jobboard")
+  });
+
+  app.get("/members/maintain", isAuthenticated, function (req, res) {
+    // res.sendFile(path.join(__dirname, "../public/members.html"));
+    res.render("maintain")
+  });
+
+  app.get("/members/company", isAuthenticated, function (req, res) {
+    // res.sendFile(path.join(__dirname, "../public/members.html"));
+    res.render("company")
+  });
+
+  app.get("/members/contact", isAuthenticated, function (req, res) {
+    // res.sendFile(path.join(__dirname, "../public/members.html"));
+    res.render("contact")
+  });
+
+  app.get("/members/resume", isAuthenticated, function (req, res) {
+    // res.sendFile(path.join(__dirname, "../public/members.html"));
+    res.render("resume")
+  });
+
+
   app.get("/admin", isAuthenticated, function (req, res) {
     // res.sendFile(path.join(__dirname, "../public/administrator.html"));
     res.render("administrator")
   });
+
+
 };
