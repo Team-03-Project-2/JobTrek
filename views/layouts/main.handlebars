@@ -1,15 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
-		<title>Animals</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
-		<link href="stylesheets/style.css" rel="stylesheet">
-	</head>
-	<body>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		{{{ body }}}
-		  <!-- <script type="text/javascript" src="js/signup.js"></script> -->
-	</body>
+	<title>JobTrek: keeping your job search sane</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+		integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+</head>
+<link href="stylesheets/style.css" rel="stylesheet">
+</head>
+
+<body>
+	<script src="https://code.jquery.com/jquery-3.5.0.min.js"
+		integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+	<script>
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip()
+		})
+	</script>
+	<div class="jumbotron jumbotron-fluid mb-0 p-2">
+		<div class="container text-center">
+			<!-- logo goes here -->
+			{{!-- <img src="/assets/img/KLIbutton.gif" width=150 height=150 alt="Klingon Language Institute"> --}}
+			<h1 class="display-4">TITLE BAR</h1>
+			<h2 class="display-6">Subtitle</h2>
+		</div>
+	</div>
+
+	{{{ body }}}
+	<!-- <script type="text/javascript" src="js/signup.js"></script> -->
+</body>
+
 </html>
