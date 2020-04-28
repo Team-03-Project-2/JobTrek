@@ -4,14 +4,23 @@ module.exports = function (sequelize, DataTypes) {
     user_id: {
       type: DataTypes.INTEGER
     },
-    title: {
+    star:{
+      type: DataTypes.BOOLEAN
+    },
+    fileName: {
       type: DataTypes.STRING
     },
-    resume_url: {
+    date: {
+      type: DataTypes.DATE
+    },
+    role:{
       type: DataTypes.STRING
     },
-    resume_blob: {
+    notes: {
       type: DataTypes.BLOB
+    }, 
+    fileLocation:{
+      type: DataTypes.STRING
     }
   });
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
