@@ -34,7 +34,7 @@
       <td>
         <a href="javascript:void(0);" class="btn btn-sm btn-warning edit" data-id="{{ dataValues.id }}"
           data-userid="{{../reqUser}}" data-company="{{ dataValues.company }}" data-notes="{{ dataValues.notes }}"
-          data-rating="{{ dataValues.rating }}">Edit</a>
+          data-rating="{{ dataValues.rating }}" data-toggle="modal" data-target="#updateCompanyModal">Edit</a>
         <a href="javascript:void(0);" class="btn btn-sm btn-danger delete" data-id="{{ dataValues.id }}"
           data-userid="{{../reqUser}}">Delete</a>
       </td>
@@ -49,7 +49,7 @@
 
 <button class="btn btn-success float-right" data-toggle="modal" data-target="#newCompanyModal">Add New</button>
 
-<!--- this is the edit form for create --->
+<!--- this is the create form--->
 
 <form action="/api/company" id="createform" method="post">
   <div class="modal fade" id="newCompanyModal" role="dialog">
@@ -90,9 +90,113 @@
   </div>
 </form>
 
+<!--- this is the edit form --->
+
+<form action="/api/company" id="updateform" method="put">
+  <div class="modal fade" id="updateCompanyModal" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Edit Company</h4>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div class="form-group">
+            <input type="text" name="id_edit" id="id_edit" value="" class="form-control" placeholder=""
+              required="required" readonly>
+          </div>
+
+          <div class="form-group">
+            <input type="hidden" name="user_id1" id="user_id1_edit" value="{{reqUser}}" class="form-control"
+              placeholder="" required="required">
+          </div>
+
+          <div class="form-group">
+            <input type="text" name="company" id="company_edit" class="form-control" placeholder="Company Name"
+              required="required">
+          </div>
+
+          <div class="form-group">
+            <input type="text" id="notes_edit" name="notes_edit" class="form-control" placeholder="notes">
+          </div>
+
+          <div class="form-group">
+            <input type="number" id="rating_edit" name="rating_edit" class="form-control" placeholder="5.0">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn commit" data-dismiss="modal">Commit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- divider -->
 <script>
   $(document).ready(function () {
-    //showing data to edit modal      $('#mytable').on('click','.edit',function(){
+
+    // edit button action 
+    $('#results').on('click', '.edit', function () {
+      var id = $(this).data("id");
+      var userid = $(this).data("userid");
+      var company = $(this).data("company");
+      var notes = $(this).data("notes");
+      var rating = $(this).data("rating");
+
+      console.log("edit button pushed [", id, "] [", userid, "] [", company, "] [", notes, "] [", rating, "] ")
+
+      // push them into the dialog box
+      $("#id_edit").val(id)
+      $("#user_id1_edit").val(userid)
+      $("#company_edit").val(company)
+      $("#notes_edit").val(notes)
+      $("#rating_edit").val(rating)
+
+
+      $('#updateform').on('click', '.commit', function () {
+
+
+
+        // now we wait for the commit button to be pushed
+        var idx = $("#id_edit").val()
+        var userid = $("#user_id1_edit").val();
+        var company = $("#company_edit").val();
+        var notes = $("#notes_edit").val();
+        var rating = $("#rating_edit").val()
+
+        console.log("commit button pushed [", idx, "] [", userid, "] [", company, "] [", notes, "] [", rating, "] ")
+
+
+        $.ajax({
+          url: "/api/company",
+          type: "PUT",
+          data: {
+            id: idx,
+            user_id1: userid,
+            company: company,
+            notes: notes,
+            rating: rating
+          },
+          dataType: "json",
+          success: function (data) {
+            console.log(data);
+            location.reload();  // force reload to see new entry
+          },
+          error: function (error) {
+            console.log("Error ")
+            console.log(error);
+          }
+        });
+      })
+    });
+
+
+
 
     // create button action... 
 
@@ -142,6 +246,8 @@
         dataType: "json",
         success: function (data) {
           console.log(data);
+          location.reload();  // force reload to see new entry
+
         },
         error: function (error) {
           console.log(`Error ${error}`);

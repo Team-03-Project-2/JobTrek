@@ -105,18 +105,27 @@ module.exports = function (app) {
 
   //update
   app.put("/api/company", function (req, res) {
-    console.log('/api/company PUT', " ", req.body)
-    db.Company.updateAttributes({
-      user_id: req.body.user_id,
-      company: req.body.company,
-      notes: req.body.notes,
-      rating: parseFloat(req.body.rating)
-    })
-      .then(updatedCompany => {
-        res(updatedCompany)
+    console.log('/api/company PUT')
+    //, " ", req.body)
+    db.Company.findOne({
+      where: {
+        user_id: req.body.user_id1,
+        id: req.body.id
+      }
+    }).then((updateCompany) => {
+      updateCompany.update({
+        user_id: req.body.user_id1,
+        company: req.body.company,
+        notes: req.body.notes,
+        rating: parseFloat(req.body.rating)
       })
-    if (err) throw err;
-    res.redirect('/members/company');
+        .then(updatedCompany => {
+          res.json(updatedCompany)
+        })
+        .catch(err => {
+          throw err
+        })
+    })
   });
 
   app.delete("/api/company", function (req, res) {
