@@ -1,3 +1,13 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <span id="{{reqUser}}">User_ID = {{reqUser}} </span>
+      <a class="navbar-brand" href="/logout">
+        Logout
+      </a>
+    </div>
+  </div>
+</nav>
 <P>This is for CRUD of Company table</P>
 
 {{!-- <P>{{this[0].dataValues}}</P> --}}
@@ -21,9 +31,10 @@
       <td>{{dataValues.notes}}</td>
       <td>{{dataValues.rating}}</td>
       <td>
-        <a href="javascript:void(0);" class="btn btn-sm btn-warning edit" data-id="{{ id }}"
-          data-company="{{ company }}" data-notes="{{ notes }}" data-rating="{{ rating }}">Edit</a>
-        <a href="javascript:void(0);" class="btn btn-sm btn-danger delete" data-id="{{ id }}">Delete</a>
+        <a href="javascript:void(0);" class="btn btn-sm btn-warning edit" data-id="{{ dataValues.id }}"
+          data-company="{{ dataValues.company }}" data-notes="{{ dataValues.notes }}"
+          data-rating="{{ dataValues.rating }}">Edit</a>
+        <a href="javascript:void(0);" class="btn btn-sm btn-danger delete" data-id="{{ dataValues.id }}">Delete</a>
       </td>
     </tr>
     {{else}}

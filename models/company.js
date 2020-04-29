@@ -3,7 +3,7 @@ module.exports = function (sequelize, DataTypes) {
   var Company = sequelize.define("Company", {
 
     // (CompanyTable
-    // id
+    // user_id
     // company 
     // Notes
     // rating )
