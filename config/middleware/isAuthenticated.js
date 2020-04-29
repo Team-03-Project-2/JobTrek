@@ -1,6 +1,6 @@
 // This is middleware for restricting routes a user is not allowed to visit if not logged in
 
-var roles = require("../roles.js")
+// var roles = require("../roles.js")
 
 
 module.exports = function (req, res, next) {
