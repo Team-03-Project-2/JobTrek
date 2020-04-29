@@ -138,11 +138,11 @@ module.exports = function (app) {
       }
     })
       .then(deletedCompany => {
-        res(deletedCompany)
+        res.json(deletedCompany)
       })
-      .catch(() => {
+      .catch(err => {
         // throw err;
-        throw "Error in sequelize delete company !"
+        throw err
       })
   });
 
