@@ -72,7 +72,7 @@ module.exports = function (app) {
     // res.sendFile(path.join(__dirname, "../public/members.html"));
     db.Company.findAll({}).then(function (dbCompany) {
       // We locate companies
-      console.log('/members/company GET', dbCompany)
+      // console.log('/members/company GET', dbCompany)
       var obj = {
         reqUser: req.user.id,
         company: dbCompany

@@ -24,7 +24,7 @@ module.exports = function (app) {
       role: "Job Seeker"
     })
       .then(function () {
-        console.log('/api/signup', " ", req.body)
+        // console.log('/api/signup', " ", req.body)
         res.redirect(307, "/api/login");
       })
       .catch(function (err) {
@@ -58,51 +58,78 @@ module.exports = function (app) {
   app.get("/api/user_data", function (req, res) {
     // Otherwise send back the user's email and id
     // Sending back a password, even a hashed password, isn't a good idea
-    console.log('/api/user_data', " ", req.user)
+    // console.log('/api/user_data', " ", req.user)
     res.json({
       email: req.user.email,
       id: req.user.id,
       role: req.user.role
     });
-
   });
   //--- api functions for company
   // need get(read), post(create), put (update), and delete
 
   app.get("/api/company", function (req, res) {
     // Otherwise send back 
-    console.log("At api/company GET...")
-    db.Company.findAll({}).then(function (dbCompany) {
+    console.log("At /api/company GET...")
+    db.Company.findAll({
+      // only this user's items, not all...
+      // need where... 
+      user_id: req.user.id
+    }).then(function (dbCompany) {
       // We locate companies
-      console.log('/api/company GET', dbCompany)
+      // console.log('/api/company GET', dbCompany)
       res.json(dbCompany);
     });
   });
 
+
+  //create
   app.post("/api/company", function (req, res) {
     console.log('/api/company POST', " ", req.body)
     db.Company.create({
+      user_id: req.body.user_id1,
       company: req.body.company,
       notes: req.body.notes,
-      rating: req.body.rating
-    });
+      rating: parseFloat(req.body.rating)
+    })
+      .then(newCompany => {
+        res(newCompany)
+      })
+    if (err) throw err;
   });
 
+  //update
   app.put("/api/company", function (req, res) {
     console.log('/api/company PUT', " ", req.body)
-    db.Company.create({
+    db.Company.updateAttributes({
+      user_id: req.body.user_id,
       company: req.body.company,
       notes: req.body.notes,
-      rating: req.body.rating
-    });
+      rating: parseFloat(req.body.rating)
+    })
+      .then(updatedCompany => {
+        res(updatedCompany)
+      })
+    if (err) throw err;
+    res.redirect('/members/company');
   });
 
   app.delete("/api/company", function (req, res) {
     console.log('/api/company DELETE', " ", req.body)
-    db.Company.delete({
+    db.Company.destroy({
       // id:
-
-    });
+      where: {
+        user_id: req.body.user_id,
+        id: req.body.id
+      }
+    })
+      .then(deletedCompany => {
+        res(deletedCompany)
+      })
+      .catch(() => {
+        // throw err;
+        throw "Error in sequelize delete company !"
+      })
   });
 
 
