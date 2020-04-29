@@ -32,6 +32,19 @@ require("./routes/api-routes.js")(app);
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(function() {
+
+  // let test ={
+  //   user_id:1, 
+  //   star:true, 
+  //   fileName : 'testName3', 
+  //   date:Date.now(), 
+  //   role:'software3'
+  // }
+
+  // db.Resume.create(test).then(()=>console.log("please print something")).catch(error => console.log(error));
+
+
+
   app.listen(PORT, function() {
     console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
   });

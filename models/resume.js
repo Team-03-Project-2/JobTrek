@@ -2,22 +2,34 @@
 module.exports = function (sequelize, DataTypes) {
   var Resume = sequelize.define("Resume", {
     user_id: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     star:{
-      type: DataTypes.BOOLEAN
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
     },
     fileName: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
     },
     date: {
-      type: DataTypes.DATE
+      type: DataTypes.DATE,
+      allowNull: false,
     },
     role:{
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
     },
     notes: {
       type: DataTypes.BLOB
+
     }, 
     fileLocation:{
       type: DataTypes.STRING
