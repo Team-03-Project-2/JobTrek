@@ -149,6 +149,92 @@ module.exports = function (app) {
 
   //-- api functions for contacts
 
+  // need get(read), post(create), put (update), and delete
+
+  app.get("/api/contact", function (req, res) {
+    // Otherwise send back 
+    console.log("At /api/contact GET...")
+    db.contact.findAll({
+      // only this user's items, not all...
+      // need where... 
+      user_id: req.user.id
+    }).then(function (dbcontact) {
+      // We locate companies
+      // console.log('/api/contact GET', dbcontact)
+      res.json(dbcontact);
+    });
+  });
+
+
+  //create
+  app.post("/api/contact", function (req, res) {
+    console.log('/api/contact POST')
+    //, " ", req.body)
+    db.Contact.create({
+      user_id: req.body.user_id1,
+      name: req.body.name,
+      title: req.body.title,
+      company_id: req.body.company_id,
+      contact1: req.body.contact1,
+      contact2: req.body.contact2,
+      notes: req.body.notes,
+      rating: parseFloat(req.body.rating)
+    })
+      .then(newContact => {
+        res.json(newContact)
+      })
+      .catch(err => {
+        throw err
+      })
+    // if (err) throw err;
+  });
+
+  //update
+  app.put("/api/contact", function (req, res) {
+    console.log('/api/contact PUT')
+    //, " ", req.body)
+    db.Contact.findOne({
+      where: {
+        user_id: req.body.user_id1,
+        id: req.body.id
+      }
+    }).then((updateContact) => {
+      updateContact.update({
+        user_id: req.body.user_id1,
+        name: req.body.name,
+        title: req.body.title,
+        company_id: req.body.company_id,
+        contact1: req.body.contact1,
+        contact2: req.body.contact2,
+        notes: req.body.notes,
+        rating: parseFloat(req.body.rating)
+      })
+        .then(updatedContact => {
+          res.json(updatedContact)
+        })
+        .catch(err => {
+          throw err
+        })
+    })
+  });
+
+  app.delete("/api/contact", function (req, res) {
+    console.log('/api/contact DELETE', " ", req.body)
+    db.Contact.destroy({
+      // id:
+      where: {
+        user_id: req.body.user_id,
+        id: req.body.id
+      }
+    })
+      .then(deletedContact => {
+        res.json(deletedContact)
+      })
+      .catch(err => {
+        // throw err;
+        throw err
+      })
+  });
 
 
 

@@ -88,8 +88,23 @@ module.exports = function (app) {
 
   app.get("/members/contact", isAuthenticated, function (req, res) {
     // res.sendFile(path.join(__dirname, "../public/members.html"));
-    res.render("contact")
+    db.Contact.findAll({
+      where: {
+        user_id: req.user.id
+      }
+    }).then(function (dbContact) {
+      // We locate companies
+      // console.log('/members/company GET', dbCompany)
+      var obj = {
+        reqUser: req.user.id,
+        contact: dbContact
+      }
+      // res.render("company", dbCompany);
+      res.render("contact", obj);
+    });
   });
+
+  //-------------------------------------------------------
 
   app.get("/members/resume", isAuthenticated, function (req, res) {
     // res.sendFile(path.join(__dirname, "../public/members.html"));
