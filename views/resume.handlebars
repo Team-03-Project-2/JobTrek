@@ -1,11 +1,71 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <span id="{{reqUser}}">User_ID = {{reqUser}} </span>
-      <a class="navbar-brand" href="/logout">
-        Logout
-      </a>
-    </div>
-  </div>
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand">Welcome, User! Manage your Resume here.</a>
+    <form class="form-inline">
+
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-info" type="submit">Search</button>
+        <button class="btn btn-light" type="submit">notifications</button>
+    </form>
 </nav>
-<P>Resume CRUD page</P>
+
+<div class="container">
+
+
+    <div class="card">
+        <div class="card-body">
+
+
+
+            <div class="container">
+              
+
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="stared-tab" data-toggle="tab" href="#stared-resume"
+                        role="tab" aria-controls="stared-resume" aria-selected="true">Stared Resume</a>
+                    <a class="nav-item nav-link" id="all-resume-tab" data-toggle="tab" href="#all-resume" role="tab"
+                        aria-controls="all-resume" aria-selected="false">ALL Resumes</a>
+                </div>
+            </nav>
+            <br>
+            <div class="tab-content" id="nav-tabContent">
+                {{#each resume}}
+                <div class="staredResume card tab-pane fade show active" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{dataValues.fileName}}</h5>
+                        <p class="card-text">
+                        </p>
+
+                    </div>
+                    <div class="card-footer text-muted">
+                        <p>{{dataValues.role}}</p>
+                        <a href="#" class="btn btn-primary" data-id="{{dataValues.id}}">open</a>
+                    </div>
+                </div>
+                {{/each}}
+                <div class="allResume card tab-pane fade" style="width: 18rem;">
+
+                    <div class="card-body">
+                        <h5 class="card-title">two</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                        </p>
+
+                    </div>
+                    <div class="card-footer text-muted">
+                        Role
+                        <a href="#" class="btn btn-primary">open</a>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            were additional information goes
+        </div>
+    </div>
+</div>

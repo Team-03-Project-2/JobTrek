@@ -29,10 +29,23 @@ app.use(passport.session());
 // Requiring our routes
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
+require("./routes/api-routes-resume.js")(app);
 
 // Syncing our database and logging a message to the user upon success
-db.sequelize.sync().then(function () {
-  app.listen(PORT, function () {
-    console.log("==> Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
+db.sequelize.sync().then(function() {
+
+  // let test ={
+    
+  //   email:'crisdc88@gmail.com', 
+  //   password: '123', 
+  //   role:'user'
+  // }
+
+  // db.User.create(test).then(()=>console.log("please print something")).catch(error => console.log(error));
+
+
+
+  app.listen(PORT, function() {
+    console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
   });
 });
