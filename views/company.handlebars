@@ -1,1 +1,71 @@
 <P>This is for CRUD of Company table</P>
+
+{{!-- <P>{{this[0].dataValues}}</P> --}}
+<table class="table" id="results">
+  <thead>
+    <tr>
+      <th>Company ID</th>
+      <th>Company Name</th>
+      <th>Notes</th>
+      <th>Rating</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each company}}
+
+    <tr>
+      {{!-- <td>{{this}}</td> --}}
+      <td>{{dataValues.id}}</td>
+      <td>{{dataValues.company}}</td>
+      <td>{{dataValues.notes}}</td>
+      <td>{{dataValues.rating}}</td>
+      <td>
+        <a href="javascript:void(0);" class="btn btn-sm btn-warning edit" data-id="{{ id }}"
+          data-company="{{ company }}" data-notes="{{ notes }}" data-rating="{{ rating }}">Edit</a>
+        <a href="javascript:void(0);" class="btn btn-sm btn-danger delete" data-id="{{ id }}">Delete</a>
+      </td>
+    </tr>
+    {{else}}
+    <tr>
+      <td colspan="5" class="text-center">No data to display.</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<button class="btn btn-success float-right" data-toggle="modal" data-target="#newCompanyModal">Add New</button>
+
+<!--- this is the edit form for /create and edit --->
+
+<form action="/api/company" method="post">
+  <div class="modal fade" id="newCompanyModal" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">New Company</h4>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <input type="text" name="company" class="form-control" placeholder="Company Name" required="required">
+          </div>
+
+          <div class="form-group">
+            <input type="text" name="notes" class="form-control" placeholder="notes">
+          </div>
+
+          <div class="form-group">
+            <input type="number" name="rating" class="form-control" placeholder="5.0">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn">Create</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

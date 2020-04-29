@@ -1,13 +1,16 @@
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
-var roles = require("../config/roles.js")
+// var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn
+
+// var roles = require("../config/roles.js")
 
 module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function (req, res) {
+    console.log('/api/login', " ", req.user)
     res.json(req.user);
   });
 
@@ -21,6 +24,7 @@ module.exports = function (app) {
       role: "Job Seeker"
     })
       .then(function () {
+        console.log('/api/signup', " ", req.body)
         res.redirect(307, "/api/login");
       })
       .catch(function (err) {
@@ -52,17 +56,67 @@ module.exports = function (app) {
 
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", function (req, res) {
-    if (!req.user) {
-      // The user is not logged in, send back an empty object
-      res.json({});
-    } else {
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
-      res.json({
-        email: req.user.email,
-        id: req.user.id,
-        role: req.user.role
-      });
-    }
+    // Otherwise send back the user's email and id
+    // Sending back a password, even a hashed password, isn't a good idea
+    console.log('/api/user_data', " ", req.user)
+    res.json({
+      email: req.user.email,
+      id: req.user.id,
+      role: req.user.role
+    });
+
   });
+  //--- api functions for company
+  // need get(read), post(create), put (update), and delete
+
+  app.get("/api/company", function (req, res) {
+    // Otherwise send back 
+    console.log("At api/company GET...")
+    db.Company.findAll({}).then(function (dbCompany) {
+      // We locate companies
+      console.log('/api/company GET', dbCompany)
+      res.json(dbCompany);
+    });
+  });
+
+  app.post("/api/company", function (req, res) {
+    console.log('/api/company POST', " ", req.body)
+    db.Company.create({
+      company: req.body.company,
+      notes: req.body.notes,
+      rating: req.body.rating
+    });
+  });
+
+  app.put("/api/company", function (req, res) {
+    console.log('/api/company PUT', " ", req.body)
+    db.Company.create({
+      company: req.body.company,
+      notes: req.body.notes,
+      rating: req.body.rating
+    });
+  });
+
+  app.delete("/api/company", function (req, res) {
+    console.log('/api/company DELETE', " ", req.body)
+    db.Company.delete({
+      // id:
+
+    });
+  });
+
+
+  //-- api functions for contacts
+
+
+
+
+
+  //-- api functions for resumes. 
+
+
+
+
+  //-- end of all apis
 };
+

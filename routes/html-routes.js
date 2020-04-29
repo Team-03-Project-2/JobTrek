@@ -1,8 +1,12 @@
 // Requiring path to so we can use relative routes to our HTML files
-var path = require("path");
+// var path = require("path");
+var db = require("../models");
+
 
 // Requiring our custom middleware for checking if a user is logged in
 var isAuthenticated = require("../config/middleware/isAuthenticated");
+
+// var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn
 
 module.exports = function (app) {
 
@@ -65,7 +69,15 @@ module.exports = function (app) {
 
   app.get("/members/company", isAuthenticated, function (req, res) {
     // res.sendFile(path.join(__dirname, "../public/members.html"));
-    res.render("company")
+    db.Company.findAll({}).then(function (dbCompany) {
+      // We locate companies
+      console.log('/members/company GET', dbCompany)
+      var obj = {
+        company: dbCompany
+      }
+      // res.render("company", dbCompany);
+      res.render("company", obj);
+    });
   });
 
   app.get("/members/contact", isAuthenticated, function (req, res) {
