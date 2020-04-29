@@ -1,4 +1,6 @@
 var db = require("../models");
+var isAuthenticated = require("../config/middleware/isAuthenticated");
+
 
 module.exports = function (app) {
 
@@ -6,10 +8,12 @@ module.exports = function (app) {
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
 
-  app.get("/resume", function (req, res) {
+  app.get("/resume",isAuthenticated, function (req, res) {
+    console.log(req.user);
+    
     db.Resume.findAll().then(function (data) {
      
-      console.log("printing all from resume table",data)
+      console.log("printing all from resume table",data[0].dataValues)
       res.render("resume", {
         resume: data
       })
@@ -17,15 +21,16 @@ module.exports = function (app) {
     });
   })
 
+  app.get("/api/resume/id", function (req, res) {
+    db.resume.findOne().then(function(data){
+    res.json(data);
+   });
 
-  // app.get("/api/resume/all", function (req, res) {
-  //   db.resume.findAll().then(function(data){
-  //   res.json(data);
-  //  });
+  });
 
-  // });
-
-  app.post("/api/resume/create", function (req, res) {
+  app.post("/api/resume/create", isAuthenticated, function (req, res) {
+    
+    
     let id = req.body.userId;
     let star = false;
     let role = req.body.role;

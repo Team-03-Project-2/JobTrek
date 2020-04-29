@@ -29,19 +29,19 @@ app.use(passport.session());
 // Requiring our routes
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
+require("./routes/api-routes-resume.js")(app);
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(function() {
 
   // let test ={
-  //   user_id:1, 
-  //   star:true, 
-  //   fileName : 'testName3', 
-  //   date:Date.now(), 
-  //   role:'software3'
+    
+  //   email:'crisdc88@gmail.com', 
+  //   password: '123', 
+  //   role:'user'
   // }
 
-  // db.Resume.create(test).then(()=>console.log("please print something")).catch(error => console.log(error));
+  // db.User.create(test).then(()=>console.log("please print something")).catch(error => console.log(error));
 
 
 

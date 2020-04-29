@@ -37,10 +37,10 @@ module.exports = function (app) {
   //   res.render("administrator")
   // });
 
-  app.get("/resume", function (req, res) {
-    // res.sendFile(path.join(__dirname, "../public/administrator.html"));
-    res.render("resume")
-  });
+  // app.get("/resume", function (req, res) {
+  //   // res.sendFile(path.join(__dirname, "../public/administrator.html"));
+  //   res.render("resume")
+  // });
 
  
 };
