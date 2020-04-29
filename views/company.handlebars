@@ -51,7 +51,7 @@
 
 <!--- this is the edit form for create --->
 
-<form action="/api/company" method="post">
+<form action="/api/company" id="createform" method="post">
   <div class="modal fade" id="newCompanyModal" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -64,25 +64,26 @@
         <div class="modal-body">
 
           <div class="form-group">
-            <input type="hidden" name="user_id1" value="{{reqUser}}" class="form-control" placeholder=""
+            <input type="hidden" name="user_id1" id="user_id1" value="{{reqUser}}" class="form-control" placeholder=""
               required="required">
           </div>
 
           <div class="form-group">
-            <input type="text" name="company" class="form-control" placeholder="Company Name" required="required">
+            <input type="text" name="company" id="company" class="form-control" placeholder="Company Name"
+              required="required">
           </div>
 
           <div class="form-group">
-            <input type="text" name="notes" class="form-control" placeholder="notes">
+            <input type="text" id="notes" name="notes" class="form-control" placeholder="notes">
           </div>
 
           <div class="form-group">
-            <input type="number" name="rating" class="form-control" placeholder="5.0">
+            <input type="number" id="rating" name="rating" class="form-control" placeholder="5.0">
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn" data-dismiss="modal">Create</button>
+          <button type="submit" class="btn create" data-dismiss="modal">Create</button>
         </div>
       </div>
     </div>
@@ -93,27 +94,60 @@
   $(document).ready(function () {
     //showing data to edit modal      $('#mytable').on('click','.edit',function(){
 
-    var user_id = "{{ reqUser }}";
-    $('#EditModal').modal('show');
-  });
-  //showing delete record modal
-  $('#results').on('click', '.delete', function () {
-    var id = $(this).data("id");
-    var userid = $(this).data("userid");
-    console.log("delete button pushed [", id, "] [", userid, "]")
-    $.ajax({
-      url: "/api/company",
-      type: "DELETE",
-      data: {
-        user_id: userid,
-        id: id
-      }
-    }).then(
-      function () {
-        console.log("Deleted Company ")
-      })
-  });
+    // create button action... 
+
+    $('#createform').on('click', '.create', function () {
+
+      var userid = $("#user_id1").val();
+      var company = $("#company").val();
+      var notes = $("#notes").val();
+      var rating = $("#rating").val()
+      console.log("create button pushed [", userid, "] [", company, "] [", notes, "] [", rating, "] ")
+      $.ajax({
+        url: "/api/company",
+        type: "POST",
+        data: {
+          user_id1: userid,
+          company: company,
+          notes: notes,
+          rating: rating
+        },
+        dataType: "json",
+        success: function (data) {
+          console.log(data);
+          location.reload();  // force reload to see new entry
+        },
+        error: function (error) {
+          console.log("Error ")
+          console.log(error);
+        }
+      });
+    });
 
 
+
+
+    //delete button action. It works... 
+    $('#results').on('click', '.delete', function () {
+      var id = $(this).data("id");
+      var userid = $(this).data("userid");
+      console.log("delete button pushed [", id, "] [", userid, "]")
+      $.ajax({
+        url: "/api/company",
+        type: "DELETE",
+        data: {
+          user_id: userid,
+          id: id
+        },
+        dataType: "json",
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (error) {
+          console.log(`Error ${error}`);
+        }
+      });
+    });
+  });
 
 </script>

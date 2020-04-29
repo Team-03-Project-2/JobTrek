@@ -10,7 +10,8 @@ module.exports = function (app) {
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function (req, res) {
-    console.log('/api/login', " ", req.user)
+    // console.log('/api/login', " ", req.user)
+    console.log("/api/login called apiroute")
     res.json(req.user);
   });
 
@@ -85,7 +86,8 @@ module.exports = function (app) {
 
   //create
   app.post("/api/company", function (req, res) {
-    console.log('/api/company POST', " ", req.body)
+    console.log('/api/company POST')
+    //, " ", req.body)
     db.Company.create({
       user_id: req.body.user_id1,
       company: req.body.company,
@@ -93,9 +95,12 @@ module.exports = function (app) {
       rating: parseFloat(req.body.rating)
     })
       .then(newCompany => {
-        res(newCompany)
+        res.json(newCompany)
       })
-    if (err) throw err;
+      .catch(err => {
+        throw err
+      })
+    // if (err) throw err;
   });
 
   //update
