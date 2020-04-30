@@ -115,8 +115,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn create" id="btnCreate" name="btnCreate"
-            {{!-- data-dismiss="modal" --}}>Create</button>
+          <button type="submit" class="btn create" id="btnCreate" name="btnCreate" data-dismiss="modal">Create</button>
         </div>
       </div>
     </div>
@@ -136,6 +135,10 @@
           </button>
         </div>
         <div class="modal-body">
+
+          <div class="form-group">
+            <input type="text" id="ide" value="" class="form-control" placeholder="" required="required" readonly>
+          </div>
 
           <div class="form-group">
             <input type="hidden" id="user_id1e" value="{{reqUser}}" class="form-control" placeholder=""
@@ -185,8 +188,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn create" id="btnCommit" name="btnCommit"
-            {{!-- data-dismiss="modal" --}}>Commit</button>
+          <button type="submit" class="btn create" id="btnCommit" name="btnCommit" data-dismiss="modal">Commit</button>
         </div>
       </div>
     </div>
@@ -197,6 +199,7 @@
 
 
 <script>
+  //create form
   $(document).ready(function () {
 
 
@@ -255,67 +258,96 @@
       e.preventDefault();
 
       //query single ID:
-      var id = $(this).data("id")
-      var user_id = $(this.data("id");
+      var id = $(this).data("id");
+      var user_id = $(this).data("userid");
 
-      db.Job_Application.findOne({
-        where: {
-          user_id: req.body.user_id1,
-          id: req.body.id
-        }
-      }).then((updateJob) => {
+      $.ajax({
+        url: "/api/job/" + id,
+        type: "GET",
+        dataType: "json"
+      })
+        .then((updateJob) => {
+          console.log("updateJob = ", updateJob)
 
-        var jobtitle = updateJob.dataValues.job_title;
-        var descriptionx = updateJob.dataValues.description;
-        var requirement = updateJob.dataValues.requirement;
-        var location1 = updateJob.dataValues.location;
-        var companyid = updateJob.dataValues.company_id;
-        var contactid = updateJob.dataValues.contact_id;
-        var resume_id = updateJob.dataValues.resume_id;
-        var status1 = updateJob.dataValues.status;
-        var notesx = updateJob.dataValues.notes;
-        var rating = updateJob.dataValues.rating;
-        console.log("edit job button pushed [", user_id, "] [", jobtitle, "] [", companyid, "] [", status1, "] ");
+          var jobtitle = updateJob.job_title;
+          var descriptionx = updateJob.description;
+          var requirement = updateJob.requirement;
+          var location1 = updateJob.location;
+          var companyid = updateJob.company_id;
+          var contactid = updateJob.contact_id;
+          var resume_id = updateJob.resume_id;
+          var status1 = updateJob.status;
+          var notesx = updateJob.notes;
+          var rating = updateJob.rating;
+          console.log("edit job button pushed [", user_id, "] [", jobtitle, "] [", companyid, "] [", status1, "] ");
 
-        // got it from the database, push it to modal
+          // got it from the database, push it to modal
 
+          $("#user_id1e").val(user_id)
+          $("#ide").val(id)
+          $("#job_titlee").val(jobtitle)
+          $("#descriptione").val(descriptionx)
+          $("#requiremente").val(requirement)
+          $("#location1e").val(location1)
+          $("#company_id1e").val(companyid)
+          $("#contact_id1e").val(contactid)
+          $("#resume_ide").val(resume_id)
+          $("#status1e").val(status1)
+          $("#notese").val(notesx)
+          $("#ratinge").val(rating)
 
+          $('#updateform').on('click', '.commit', function () {
 
+            // now we read them back into variables
+            var id = $("#ide").val()
+            var userid = $("#user_id1e").val();
+            var jobtitle = $("#job_titlee").val();
+            var descriptionx = $("#descriptione").val();
+            var requirement = $("#requiremente").val();
+            var location1 = $("#location1e").val();
+            var companyid = $("#company_id1e").val()
+            var contactid = $("#contact_id1e").val()
+            var resume_id = $("#resume_ide").val()
+            var status1 = $("#status1e").val()
+            var notesx = $("#notese").val();
+            var rating = $("#ratinge").val()
 
+            console.log("commit button pushed [", id, "] [", userid, "] [", jobtitle, "] [", notesx, "] [", rating, "] ")
 
+            myData = {
+              id: id,
+              user_id1: userid,
+              jobtitle: jobtitle,
+              description: descriptionx,
+              requirement: requirement,
+              location1: location1,
+              company_id: companyid,
+              contact_id: contactid,
+              resume_id: resume_id,
+              status1: status1,
+              notes: notesx,
+              rating: rating
+            }
 
-        myData = {
-          user_id1: userid,
-          jobtitle: jobtitle,
-          description: descriptionx,
-          requirement: requirement,
-          location1: location1,
-          company_id: companyid,
-          contact_id: contactid,
-          resume_id: resume_id,
-          status1: status1,
-          notes: notesx,
-          rating: rating
-        }
+            console.log(myData)
 
-        console.log(myData)
-
-        $.ajax({
-          url: "/api/job",
-          type: "POST",
-          data: myData,
-          dataType: "json",
-          success: function (data) {
-            console.log(data);
-            //location.reload(); // force reload to see new entry
-          },
-          error: function (error) {
-            console.log("Error ")
-            console.log(error);
-          }
+            $.ajax({
+              url: "/api/job",
+              type: "PUT",
+              data: myData,
+              dataType: "json",
+              success: function (data) {
+                console.log(data);
+                location.reload(); // force reload to see new entry
+              },
+              error: function (error) {
+                console.log("Error ")
+                console.log(error);
+              }
+            });
+          });
         });
-      });
-
-
     });
+
+  });
 </script>

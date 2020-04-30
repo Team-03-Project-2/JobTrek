@@ -20,15 +20,15 @@ module.exports = function (app) {
   // otherwise send back an error
   app.post("/api/signup", function (req, res) {
 
-  // let test ={
-  //   user_id:1, 
-  //   star:true, 
-  //   fileName : 'testName3', 
-  //   date:Date.now(), 
-  //   role:'software3'
-  // }
+    // let test ={
+    //   user_id:1, 
+    //   star:true, 
+    //   fileName : 'testName3', 
+    //   date:Date.now(), 
+    //   role:'software3'
+    // }
 
-  // db.Resume.create(test).then(()=>console.log("please print something")).catch(error => console.log(error));
+    // db.Resume.create(test).then(()=>console.log("please print something")).catch(error => console.log(error));
 
 
 
@@ -277,11 +277,11 @@ module.exports = function (app) {
     console.log("At /api/job/:id GET...")
     db.Job_Application.findAll({
       where: {
-        user_id: req.body.user_id,
-        id: req.param.id
+        id: req.params.id
       }
     }).then(function (dbJob) {
-      res.json(dbJob);
+      // console.log(dbJob[0])
+      res.json(dbJob[0]);
     });
   });
 
