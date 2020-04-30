@@ -12,7 +12,8 @@ $(document).ready(function () {
         let date = $("dateresume").val();
         let fileLocation = $("#resumeLink").val();
         
-        $.ajax("/api/resume/create",{
+        $.ajax("/api/resume/create",
+        {
             type: "POST",
             data:{
                 fileName:fileName,
@@ -24,18 +25,39 @@ $(document).ready(function () {
             }
         }).then(function(){
             location.reload();
-        })
-    })
+        });
+    });
 
 
     
     $(".starBtn").on("click", function(event){
       
         let starId = $(this).data("id");
-
+        let starValue = $(this).data("star");
         console.log(starId)
+        console.log(starValue)
 
+        $.ajax("/api/resume/update/star", 
+        {
+            type:"PUT",
+            data:{
+                starId: starId,
+                starValue : starValue
+            }
+        }).then(function(dbResume){
+            location.reload();
+        });
+    });
+
+    $(".deleteResume").on("click", function(event){
+        let delid = $(this).data("id")
+        console.log("del", delid)
+        $.ajax("/api/resume/delete", {
+            type: "DELETE",
+            data:{id:delid}
+        }).then(function(dbResume){
+            location.reload();
+        })
     })
 
-
-})
+});

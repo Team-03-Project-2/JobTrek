@@ -14,10 +14,10 @@ module.exports = function (app) {
       console.log("printing all from resume table", data[0].dataValues)
       res.render("resume", {
         resume: data
-      })
+      });
 
     });
-  })
+  });
 
   // app.get("/api/resume/id", function (req, res) {
   //   db.resume.findOne().then(function(data){
@@ -50,10 +50,40 @@ module.exports = function (app) {
     console.log("create objec", newResumeObject);
     db.Resume.create(newResumeObject).then(function () { })
 
+  });
+
+  app.put("/api/resume/update/star", function (req, res) {
+   
+    let starchange = req.body.starValue;
+    if (starchange== "true") {
+      starchange= false;
+      console.log("here")
+    } else {
+      starchange = true;
+    }
+    console.log(req.body.starValue, starchange)
+    db.Resume.update({ star: starchange },
+      {
+        where: {
+          id: req.body.starId
+        }
+      }).then(function (dbResume) {
+        res.json(dbResume)
+       })
+  });
+
+
+  app.delete("/api/resume/delete", function (req,res){
+    // add conditions not to delete if other job applications are linked 
+    // this specific resume
+    db.Resume.destroy({
+      where: {
+        id: req.body.id
+      }
+    })
+      .then(function(dbResume) {
+        res.json(dbResume);
+      });
   })
 
-  // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
-  // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
-  // otherwise send back an error
-
-};
+}
