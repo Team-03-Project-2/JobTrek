@@ -68,7 +68,6 @@ db.sequelize.sync().then(function() {
 db.Company.create(company).then(()=>console.log("please print something")).catch(error => console.log(error));
 
 
-
   app.listen(PORT, function() {
     console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
   });

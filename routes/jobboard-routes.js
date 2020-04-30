@@ -88,6 +88,13 @@ module.exports = function (app) {
         })
     })
 
+    app.get("/api/jobboard/resume", function(req, res){
+        db.Company.findAll().then(function(data){
+            res.render("addjob", {resumies: data} )
+            console.log(data)
+        })
+    })
+
 
     //create
     app.post("api/jobboard", function (req, res) {

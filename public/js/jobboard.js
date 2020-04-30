@@ -5,9 +5,24 @@ $("#addnewjob").on("click", function(event){
         type:"GET"
 
     }).then(function(data){
+        $.ajax("/api/jobboard/resume",{
+            type:"GET"
+    
+        }).then(function(data){
+    
+        })
+    
 
     })
 
 
 
 })
+
+
+
+    
+    
+
+
+
