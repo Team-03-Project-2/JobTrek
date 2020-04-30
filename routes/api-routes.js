@@ -276,13 +276,13 @@ module.exports = function (app) {
     //, " ", req.body)
     db.Job_Application.create({
       user_id: req.body.user_id1,
-      job_title: req.body.job_title,
+      job_title: req.body.jobtitle,
       description: req.body.description,
       requirement: req.body.requirement,
       location: req.body.location1,
-      company_id: req.body.company_id,
-      contact_id: req.body.contact_id,
-      resume_id: req.body.resume_id,
+      company_id: parseInt(req.body.company_id),
+      contact_id: parseInt(req.body.contact_id),
+      resume_id: parseInt(req.body.resume_id),
       status: req.body.status1,
       notes: req.body.notes,
       rating: parseFloat(req.body.rating)
@@ -307,7 +307,7 @@ module.exports = function (app) {
     }).then((updateJob) => {
       updateJob.update({
         user_id: req.body.user_id1,
-        job_title: req.body.job_title,
+        job_title: req.body.jobtitle,
         description: req.body.description,
         requirement: req.body.requirement,
         location: req.body.location,
