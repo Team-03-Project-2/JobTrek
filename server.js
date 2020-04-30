@@ -12,6 +12,10 @@ var db = require("./models");
 var app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+<<<<<<< HEAD
+=======
+app.use(express.static("./public"));
+>>>>>>> 2c0afde8c1507ec2d25a2bba242b36052e202218
 
 //app.use(express.static("public"));
 
@@ -52,23 +56,7 @@ db.sequelize.sync().then(function() {
 
    }
 
-  db.Job.create(job).then(()=>console.log("please print something")).catch(error => console.log(error));
-
-  let company = {
-    
-   
-          
-    user_id: 1,
-    company: "google",
-    notes: "notes",
-    rating: 5
-
-}
-
-db.Company.create(company).then(()=>console.log("please print something")).catch(error => console.log(error));
-
-
   app.listen(PORT, function() {
-    console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
+    console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT);
   });
 });

@@ -14,10 +14,7 @@
     <div class="card">
         <div class="card-body">
 
-
-
-            <div class="container">
-              
+            {{> resumep/createResume}}
 
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -27,37 +24,25 @@
                         aria-controls="all-resume" aria-selected="false">ALL Resumes</a>
                 </div>
             </nav>
-            <br>
+
             <div class="tab-content" id="nav-tabContent">
-                {{#each resume}}
-                <div class="staredResume card tab-pane fade show active" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">{{dataValues.fileName}}</h5>
-                        <p class="card-text">
-                        </p>
 
-                    </div>
-                    <div class="card-footer text-muted">
-                        <p>{{dataValues.role}}</p>
-                        <a href="#" class="btn btn-primary" data-id="{{dataValues.id}}">open</a>
-                    </div>
-                </div>
-                {{/each}}
-                <div class="allResume card tab-pane fade" style="width: 18rem;">
+                <div class="tab-pane fade show active" id="stared-resume" role="tabpanel"
+                    aria-labelledby="nav-home-tab">
+                    {{#each resume}}
+                        {{#if dataValues.star}}
+                            {{> resumep/starResume}}
+                        {{/if}}
+                    {{/each}}
 
-                    <div class="card-body">
-                        <h5 class="card-title">two</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                        </p>
 
-                    </div>
-                    <div class="card-footer text-muted">
-                        Role
-                        <a href="#" class="btn btn-primary">open</a>
-
-                    </div>
                 </div>
 
+                <div class="tab-pane fade" id="all-resume" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    {{#each resume}}              
+                        {{> resumep/starResume}}
+                    {{/each}}
+                </div>
             </div>
 
         </div>
@@ -69,3 +54,7 @@
         </div>
     </div>
 </div>
+
+
+
+<script src="/js/resume.js"></script>
