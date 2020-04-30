@@ -138,48 +138,48 @@
         <div class="modal-body">
 
           <div class="form-group">
-            <input type="hidden" id="user_id1" value="{{reqUser}}" class="form-control" placeholder=""
+            <input type="hidden" id="user_id1e" value="{{reqUser}}" class="form-control" placeholder=""
               required="required">
           </div>
 
           <div class="form-group">
-            <input type="text" id="job_title" class="form-control" placeholder="job title" required="required">
+            <input type="text" id="job_titlee" class="form-control" placeholder="job title" required="required">
           </div>
 
           <div class="form-group">
-            <input type="text" id="description" class="form-control" placeholder="description" required="required">
+            <input type="text" id="descriptione" class="form-control" placeholder="description" required="required">
           </div>
 
           <div class="form-group">
-            <input type="text" id="requirement" class="form-control" placeholder="requirement" required="required">
+            <input type="text" id="requiremente" class="form-control" placeholder="requirement" required="required">
           </div>
 
           <div class="form-group">
-            <input type="text" id="location1" class="form-control" placeholder="location" required="required">
+            <input type="text" id="location1e" class="form-control" placeholder="location" required="required">
           </div>
 
           <div class="form-group">
-            <input type="number" id="company_id1" class="form-control" placeholder="1">
+            <input type="number" id="company_id1e" class="form-control" placeholder="1">
           </div>
 
           <div class="form-group">
-            <input type="number" id="contact_id1" class="form-control" placeholder="1">
+            <input type="number" id="contact_id1e" class="form-control" placeholder="1">
           </div>
 
           <div class="form-group">
-            <input type="number" id="resume_id" class="form-control" placeholder="1">
+            <input type="number" id="resume_ide" class="form-control" placeholder="1">
           </div>
 
           <div class="form-group">
-            <input type="text" id="status1" class="form-control" placeholder="Wishlist">
+            <input type="text" id="status1e" class="form-control" placeholder="Wishlist">
           </div>
 
           <div class="form-group">
-            <input type="text" id="notes" class="form-control" placeholder="notes">
+            <input type="text" id="notese" class="form-control" placeholder="notes">
           </div>
 
           <div class="form-group">
-            <input type="number" id="rating" class="form-control" placeholder="5.0">
+            <input type="number" id="ratinge" class="form-control" placeholder="5.0">
           </div>
         </div>
 
@@ -251,55 +251,71 @@
 
     // this is edit... 
 
-    //create 
     $('#results').on('click', '.edit', function (e) {
       e.preventDefault();
 
-      var userid = $("#user_id1").val();
-      var jobtitle = $("#job_title").val();
-      var descriptionx = $("#description").val();
-      var requirement = $("#requirement").val();
-      var location1 = $("#location1").val();
-      var companyid = $("#company_id1").val()
-      var contactid = $("#contact_id1").val()
-      var resume_id = $("#resume_id").val()
-      var status1 = $("#status1").val()
-      var notesx = $("#notes").val();
-      var rating = $("#rating").val()
-      console.log("create job button pushed [", userid, "] [", jobtitle, "] [", companyid, "] [", status1, "] ");
+      //query single ID:
+      var id = $(this).data("id")
+      var user_id = $(this.data("id");
 
-      myData = {
-        user_id1: userid,
-        jobtitle: jobtitle,
-        description: descriptionx,
-        requirement: requirement,
-        location1: location1,
-        company_id: companyid,
-        contact_id: contactid,
-        resume_id: resume_id,
-        status1: status1,
-        notes: notesx,
-        rating: rating
-      }
-
-      console.log(myData)
-
-      $.ajax({
-        url: "/api/job",
-        type: "POST",
-        data: myData,
-        dataType: "json",
-        success: function (data) {
-          console.log(data);
-          //location.reload(); // force reload to see new entry
-        },
-        error: function (error) {
-          console.log("Error ")
-          console.log(error);
+      db.Job_Application.findOne({
+        where: {
+          user_id: req.body.user_id1,
+          id: req.body.id
         }
+      }).then((updateJob) => {
+
+        var jobtitle = updateJob.dataValues.job_title;
+        var descriptionx = updateJob.dataValues.description;
+        var requirement = updateJob.dataValues.requirement;
+        var location1 = updateJob.dataValues.location;
+        var companyid = updateJob.dataValues.company_id;
+        var contactid = updateJob.dataValues.contact_id;
+        var resume_id = updateJob.dataValues.resume_id;
+        var status1 = updateJob.dataValues.status;
+        var notesx = updateJob.dataValues.notes;
+        var rating = updateJob.dataValues.rating;
+        console.log("edit job button pushed [", user_id, "] [", jobtitle, "] [", companyid, "] [", status1, "] ");
+
+        // got it from the database, push it to modal
+
+
+
+
+
+
+        myData = {
+          user_id1: userid,
+          jobtitle: jobtitle,
+          description: descriptionx,
+          requirement: requirement,
+          location1: location1,
+          company_id: companyid,
+          contact_id: contactid,
+          resume_id: resume_id,
+          status1: status1,
+          notes: notesx,
+          rating: rating
+        }
+
+        console.log(myData)
+
+        $.ajax({
+          url: "/api/job",
+          type: "POST",
+          data: myData,
+          dataType: "json",
+          success: function (data) {
+            console.log(data);
+            //location.reload(); // force reload to see new entry
+          },
+          error: function (error) {
+            console.log("Error ")
+            console.log(error);
+          }
+        });
       });
+
+
     });
-
-
-  });
 </script>

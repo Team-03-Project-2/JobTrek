@@ -12,9 +12,9 @@ module.exports = function (app) {
 
   app.get("/", function (req, res) {
     // If the user already has an account send them to the members page
-    if (req.user) {
-      res.redirect("/members");
-    }
+    // if (req.user) {
+    //   res.redirect("/members");
+    // }
     // res.sendFile(path.join(__dirname, "../public/signup.html"));
     res.render("index")
   });
@@ -139,12 +139,19 @@ module.exports = function (app) {
     // res.render("jobboard")
   });
 
+<<<<<<< HEAD
   //-------------------------------------------------------
 
   app.get("/members/resume", isAuthenticated, function (req, res) {
     // res.sendFile(path.join(__dirname, "../public/members.html"));
     res.render("resume")
   });
+=======
+  // app.get("/members/resume", isAuthenticated, function (req, res) {
+  //   // res.sendFile(path.join(__dirname, "../public/members.html"));
+  //   res.render("resume")
+  // });
+>>>>>>> 2c0afde8c1507ec2d25a2bba242b36052e202218
 
 
   app.get("/admin", isAuthenticated, function (req, res) {
