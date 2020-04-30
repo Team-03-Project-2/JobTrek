@@ -61,7 +61,21 @@ module.exports = function (app) {
 
   app.get("/members/jobboard", isAuthenticated, function (req, res) {
     // res.sendFile(path.join(__dirname, "../public/members.html"));
-    res.render("jobboard")
+    db.Job_Application.findAll({
+      where: {
+        user_id: req.user.id
+      }
+    }).then(function (dbJob) {
+      // We locate companies
+      // console.log('/members/company GET', dbCompany)
+      var obj = {
+        reqUser: req.user.id,
+        job_application: dbJob
+      }
+      // res.render("company", dbCompany);
+      res.render("jobboard", obj);
+    });
+    // res.render("jobboard")
   });
 
   app.get("/members/maintain", isAuthenticated, function (req, res) {
@@ -104,6 +118,25 @@ module.exports = function (app) {
       // res.render("company", dbCompany);
       res.render("contact", obj);
     });
+  });
+
+  app.get("/members/job", isAuthenticated, function (req, res) {
+    // res.sendFile(path.join(__dirname, "../public/members.html"));
+    db.Job_Application.findAll({
+      where: {
+        user_id: req.user.id
+      }
+    }).then(function (dbJob) {
+      // We locate companies
+      // console.log('/members/company GET', dbCompany)
+      var obj = {
+        reqUser: req.user.id,
+        job_application: dbJob
+      }
+      // res.render("company", dbCompany);
+      res.render("job", obj);
+    });
+    // res.render("jobboard")
   });
 
   //-------------------------------------------------------

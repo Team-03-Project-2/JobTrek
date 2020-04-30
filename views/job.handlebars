@@ -1,0 +1,182 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <span id="{{reqUser}}">User_ID = {{reqUser}} </span>
+      <i class="fas fa-chevron-right"></i> <a href="/members">Members</a>
+      <i class="fas fa-chevron-right"></i> <a href="/members/maintain">Maintainence</a>
+      <i class="fas fa-chevron-right"></i> <B> Jobs </b>
+      <a class="navbar-brand" href="/logout">
+        Logout
+      </a>
+    </div>
+  </div>
+</nav>
+
+<P> CRUD page for Job_Application (job.js)</P>
+
+
+<table class="table" id="results">
+  <thead>
+    <tr>
+      <th>Job ID</th>
+      <th>Title</th>
+      <th>Location</th>
+      <th>Company</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each job_application}}
+
+    <tr>
+      {{!-- <td>{{this}}</td> --}}
+      <td>{{dataValues.id}}</td>
+      <td>{{dataValues.job_title}}</td>
+      <td>{{dataValues.location}}</td>
+      <td>{{dataValues.company_id}}</td>
+      <td>{{dataValues.status}}</td>
+      <td>
+        <a href="javascript:void(0);" class="btn btn-sm btn-warning edit" data-id="{{ dataValues.id }}"
+          data-userid="{{../reqUser}}" data-location="{{ dataValues.location }}" data-title="{{ dataValues.title }}"
+          data-company_id="{{ dataValues.company_id }}" data-status="{{ dataValues.status }}" data-toggle="modal"
+          data-target="#updatejobModal">Edit</a>
+        <a href="javascript:void(0);" class="btn btn-sm btn-danger delete" data-id="{{ dataValues.id }}"
+          data-userid="{{../reqUser}}">Delete</a>
+      </td>
+    </tr>
+    {{else}}
+    <tr>
+      <td colspan="6" class="text-center">No data to display.</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<button class="btn btn-success float-right" data-toggle="modal" data-target="#newjobModal">Add New</button>
+
+<!--- this is the create form--->
+
+<form action="/api/job" id="createform" method="post">
+  <div class="modal fade" id="newjobModal" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">New job</h4>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div class="form-group">
+            <input type="hidden" name="user_id1" id="user_id1" value="{{reqUser}}" class="form-control" placeholder=""
+              required="required">
+          </div>
+
+          <div class="form-group">
+            <input type="text" name="job_title" id="job_title" class="form-control" placeholder="job title"
+              required="required">
+          </div>
+
+          <div class="form-group">
+            <input type="text" name="description" id="description" class="form-control" placeholder="description"
+              required="required">
+          </div>
+
+          <div class="form-group">
+            <input type="text" name="requirement" id="requirement" class="form-control" placeholder="requirement"
+              required="required">
+          </div>
+
+          <div class="form-group">
+            <input type="text" name="location1" id="location1" class="form-control" placeholder="location"
+              required="required">
+          </div>
+
+          <div class="form-group">
+            <input type="number" name="company_id1" id="company_id1" class="form-control" placeholder="1">
+          </div>
+
+          <div class="form-group">
+            <input type="number" name="contact_id" id="contact_id" class="form-control" placeholder="1">
+          </div>
+
+          <div class="form-group">
+            <input type="number" name="resume_id" id="resume_id" class="form-control" placeholder="1">
+          </div>
+
+          <div class="form-group">
+            <input type="text" name="status1" id="status1" class="form-control" placeholder="Wishlist">
+          </div>
+
+          <div class="form-group">
+            <input type="text" id="notes" name="notes" class="form-control" placeholder="notes">
+          </div>
+
+          <div class="form-group">
+            <input type="number" id="rating" name="rating" class="form-control" placeholder="5.0">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn create" id="btnCreate" {{!-- data-dismiss="modal" --}}>Create</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+<script>
+  $(document).ready(function () {
+
+
+    //create 
+    $('#createform').on('click', '#btnCreate', function (e) {
+      e.preventDefault();
+
+      var userid = $("#user_id1").val();
+      var job_title = $("#job_title").val();
+      var description = $("#description").val();
+      var requirement = $("#requirement").val();
+      var location = $("#location1").val();
+      var company_id = $("#company_id1").val()
+      var oontact_id = $("#contact_id").val()
+      var resume_id = $("#resume_id").val()
+      var status1 = $("#status1").val()
+      var notes = $("#notes").val();
+      var rating = $("#rating").val()
+      console.log("create job button pushed [", userid, "] [", job_title, "] [", company_id, "] [", status1, "] ");
+      $.ajax({
+        url: "/api/job",
+        type: "POST",
+        data: {
+          user_id1: userid,
+          job_title: job_title,
+          description: description,
+          requirement: requirement,
+          location1: location1,
+          company_id: company_id,
+          contact_id: contact_id,
+          resume_id: resume_id,
+          status1: status1,
+          notes: notes,
+          rating: rating
+        },
+        dataType: "json",
+        success: function (data) {
+          console.log(data);
+          //location.reload(); // force reload to see new entry
+        },
+        error: function (error) {
+          console.log("Error ")
+          console.log(error);
+        }
+      });
+    });
+
+
+  });
+</script>
