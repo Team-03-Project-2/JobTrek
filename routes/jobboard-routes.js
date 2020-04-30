@@ -16,7 +16,7 @@ var isAuthenticated = require("../config/middleware/isAuthenticated");
 module.exports = function (app) {
 
     app.post("/api/signup", function (req, res) {
-        db.User.create({
+        db.user.create({
             email: req.body.email,
             password: req.body.password,
             role: "Job Seeker"
@@ -57,6 +57,11 @@ module.exports = function (app) {
         res.render("jobboard")
     });
 
+    app.get("/members/jobinfo", isAuthenticated, function (req, res) {
+
+        res.render("jobinfo")
+    });
+
     app.get("/members/findjobs", isAuthenticated, function (req, res) {
 
         res.sendFile(path.join(__dirname, '../public', 'jobapi.html'));
@@ -68,29 +73,38 @@ module.exports = function (app) {
 
 
         db.Job.findAll({
-
-            user_id: req.user.id
+            user_id: 1
+            //user_id: req.user.id
         }).then(function (dbJobboard) {
 
             res.json(dbJobboard);
         });
     });
 
+    app.get("/api/jobboard/company", function(req, res){
+        db.Company.findAll().then(function(data){
+            res.render("addjob", {companies: data} )
+            console.log(data)
+        })
+    })
+
 
     //create
-    app.post("/api/jobboard", function (req, res) {
+    app.post("api/jobboard", function (req, res) {
 
         db.Job.create({
-            job_title: req.body.job_title,
-            description: req.body.description,
-            requirement: req.body.requirement,
-            location: req.body.location,
-            // company://company_id:ref
-            //     contact://contact_id:ref
-            // resume:// resume_id:ref
-            //     status://status:ref
-            notes: req.body.notes,
-            url: req.body.url
+            //user_id: req.user.id,
+          
+            //user_id: req.user.id,
+            // job_title: req.body.job_title,
+            // description: req.body.description,
+            // requirement: req.body.requirement,
+            // location: req.body.location,
+            //status:req.body.status
+            // //company:req.body.company, querycompany table
+            // notes: req.body.notes,
+            // url: req.body.url
+
 
         })
             .then(newJob => {
@@ -103,7 +117,7 @@ module.exports = function (app) {
     });
 
     //update
-    app.put("/api/jobboard", function (req, res) {
+    app.put("api/jobboard", function (req, res) {
 
         db.Job.findOne({
             where: {
@@ -131,7 +145,7 @@ module.exports = function (app) {
     });
 
 
-    app.delete("/api/jobboard", function (req, res) {
+    app.delete("api/jobboard", function (req, res) {
 
         db.Job.destroy({
 

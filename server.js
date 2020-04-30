@@ -36,14 +36,36 @@ require("./routes/jobboard-routes.js")(app);
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(function() {
 
-  // let test ={
+   let job = {
     
-  //   email:'crisdc88@gmail.com', 
-  //   password: '123', 
-  //   role:'user'
-  // }
+   
+          
+            user_id: 1,
+            job_title: "developer",
+            description: "description",
+            requirement: "requirement",
+            location: "location",
+            status:"status",
+            company:"company", 
+            notes: "notes",
+            url: "www.jobtrek.com"
 
-  // db.User.create(test).then(()=>console.log("please print something")).catch(error => console.log(error));
+   }
+
+  db.Job.create(job).then(()=>console.log("please print something")).catch(error => console.log(error));
+
+  let company = {
+    
+   
+          
+    user_id: 1,
+    company: "google",
+    notes: "notes",
+    rating: 5
+
+}
+
+db.Company.create(company).then(()=>console.log("please print something")).catch(error => console.log(error));
 
 
 

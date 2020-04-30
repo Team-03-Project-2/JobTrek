@@ -1,6 +1,5 @@
-
 <!-- Trigger the modal with a button -->
-<a type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> Add Job </a>
+<a type="button" id="addnewjob" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> Add Job </a>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
@@ -16,23 +15,53 @@
             <div class="modal-body">
 
                 <form>
-                    {{!-- <div class="form-group">
-                        <label for="exampleFormControlFile1">Upload your resume</label>
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                    </div> --}}
-                    <label for="exampleFormControlFile1">Resume Title</label>
-                    <input type="text" class="form-control-file" id="resumetitle">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1"> Job Title </label>
+                        <input type="title" class="form-control" id="title" aria-describedby="emailHelp"
+                            placeholder="Job Trek Developer">
+                    </div>
 
-                    <label for="exampleFormControlFile1">Resume Version</label>
-                    <input type="text" class="form-control-file" id="resumetitle">
+                    <div class="form-group">
+                        <label for="companylist">Company</label>
+                        <select class="form-control" id="companylist">
+                            {{#each companies}}
+                            <option>{{company}}</option>
+                            {{/each}}
+                            {{!-- <option>JobTrek</option>
 
-                    <label for="exampleFormControlFile1">Main Role for this Resume</label>
-                    <input type="text" class="form-control-file" id="resumetitle">
+                            <option>Trilogy</option>
+                            <option>Facebook</option>
+                            <option>Twitter</option> --}}
+                        </select>
+                    </div>
 
-                    <label for="exampleFormControlFile1">Upload external link of resume</label>
-                    <input type="text" class="form-control-file" id="resumeLink">
-                    <hr>
-                    <button type="submit" class="btn btn-secondary">save</button>
+                    <div class="form-group">
+                        <label for="location"> Location </label>
+                        <input type="location" class="form-control" id="title" aria-describedby="emailHelp"
+                            placeholder="San Francisco">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jobdescription"> Job Description </label>
+                        <textarea class="form-control" id="jobdescription" rows="3"> Job Description </textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jobrequirement"> Job Requirement </label>
+                        <textarea class="form-control" id="jobrequirement" rows="3"> Job Requirement </textarea>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="job-url"> Job Post </label>
+                        <input type="job-url" class="form-control" id="job-url" aria-describedby="emailHelp"
+                            placeholder="indeed.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jobnotes"> Notes </label>
+                        <textarea class="form-control" id="jobNotes" rows="3"> Notes </textarea>
+                    </div>
                 </form>
 
                 <hr>
@@ -41,8 +70,8 @@
                 <!-- new version out of an existing one -->
 
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <div class="modal-footer ">
+                <button type="button" class="btn btn-primary" data-dismiss="modal"> Add </button>
             </div>
         </div>
     </div>
@@ -50,3 +79,4 @@
 </div>
 
 <hr>
+
