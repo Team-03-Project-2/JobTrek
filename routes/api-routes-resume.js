@@ -8,12 +8,10 @@ module.exports = function (app) {
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
 
-  app.get("/resume",isAuthenticated, function (req, res) {
-    console.log(req.user);
-    
+  app.get("/members/resume", function (req, res) {
+    // console.log(req.user);
     db.Resume.findAll().then(function (data) {
-     
-      console.log("printing all from resume table",data[0].dataValues)
+      console.log("printing all from resume table", data[0].dataValues)
       res.render("resume", {
         resume: data
       })
@@ -21,23 +19,37 @@ module.exports = function (app) {
     });
   })
 
-  app.get("/api/resume/id", function (req, res) {
-    db.resume.findOne().then(function(data){
-    res.json(data);
-   });
+  // app.get("/api/resume/id", function (req, res) {
+  //   db.resume.findOne().then(function(data){
+  //   res.json(data);
+  //  });
 
-  });
+  // });
 
-  app.post("/api/resume/create", isAuthenticated, function (req, res) {
-    
-    
-    let id = req.body.userId;
-    let star = false;
-    let role = req.body.role;
-    let fileName = req.body.file;
+  app.post("/api/resume/create", function (req, res) {
+    console.log("I got called")
+    let resumeDate;
+    if (req.body.date == null || eq.body.date == undefined) {
+      resumeDate = Date.now();
+    } else {
+      resumeDate = req.body.date;
+    }
 
-    // create folder if it doesn't exists docs  
-    // fs save file location
+    let newResumeObject = {
+
+      // user_id : req.user.id,
+      user_id: 1,
+      star: false,
+      fileName: req.body.fileName,
+      date: resumeDate,
+      role: req.body.role,
+      notes: req.body.note,
+      fileLocation: req.body.fileLocation
+
+    }
+    console.log("create objec", newResumeObject);
+    db.Resume.create(newResumeObject).then(function () { })
+
   })
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
