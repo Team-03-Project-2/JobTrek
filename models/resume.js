@@ -12,9 +12,6 @@ module.exports = function (sequelize, DataTypes) {
     fileName: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
     date: {
       type: DataTypes.DATE,

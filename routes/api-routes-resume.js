@@ -11,11 +11,10 @@ module.exports = function (app) {
   app.get("/members/resume", function (req, res) {
     // console.log(req.user);
     db.Resume.findAll().then(function (data) {
-      console.log("printing all from resume table", data[0].dataValues)
+      // console.log("printing all from resume table", data[0].dataValues)
       res.render("resume", {
         resume: data
       });
-
     });
   });
 

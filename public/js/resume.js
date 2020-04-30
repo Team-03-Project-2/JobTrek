@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     $(".createResumeSubmit").on("click", function (event) {
-       event.preventDefault();
+    //    event.preventDefault();
 
         console.log("on create")
 
