@@ -11,35 +11,11 @@ module.exports = function (app) {
   app.get("/members/resume", function (req, res) {
     // console.log(req.user);
     db.Resume.findAll().then(function (data) {
-      console.log("printing all from resume table", data[0])
+      console.log("printing all from resume table", data[0].dataValues)
       res.render("resume", {
         resume: data
       });
-    });
-  });
 
-  app.get("/api/resume/find/:one", function (req, res) {
-    
-    let view = req.params.one
-    console.log("from ajax",view)
-    db.Resume.findOne(
-      {
-      where:{id:view,}}
-      ).then(function(data){
-      console.log(view,"find one:" ,data.dataValues)
-      // res.render("resume", {one: data});
-      res.json(data.dataValues);
-   });
-  // this is added by kasey to populate dropdown lists
-  app.get("/api/resume", function (req, res) {
-    // Otherwise send back 
-    console.log("At /api/resume GET...")
-    db.Resume.findAll({
-      where: {
-        user_id: req.user.id
-      }
-    }).then(function (dbResume) {
-      res.json(dbResume);
     });
   });
 
@@ -48,7 +24,7 @@ module.exports = function (app) {
   //   res.json(data);
   //  });
 
-  });
+  // });
 
   app.post("/api/resume/create", function (req, res) {
     console.log("I got called")
@@ -77,10 +53,10 @@ module.exports = function (app) {
   });
 
   app.put("/api/resume/update/star", function (req, res) {
-
+   
     let starchange = req.body.starValue;
-    if (starchange == "true") {
-      starchange = false;
+    if (starchange== "true") {
+      starchange= false;
       console.log("here")
     } else {
       starchange = true;
@@ -93,11 +69,11 @@ module.exports = function (app) {
         }
       }).then(function (dbResume) {
         res.json(dbResume)
-      })
+       })
   });
 
 
-  app.delete("/api/resume/delete", function (req, res) {
+  app.delete("/api/resume/delete", function (req,res){
     // add conditions not to delete if other job applications are linked 
     // this specific resume
     db.Resume.destroy({
@@ -105,7 +81,7 @@ module.exports = function (app) {
         id: req.body.id
       }
     })
-      .then(function (dbResume) {
+      .then(function(dbResume) {
         res.json(dbResume);
       });
   })
