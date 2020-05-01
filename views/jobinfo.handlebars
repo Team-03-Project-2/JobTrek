@@ -1,11 +1,24 @@
-<form class="updatejob" data-id="{{dataValues.id}}" data-userid="{{../reqUser}}">
-    <div class="form-group">
-        <label for="exampleInputEmail1"> Job Title </label>
-        <input type="title" class="form-control" id="title" aria-describedby="emailHelp"
-            placeholder="Job Trek Developer" value="{{dataValues.job_title}}">
-    </div>
+{{!-- <form class="updatejob" action="/api/jobboard" method="put" data-id="{{dataValues.id}}" data-userid="{{../reqUser}}"> --}}
+<form  class="updatejob">
+    <div class="modal fade" id="updateJobModal" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"> Job Info </h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
 
-    {{!-- <div class="form-group">
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1"> Job Title </label>
+                        <input type="title" class="form-control" id="title" aria-describedby="emailHelp"
+                            placeholder="Job Trek Developer" value="{{dataValues.job_title}}">
+                    </div>
+
+                    {{!-- <div class="form-group">
         <label for="companylist">Company</label>
         <select class="form-control" id="companylist">
             <option>Google</option>
@@ -16,35 +29,41 @@
         </select>
     </div> --}}
 
-    <div class="form-group">
-        <label for="location"> Location </label>
-        <input type="location" class="form-control" id="title" value="{{dataValues.locate}}"
-            aria-describedby="emailHelp" placeholder="San Francisco">
-    </div>
+                    <div class="form-group">
+                        <label for="location"> Location </label>
+                        <input type="location" class="form-control" id="title" value="{{dataValues.locate}}"
+                            aria-describedby="emailHelp" placeholder="San Francisco">
+                    </div>
 
-    <div class="form-group">
-        <label for="jobdescription"> Job Description </label>
-        <textarea class="form-control" id="jobdescription" rows="3">{{dataValues.describe}}</textarea>
-    </div>
+                    <div class="form-group">
+                        <label for="jobdescription"> Job Description </label>
+                        <textarea class="form-control" id="jobdescription" rows="3">{{dataValues.describe}}</textarea>
+                    </div>
 
-    <div class="form-group">
-        <label for="jobrequirement"> Job Requirement </label>
-        <textarea class="form-control" id="jobrequirement" rows="3">{{dataValues.require}} </textarea>
-    </div>
+                    <div class="form-group">
+                        <label for="jobrequirement"> Job Requirement </label>
+                        <textarea class="form-control" id="jobrequirement" rows="3">{{dataValues.require}} </textarea>
+                    </div>
 
 
-    <div class="form-group">
-        <label for="job-url"> Job Post </label>
-        <input type="job-url" class="form-control" id="job-url" value="{{dataValues.jobUrl}}"
-            aria-describedby="emailHelp" placeholder="indeed.com">
-    </div>
+                    <div class="form-group">
+                        <label for="job-url"> Job Post </label>
+                        <input type="job-url" class="form-control" id="job-url" value="{{dataValues.jobUrl}}"
+                            aria-describedby="emailHelp" placeholder="indeed.com">
+                    </div>
 
-    <div class="form-group">
-        <label for="jobnotes"> Notes </label>
-        <textarea class="form-control" id="jobNotes" rows="3">{{dataValues.note}} </textarea>
-    </div>
-    <div class="text-center">
-        <button type="button" id="updatejob" class="btn btn-primary"> Update Job </button>
+                    <div class="form-group">
+                        <label for="jobnotes"> Notes </label>
+                        <textarea class="form-control" id="jobNotes" rows="3">{{dataValues.note}} </textarea>
+                    </div>
+                    <div class="modal-footer" <button type="button" id="updatejob" class="btn btn-primary"> Update Job
+                        </button>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
     </div>
 </form>
 
