@@ -11,11 +11,444 @@
   </div>
 </nav>
 
-<div class="container">
+
+<div class="col">
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <P>This where the 6-column job board will go</P>
+    <header>
+      <a>{{>job-board/addjob}} </a>
+    </header>
+  </div>
+  <div class="row">
+    <div class="col-2">
+      <div class="sidenav container">
+        <a class="row btn-sm btn-primary" href="/members/jobboard">Job Board</a>
+        <a class="row btn-sm btn-secondary" href="/members/resume"> Resume</a>
+        <a class="row btn-sm btn-danger" href="/members/maintain"> Maintenance</a>
+        <a class="row btn-sm btn-info" href="/members/findjobs"> Job Search</a>
+      </div>
 
     </div>
+    <div class="col-10">
+      <div class="row container">
+        <div class="col">
+          <div class="row container list-title">
+            <h5> WishList </h5>
+          </div>
+
+          <div class="row">
+
+          </div>
+
+          <div class="row">
+
+            <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
+              id="col1" ondrop="dropIt(event)" ondragover="allowDrop(event)">
+              {{#each wishlist}}
+              <div draggable="true" ondragstart="dragStart(event)">
+                <div style="padding: 2px 2px 10px;">
+                  <div
+                    style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
+                    <a id="infoLink" href="javascript:void(0);" data-toggle="modal" data-target="#updateJobModal"
+                      class="list-group-item list-group-item-action flex-column align-items-start active"
+                      style="display: flex; flex-direction: column; color: white; white-space: normal;"
+                      data-id="{{dataValues.id}}" data-userid="{{dataValues.user_id}}">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 id="jobtitle" class="mb-1">{{dataValues.job_title}}</h5>
+                        <small>{{dataValues.location}}</small>
+                      </div>
+                      <p id="job-url" class="mb-1">{{dataValues.url}}</p>
+
+                      {{!-- <div class="d-flex justify-content-between">
+                        <button  data-delete="{{dataValues.id}}" class="btn deleteJob btn-danger">
+                          <i class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i>
+                        </button>
+                      </div> --}}
+                      <div class="d-flex justify-content-between">
+                        <a data-userid="{{../reqUser}}" data-delete="{{dataValues.id}}" class="btn  btn-danger"
+                          data-toggle="modal" data-target="#deleteJobModal">
+                          <i class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i>
+                        </a>
+                      </div>
+                    </a>
+
+                  </div>
+                </div>
+              </div>
+              {{/each}}
+            </div>
+
+          </div>
+        </div>
+        <div class="col">
+          <div class="row container">
+            <h5> Applied </h5>
+          </div>
+
+          <div class="row">
+
+          </div>
+
+          <div class="row">
+            <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
+              id="col2" ondrop="dropIt(event)" ondragover="allowDrop(event)">
+              {{#each applied}}
+              <div draggable="true" ondragstart="dragStart(event)">
+                <div style="padding: 2px 2px 10px;">
+                  <div
+                    style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#updateJobModal"
+                      class="btn list-group-item list-group-item-action flex-column align-items-start active">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{dataValues.job_title}}</h5>
+                        <small>{{dataValues.location}}</small>
+
+                      </div>
+                      <div>
+                        <p class="mb-1">{{dataValues.url}}</p>
+                      </div>
+                      <div class="d-flex justify-content-between"> <a data-id="{{dataValues.id}}"
+                          class="btn btn-danger" data-toggle="modal" data-target="#deleteJobModal">
+                           <i class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i>
+                        </a></div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              {{/each}}
+              <div draggable="true" ondragstart="dragStart(event)">
+                <div style="padding: 2px 2px 10px;">
+                  {{!-- <div
+                    style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#updateJobModal"
+                      class="btn list-group-item list-group-item-action flex-column align-items-start active">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Job Title</h5>
+                        <small>createdAT</small>
+
+                      </div>
+                      <div>
+                        <p class="mb-1">Job URL</p>
+                      </div>
+                      <div class="d-flex justify-content-between"> <button data-id="{{dataValues.id}}"
+                          class="btn btn-danger"> <i class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i>
+                        </button></div>
+                    </a>
+                  </div> --}}
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row container">
+            <h5> Response </h5>
+          </div>
+
+          <div class="row">
+
+          </div>
+
+          <div class="row">
+            <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
+              id="col3" ondrop="dropIt(event)" ondragover="allowDrop(event)">
+              {{#each response}}
+              <div draggable="true" ondragstart="dragStart(event)">
+                <div style="padding: 2px 2px 10px;">
+                  <div
+                    style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#updateJobModal"
+                      class="list-group-item list-group-item-action flex-column align-items-start active">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{dataValues.job_title}}</h5>
+                        <small>{{dataValues.location}}</small>
+                      </div>
+                      <p class="mb-1"> {{dataValues.url}} </p>
+                      <div class="d-flex justify-content-between"> <a class="btn btn-danger" 
+                      data-toggle="modal" data-target="#deleteJobModal"> <i
+                            class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </a></div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              {{/each}}
+              <div draggable="true" ondragstart="dragStart(event)">
+                <div style="padding: 2px 2px 10px;">
+                  {{!-- <div
+                    style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Job Title</h5>
+                        <small>createdAT</small>
+                      </div>
+                      <p class="mb-1"> Job URL </p>
+                      <div class="d-flex justify-content-between"> <button class="btn btn-danger"> <i
+                            class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </button></div>
+                    </a>
+                  </div> --}}
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row container">
+            <h5> Interview </h5>
+          </div>
+
+          <div class="row">
+
+          </div>
+
+          <div class="row">
+            <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
+              id="col4" ondrop="dropIt(event)" ondragover="allowDrop(event)">
+              <div draggable="true" ondragstart="dragStart(event)">
+                <div style="padding: 2px 2px 10px;">
+                  <div
+                    style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#updateJobModal"
+                      class="list-group-item list-group-item-action flex-column align-items-start active">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Job Title </h5>
+                        <small>createdAT</small>
+                      </div>
+                      <p class="mb-1">Job URL</p>
+                      <div class="d-flex justify-content-between"> <a class="btn btn-danger"
+                      data-toggle="modal" data-target="#deleteJobModal"> <i
+                            class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </a></div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div draggable="true" ondragstart="dragStart(event)">
+                <div style="padding: 2px 2px 10px;">
+                  {{!-- <div
+                    style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Job Title</h5>
+                        <small>createdAT</small>
+                      </div>
+                      <p class="mb-1"> Job URL </p>
+                      <div class="d-flex justify-content-between"> <button class="btn btn-danger"> <i
+                            class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </button></div>
+                    </a>
+                  </div> --}}
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+        <div class="col">
+          <div class="row container">
+            <h5> Offers </h5>
+          </div>
+
+          <div class="row">
+
+          </div>
+
+          <div class="row">
+            <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
+              id="col5" ondrop="dropIt(event)" ondragover="allowDrop(event)">
+              <div draggable="true" ondragstart="dragStart(event)">
+                <div style="padding: 2px 2px 10px;">
+                  <div
+                    style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#updateJobModal"
+                      class="list-group-item list-group-item-action flex-column align-items-start active">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Job Title</h5>
+                        <small>createdAT</small>
+                      </div>
+                      <p class="mb-1">Job URL</p>
+
+                      <div class="d-flex justify-content-between"> <a class="btn btn-danger"
+                      data-toggle="modal" data-target="#deleteJobModal"> <i
+                            class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </a></div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div draggable="true">
+                <div style="padding: 2px 2px 10px;">
+                  {{!-- <div
+                    style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Job Title</h5>
+                        <small>createdAT</small>
+                      </div>
+                      <p class="mb-1"> Job URL </p>
+                      <div class="d-flex justify-content-between"> <button class="btn btn-danger"> <i
+                            class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </button></div>
+                    </a>
+                  </div> --}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row container">
+            <h5> Rejected </h5>
+          </div>
+
+          <div class="row">
+
+          </div>
+
+          <div class="row">
+            <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
+              id="col6" ondrop="dropIt(event)" ondragover="allowDrop(event)">
+              <div draggable="true" ondragstart="dragStart(event)">
+                <div style="padding: 2px 2px 10px;">
+                  <div
+                    style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#updateJobModal"
+                      class="list-group-item list-group-item-action flex-column align-items-start active">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Job Title</h5>
+                        <small>createdAT</small>
+                      </div>
+                      <p class="mb-1">Job URL</p>
+                      <div class="d-flex justify-content-between"> <a class="btn btn-danger"> <i
+                            class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </a></div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div draggable="true">
+                <div style="padding: 2px 2px 10px;">
+                  {{!-- <div
+                    style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Job Title</h5>
+                        <small>createdAT</small>
+                      </div>
+                      <p class="mb-1"> Job URL </p>
+                      <div class="d-flex justify-content-between"> <button class="btn btn-danger"> <i
+                            class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </button></div>
+                    </a>
+                  </div> --}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <header>
+        //footer
+      </header>
+    </div>
   </div>
-</div>
+
+
+
+
+
+  {{!-- <form class="updatejob" action="/api/jobboard" method="put" data-id="{{dataValues.id}}" data-userid="{{../reqUser}}"> --}}
+  <form action="/api/jobboard" method="put" data-id="{{dataValues.id}}" id="updateJob">
+    <div class="modal fade" id="updateJobModal" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title"> Job Info </h4>
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+
+            <div class="form-group">
+              <label for="exampleInputEmail1"> Job Title </label>
+              <input type="title" name="title" class="form-control" id="title_edit" aria-describedby="emailHelp"
+                placeholder="Job Trek Developer" value="{{dataValues.job_title}}">
+            </div>
+
+            {{!-- <div class="form-group">
+        <label for="companylist">Company</label>
+        <select class="form-control" id="companylist">
+            <option>Google</option>
+            <option>JobTrek</option>
+            <option>Trilogy</option>
+            <option>Facebook</option>
+            <option>Twitter</option>
+        </select>
+    </div> --}}
+
+            <div class="form-group">
+              <label for="location"> Location </label>
+              <input type="location" name="location" class="form-control" id="location_edit" value="{{dataValues.locate}}"
+                aria-describedby="emailHelp" placeholder="San Francisco">
+            </div>
+
+            <div class="form-group">
+              <label for="jobdescription"> Job Description </label>
+              <textarea class="form-control" id="jobdescription_edit" rows="3">{{dataValues.describe}}</textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="jobrequirement"> Job Requirement </label>
+              <textarea class="form-control"name="jobrequirement" id="jobrequirement_edit" rows="3">{{dataValues.require}} </textarea>
+            </div>
+
+
+            <div class="form-group">
+              <label for="job-url"> Job Post </label>
+              <input type="job-url" name="job-url" class="form-control" id="job-url_edit" value="{{dataValues.jobUrl}}"
+                aria-describedby="emailHelp" placeholder="indeed.com">
+            </div>
+
+            <div class="form-group">
+              <label for="jobnotes"> Notes </label>
+              <textarea class="form-control" name="jobNotes" id="jobNotes_edit" rows="3">{{dataValues.note}} </textarea>
+            </div>
+            <div class="modal-footer">
+             <button type="button"  class="btn updatejobbtn btn-primary"> Update Job
+              </button>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </form>
+
+
+  <div data-userid="{{../reqUser}}" data-delete="{{dataValues.id}}" class="modal fade" id="deleteJobModal" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"> Delete {{this.job_title}} </h4>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p> You are about to delete this job. Click delete to continue</p>
+          <div class="modal-footer " >
+          <button type="button" id="deleteJob" class="btn btn-danger" data-userid="{{../reqUser}}" data-delete="{{dataValues.id}}"> Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+        
+
+
+
+
+          <script type="text/javascript" src="/js/dragdrop.js"></script>
+          <script type="text/javascript" src="/js/jobboard.js"></script>

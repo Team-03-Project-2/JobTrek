@@ -5,17 +5,18 @@ var session = require("express-session");
 var passport = require("./config/passport");
 
 // Setting up port and requiring models for syncing
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 3500;
 var db = require("./models");
 
 // Creating express app and configuring middleware needed for authentication
 var app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("./public"));
+app.use(express.static("public"));
+
+//app.use(express.static("public"));
 
 
-// Set Handlebars.
 var exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -30,18 +31,26 @@ app.use(passport.session());
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 require("./routes/api-routes-resume.js")(app);
+require("./routes/jobboard-routes.js")(app);
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(function () {
 
-  // let test ={
+  //  let job = {
+    
+   
+          
+  //           user_id: 1,
+  //           job_title: "developer",
+  //           description: "description",
+  //           requirement: "requirement",
+  //           location: "location",
+  //           status:"status",
+  //           company:"company", 
+  //           notes: "notes",
+  //           url: "www.jobtrek.com"
 
-  //   email:'crisdc88@gmail.com', 
-  //   password: '123', 
-  //   role:'user'
-  // }
-
-  // db.User.create(test).then(()=>console.log("please print something")).catch(error => console.log(error));
+  //  }
 
   app.listen(PORT, function () {
     console.log(`==> Listening on port %s. Visit http://localhost:%s/ in your browser.`, PORT, PORT);
