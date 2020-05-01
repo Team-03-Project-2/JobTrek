@@ -11,190 +11,203 @@
     </div>
   </div>
 </nav>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+      <P> CRUD page for Job_Application (job.js)</P>
 
-<P> CRUD page for Job_Application (job.js)</P>
 
+      <table class="table" id="results">
+        <thead>
+          <tr>
+            <th>Job ID</th>
+            <th>Title</th>
+            <th>Location</th>
+            <th>Company</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each job_application}}
 
-<table class="table" id="results">
-  <thead>
-    <tr>
-      <th>Job ID</th>
-      <th>Title</th>
-      <th>Location</th>
-      <th>Company</th>
-      <th>Status</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each job_application}}
+          <tr>
+            {{!-- <td>{{this}}</td> --}}
+            <td>{{dataValues.id}}</td>
+            <td>{{dataValues.job_title}}</td>
+            <td>{{dataValues.location}}</td>
+            <td>{{dataValues.company_id}}</td>
+            <td>{{dataValues.status}}</td>
+            <td>
+              <a href="javascript:void(0);" class="btn btn-sm btn-warning edit" data-id="{{ dataValues.id }}"
+                data-userid="{{../reqUser}}" data-toggle="modal" data-target="#updatejobModal">Edit</a>
+              <a href="javascript:void(0);" class="btn btn-sm btn-danger delete" data-id="{{ dataValues.id }}"
+                data-userid="{{../reqUser}}">Delete</a>
+            </td>
+          </tr>
+          {{else}}
+          <tr>
+            <td colspan="6" class="text-center">No data to display.</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
 
-    <tr>
-      {{!-- <td>{{this}}</td> --}}
-      <td>{{dataValues.id}}</td>
-      <td>{{dataValues.job_title}}</td>
-      <td>{{dataValues.location}}</td>
-      <td>{{dataValues.company_id}}</td>
-      <td>{{dataValues.status}}</td>
-      <td>
-        <a href="javascript:void(0);" class="btn btn-sm btn-warning edit" data-id="{{ dataValues.id }}"
-          data-userid="{{../reqUser}}" data-toggle="modal" data-target="#updatejobModal">Edit</a>
-        <a href="javascript:void(0);" class="btn btn-sm btn-danger delete" data-id="{{ dataValues.id }}"
-          data-userid="{{../reqUser}}">Delete</a>
-      </td>
-    </tr>
-    {{else}}
-    <tr>
-      <td colspan="6" class="text-center">No data to display.</td>
-    </tr>
-    {{/each}}
-  </tbody>
-</table>
+      <button class="btn btn-success" data-toggle="modal" data-target="#newjobModal">Add New</button>
 
-<button class="btn btn-success float-right" data-toggle="modal" data-target="#newjobModal">Add New</button>
+      <!--- this is the create form--->
 
-<!--- this is the create form--->
+      <form action="/api/job" id="createform" method="post">
+        <div class="modal fade" id="newjobModal" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">New job</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
 
-<form action="/api/job" id="createform" method="post">
-  <div class="modal fade" id="newjobModal" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">New job</h4>
-          <button type="button" class="close" data-dismiss="modal">
-            <span>&times;</span>
-          </button>
+                <div class="form-group">
+                  <input type="hidden" id="user_id1" value="{{reqUser}}" class="form-control" placeholder=""
+                    required="required">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" id="job_title" class="form-control" placeholder="job title" required="required">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" id="description" class="form-control" placeholder="description"
+                    required="required">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" id="requirement" class="form-control" placeholder="requirement"
+                    required="required">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" id="location1" class="form-control" placeholder="location" required="required">
+                </div>
+
+                <div class="form-group">
+                  <input type="number" id="company_id1" class="form-control" placeholder="1">
+                </div>
+
+                <div class="form-group">
+                  <input type="number" id="contact_id1" class="form-control" placeholder="1">
+                </div>
+
+                <div class="form-group">
+                  <input type="number" id="resume_id" class="form-control" placeholder="1">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" id="status1" class="form-control" placeholder="Wishlist">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" id="notes" class="form-control" placeholder="notes">
+                </div>
+
+                <div class="form-group">
+                  <input type="number" id="rating" class="form-control" placeholder="5.0">
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn create" id="btnCreate" name="btnCreate"
+                  data-dismiss="modal">Create</button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="modal-body">
+      </form>
 
-          <div class="form-group">
-            <input type="hidden" id="user_id1" value="{{reqUser}}" class="form-control" placeholder=""
-              required="required">
-          </div>
+      <!--- this form is for editing --->
 
-          <div class="form-group">
-            <input type="text" id="job_title" class="form-control" placeholder="job title" required="required">
-          </div>
+      <form action="/api/job" id="updateform" method="put">
+        <div class="modal fade" id="updatejobModal" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Edit job</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
 
-          <div class="form-group">
-            <input type="text" id="description" class="form-control" placeholder="description" required="required">
-          </div>
+                <div class="form-group">
+                  <input type="text" id="ide" value="" class="form-control" placeholder="" required="required" readonly>
+                </div>
 
-          <div class="form-group">
-            <input type="text" id="requirement" class="form-control" placeholder="requirement" required="required">
-          </div>
+                <div class="form-group">
+                  <input type="hidden" id="user_id1e" value="{{reqUser}}" class="form-control" placeholder=""
+                    required="required">
+                </div>
 
-          <div class="form-group">
-            <input type="text" id="location1" class="form-control" placeholder="location" required="required">
-          </div>
+                <div class="form-group">
+                  <input type="text" id="job_titlee" class="form-control" placeholder="job title" required="required">
+                </div>
 
-          <div class="form-group">
-            <input type="number" id="company_id1" class="form-control" placeholder="1">
-          </div>
+                <div class="form-group">
+                  <input type="text" id="descriptione" class="form-control" placeholder="description"
+                    required="required">
+                </div>
 
-          <div class="form-group">
-            <input type="number" id="contact_id1" class="form-control" placeholder="1">
-          </div>
+                <div class="form-group">
+                  <input type="text" id="requiremente" class="form-control" placeholder="requirement"
+                    required="required">
+                </div>
 
-          <div class="form-group">
-            <input type="number" id="resume_id" class="form-control" placeholder="1">
-          </div>
+                <div class="form-group">
+                  <input type="text" id="location1e" class="form-control" placeholder="location" required="required">
+                </div>
 
-          <div class="form-group">
-            <input type="text" id="status1" class="form-control" placeholder="Wishlist">
-          </div>
+                <div class="form-group">
+                  <input type="number" id="company_id1e" class="form-control" placeholder="1">
+                </div>
 
-          <div class="form-group">
-            <input type="text" id="notes" class="form-control" placeholder="notes">
-          </div>
+                <div class="form-group">
+                  <input type="number" id="contact_id1e" class="form-control" placeholder="1">
+                </div>
 
-          <div class="form-group">
-            <input type="number" id="rating" class="form-control" placeholder="5.0">
+                <div class="form-group">
+                  <input type="number" id="resume_ide" class="form-control" placeholder="1">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" id="status1e" class="form-control" placeholder="Wishlist">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" id="notese" class="form-control" placeholder="notes">
+                </div>
+
+                <div class="form-group">
+                  <input type="number" id="ratinge" class="form-control" placeholder="5.0">
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn create" id="btnCommit" name="btnCommit"
+                  data-dismiss="modal">Commit</button>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn create" id="btnCreate" name="btnCreate" data-dismiss="modal">Create</button>
-        </div>
-      </div>
+      </form>
     </div>
+    <div class="col-1"></div>
+
   </div>
-</form>
-
-<!--- this form is for editing --->
-
-<form action="/api/job" id="updateform" method="put">
-  <div class="modal fade" id="updatejobModal" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Edit job</h4>
-          <button type="button" class="close" data-dismiss="modal">
-            <span>&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-
-          <div class="form-group">
-            <input type="text" id="ide" value="" class="form-control" placeholder="" required="required" readonly>
-          </div>
-
-          <div class="form-group">
-            <input type="hidden" id="user_id1e" value="{{reqUser}}" class="form-control" placeholder=""
-              required="required">
-          </div>
-
-          <div class="form-group">
-            <input type="text" id="job_titlee" class="form-control" placeholder="job title" required="required">
-          </div>
-
-          <div class="form-group">
-            <input type="text" id="descriptione" class="form-control" placeholder="description" required="required">
-          </div>
-
-          <div class="form-group">
-            <input type="text" id="requiremente" class="form-control" placeholder="requirement" required="required">
-          </div>
-
-          <div class="form-group">
-            <input type="text" id="location1e" class="form-control" placeholder="location" required="required">
-          </div>
-
-          <div class="form-group">
-            <input type="number" id="company_id1e" class="form-control" placeholder="1">
-          </div>
-
-          <div class="form-group">
-            <input type="number" id="contact_id1e" class="form-control" placeholder="1">
-          </div>
-
-          <div class="form-group">
-            <input type="number" id="resume_ide" class="form-control" placeholder="1">
-          </div>
-
-          <div class="form-group">
-            <input type="text" id="status1e" class="form-control" placeholder="Wishlist">
-          </div>
-
-          <div class="form-group">
-            <input type="text" id="notese" class="form-control" placeholder="notes">
-          </div>
-
-          <div class="form-group">
-            <input type="number" id="ratinge" class="form-control" placeholder="5.0">
-          </div>
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn create" id="btnCommit" name="btnCommit" data-dismiss="modal">Commit</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</form>
-
+</div>
 <!--- divider --->
 
 

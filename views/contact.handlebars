@@ -11,109 +11,119 @@
     </div>
   </div>
 </nav>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
 
-<P> CRUD page for Contacts</P>
+      <P> CRUD page for Contacts</P>
 
 
-{{!-- <P>{{this[0].dataValues}}</P> --}}
-<table class="table" id="results">
-  <thead>
-    <tr>
-      <th>contact ID</th>
-      <th>contact Name</th>
-      <th>title</th>
-      <th>Note</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each contact}}
+      {{!-- <P>{{this[0].dataValues}}</P> --}}
+      <table class="table" id="results">
+        <thead>
+          <tr>
+            <th>contact ID</th>
+            <th>contact Name</th>
+            <th>title</th>
+            <th>Note</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each contact}}
 
-    <tr>
-      {{!-- <td>{{this}}</td> --}}
-      <td>{{dataValues.id}}</td>
-      <td>{{dataValues.name}}</td>
-      <td>{{dataValues.title}}</td>
-      <td>{{dataValues.note}}</td>
-      <td>
-        <a href="javascript:void(0);" class="btn btn-sm btn-warning edit" data-id="{{ dataValues.id }}"
-          data-userid="{{../reqUser}}" data-name="{{ dataValues.name }}" data-title="{{ dataValues.title }}"
-          data-company_id="{{ dataValues.company_id }}" data-contact1="{{ dataValues.contact1 }}"
-          data-contact2="{{ dataValues.contact2 }}" data-notes="{{ dataValues.notes }}"
-          data-rating="{{ dataValues.rating }}" data-toggle="modal" data-target="#updatecontactModal">Edit</a>
-        <a href="javascript:void(0);" class="btn btn-sm btn-danger delete" data-id="{{ dataValues.id }}"
-          data-userid="{{../reqUser}}">Delete</a>
-      </td>
-    </tr>
-    {{else}}
-    <tr>
-      <td colspan="5" class="text-center">No data to display.</td>
-    </tr>
-    {{/each}}
-  </tbody>
-</table>
+          <tr>
+            {{!-- <td>{{this}}</td> --}}
+            <td>{{dataValues.id}}</td>
+            <td>{{dataValues.name}}</td>
+            <td>{{dataValues.title}}</td>
+            <td>{{dataValues.note}}</td>
+            <td>
+              <a href="javascript:void(0);" class="btn btn-sm btn-warning edit" data-id="{{ dataValues.id }}"
+                data-userid="{{../reqUser}}" data-name="{{ dataValues.name }}" data-title="{{ dataValues.title }}"
+                data-company_id="{{ dataValues.company_id }}" data-contact1="{{ dataValues.contact1 }}"
+                data-contact2="{{ dataValues.contact2 }}" data-notes="{{ dataValues.notes }}"
+                data-rating="{{ dataValues.rating }}" data-toggle="modal" data-target="#updatecontactModal">Edit</a>
+              <a href="javascript:void(0);" class="btn btn-sm btn-danger delete" data-id="{{ dataValues.id }}"
+                data-userid="{{../reqUser}}">Delete</a>
+            </td>
+          </tr>
+          {{else}}
+          <tr>
+            <td colspan="5" class="text-center">No data to display.</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
 
-<button class="btn btn-success float-right" data-toggle="modal" data-target="#newcontactModal">Add New</button>
+      <button class="btn btn-success" data-toggle="modal" data-target="#newcontactModal">Add New</button>
 
-<!--- this is the create form--->
+      <!--- this is the create form--->
 
-<form action="/api/contact" id="createform" method="post">
-  <div class="modal fade" id="newcontactModal" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">New contact</h4>
-          <button type="button" class="close" data-dismiss="modal">
-            <span>&times;</span>
-          </button>
+      <form action="/api/contact" id="createform" method="post">
+        <div class="modal fade" id="newcontactModal" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">New contact</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                <div class="form-group">
+                  <input type="hidden" name="user_id1" id="user_id1" value="{{reqUser}}" class="form-control"
+                    placeholder="" required="required">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" name="name" id="name" class="form-control" placeholder="contact Name"
+                    required="required">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" name="title" id="title" class="form-control" placeholder="contact title"
+                    required="required">
+                </div>
+
+                <div class="form-group">
+                  <input type="number" name="company_id" id="company_id" class="form-control" placeholder="companyID">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" name="contact1" id="contact1" class="form-control"
+                    placeholder="contact email, twitter, phone, etc.">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" name="contact2" id="contact2" class="form-control"
+                    placeholder="contact email, twitter, phone, etc.">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" id="notes" name="notes" class="form-control" placeholder="notes">
+                </div>
+
+                <div class="form-group">
+                  <input type="number" id="rating" name="rating" class="form-control" placeholder="5.0">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn create" data-dismiss="modal">Create</button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="modal-body">
-
-          <div class="form-group">
-            <input type="hidden" name="user_id1" id="user_id1" value="{{reqUser}}" class="form-control" placeholder=""
-              required="required">
-          </div>
-
-          <div class="form-group">
-            <input type="text" name="name" id="name" class="form-control" placeholder="contact Name"
-              required="required">
-          </div>
-
-          <div class="form-group">
-            <input type="text" name="title" id="title" class="form-control" placeholder="contact title"
-              required="required">
-          </div>
-
-          <div class="form-group">
-            <input type="number" name="company_id" id="company_id" class="form-control" placeholder="companyID">
-          </div>
-
-          <div class="form-group">
-            <input type="text" name="contact1" id="contact1" class="form-control"
-              placeholder="contact email, twitter, phone, etc.">
-          </div>
-
-          <div class="form-group">
-            <input type="text" name="contact2" id="contact2" class="form-control"
-              placeholder="contact email, twitter, phone, etc.">
-          </div>
-
-          <div class="form-group">
-            <input type="text" id="notes" name="notes" class="form-control" placeholder="notes">
-          </div>
-
-          <div class="form-group">
-            <input type="number" id="rating" name="rating" class="form-control" placeholder="5.0">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn create" data-dismiss="modal">Create</button>
-        </div>
-      </div>
+      </form>
     </div>
+    <div class="col-1"></div>
+
   </div>
-</form>
+</div>
+
 
 <!--- this is the edit form --->
 

@@ -12,132 +12,143 @@
     </div>
   </div>
 </nav>
-<P>This is for CRUD of Company table</P>
 
-{{!-- <P>{{this[0].dataValues}}</P> --}}
-<table class="table" id="results">
-  <thead>
-    <tr>
-      <th>Company ID</th>
-      <th>Company Name</th>
-      <th>Notes</th>
-      <th>Rating</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each company}}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+      <P>This is for CRUD of Company table</P>
 
-    <tr>
-      {{!-- <td>{{this}}</td> --}}
-      <td>{{dataValues.id}}</td>
-      <td>{{dataValues.company}}</td>
-      <td>{{dataValues.notes}}</td>
-      <td>{{dataValues.rating}}</td>
-      <td>
-        <a href="javascript:void(0);" class="btn btn-sm btn-warning edit" data-id="{{ dataValues.id }}"
-          data-userid="{{../reqUser}}" data-company="{{ dataValues.company }}" data-notes="{{ dataValues.notes }}"
-          data-rating="{{ dataValues.rating }}" data-toggle="modal" data-target="#updateCompanyModal">Edit</a>
-        <a href="javascript:void(0);" class="btn btn-sm btn-danger delete" data-id="{{ dataValues.id }}"
-          data-userid="{{../reqUser}}">Delete</a>
-      </td>
-    </tr>
-    {{else}}
-    <tr>
-      <td colspan="5" class="text-center">No data to display.</td>
-    </tr>
-    {{/each}}
-  </tbody>
-</table>
+      {{!-- <P>{{this[0].dataValues}}</P> --}}
+      <table class="table" id="results">
+        <thead>
+          <tr>
+            <th>Company ID</th>
+            <th>Company Name</th>
+            <th>Notes</th>
+            <th>Rating</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each company}}
 
-<button class="btn btn-success float-right" data-toggle="modal" data-target="#newCompanyModal">Add New</button>
+          <tr>
+            {{!-- <td>{{this}}</td> --}}
+            <td>{{dataValues.id}}</td>
+            <td>{{dataValues.company}}</td>
+            <td>{{dataValues.notes}}</td>
+            <td>{{dataValues.rating}}</td>
+            <td>
+              <a href="javascript:void(0);" class="btn btn-sm btn-warning edit" data-id="{{ dataValues.id }}"
+                data-userid="{{../reqUser}}" data-company="{{ dataValues.company }}" data-notes="{{ dataValues.notes }}"
+                data-rating="{{ dataValues.rating }}" data-toggle="modal" data-target="#updateCompanyModal">Edit</a>
+              <a href="javascript:void(0);" class="btn btn-sm btn-danger delete" data-id="{{ dataValues.id }}"
+                data-userid="{{../reqUser}}">Delete</a>
+            </td>
+          </tr>
+          {{else}}
+          <tr>
+            <td colspan="5" class="text-center">No data to display.</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
 
-<!--- this is the create form--->
+      <button class="btn btn-success" data-toggle="modal" data-target="#newCompanyModal">Add New</button>
 
-<form action="/api/company" id="createform" method="post">
-  <div class="modal fade" id="newCompanyModal" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">New Company</h4>
-          <button type="button" class="close" data-dismiss="modal">
-            <span>&times;</span>
-          </button>
+      <!--- this is the create form--->
+
+      <form action="/api/company" id="createform" method="post">
+        <div class="modal fade" id="newCompanyModal" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">New Company</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                <div class="form-group">
+                  <input type="hidden" name="user_id1" id="user_id1" value="{{reqUser}}" class="form-control"
+                    placeholder="" required="required">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" name="company" id="company" class="form-control" placeholder="Company Name"
+                    required="required">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" id="notes" name="notes" class="form-control" placeholder="notes">
+                </div>
+
+                <div class="form-group">
+                  <input type="number" id="rating" name="rating" class="form-control" placeholder="5.0">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn create" data-dismiss="modal">Create</button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="modal-body">
+      </form>
 
-          <div class="form-group">
-            <input type="hidden" name="user_id1" id="user_id1" value="{{reqUser}}" class="form-control" placeholder=""
-              required="required">
-          </div>
+      <!--- this is the edit form --->
 
-          <div class="form-group">
-            <input type="text" name="company" id="company" class="form-control" placeholder="Company Name"
-              required="required">
-          </div>
+      <form action="/api/company" id="updateform" method="put">
+        <div class="modal fade" id="updateCompanyModal" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Edit Company</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
 
-          <div class="form-group">
-            <input type="text" id="notes" name="notes" class="form-control" placeholder="notes">
-          </div>
+                <div class="form-group">
+                  <input type="text" name="id_edit" id="id_edit" value="" class="form-control" placeholder=""
+                    required="required" readonly>
+                </div>
 
-          <div class="form-group">
-            <input type="number" id="rating" name="rating" class="form-control" placeholder="5.0">
+                <div class="form-group">
+                  <input type="hidden" name="user_id1" id="user_id1_edit" value="{{reqUser}}" class="form-control"
+                    placeholder="" required="required">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" name="company" id="company_edit" class="form-control" placeholder="Company Name"
+                    required="required">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" id="notes_edit" name="notes_edit" class="form-control" placeholder="notes">
+                </div>
+
+                <div class="form-group">
+                  <input type="number" id="rating_edit" name="rating_edit" class="form-control" placeholder="5.0">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn commit" data-dismiss="modal">Commit</button>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn create" data-dismiss="modal">Create</button>
-        </div>
-      </div>
+      </form>
+
     </div>
+    <div class="col-1"></div>
+
   </div>
-</form>
-
-<!--- this is the edit form --->
-
-<form action="/api/company" id="updateform" method="put">
-  <div class="modal fade" id="updateCompanyModal" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Edit Company</h4>
-          <button type="button" class="close" data-dismiss="modal">
-            <span>&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-
-          <div class="form-group">
-            <input type="text" name="id_edit" id="id_edit" value="" class="form-control" placeholder=""
-              required="required" readonly>
-          </div>
-
-          <div class="form-group">
-            <input type="hidden" name="user_id1" id="user_id1_edit" value="{{reqUser}}" class="form-control"
-              placeholder="" required="required">
-          </div>
-
-          <div class="form-group">
-            <input type="text" name="company" id="company_edit" class="form-control" placeholder="Company Name"
-              required="required">
-          </div>
-
-          <div class="form-group">
-            <input type="text" id="notes_edit" name="notes_edit" class="form-control" placeholder="notes">
-          </div>
-
-          <div class="form-group">
-            <input type="number" id="rating_edit" name="rating_edit" class="form-control" placeholder="5.0">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn commit" data-dismiss="modal">Commit</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</form>
+</div>
 
 <!-- divider -->
 <script>

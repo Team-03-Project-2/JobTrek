@@ -139,10 +139,10 @@ module.exports = function (app) {
     // res.render("jobboard")
   });
 
-  app.get("/members/resume", isAuthenticated, function (req, res) {
-    // res.sendFile(path.join(__dirname, "../public/members.html"));
-    res.render("resume")
-  });
+  // app.get("/members/resume", isAuthenticated, function (req, res) {
+  //   // res.sendFile(path.join(__dirname, "../public/members.html"));
+  //   res.render("resume")
+  // });
 
 
   app.get("/admin", isAuthenticated, function (req, res) {
