@@ -11,24 +11,20 @@ module.exports = function (app) {
   app.get("/members/resume", function (req, res) {
     // console.log(req.user);
     db.Resume.findAll().then(function (data) {
-      // console.log("printing all from resume table", data[0].dataValues)
+      console.log("printing all from resume table", data[0].dataValues)
       res.render("resume", {
         resume: data
       });
+
     });
   });
 
-  app.get("/api/resume/find/:one", function (req, res) {
-    
-    let view = req.params.one
-    console.log("from ajax",view)
-    db.Resume.findOne({id:view}).then(function(data){
-      console.log(view,"find one:" ,data.dataValues)
-      // res.render("resume", {one: data});
-      res.json(data.dataValues);
-   });
+  // app.get("/api/resume/id", function (req, res) {
+  //   db.resume.findOne().then(function(data){
+  //   res.json(data);
+  //  });
 
-  });
+  // });
 
   app.post("/api/resume/create", function (req, res) {
     console.log("I got called")
