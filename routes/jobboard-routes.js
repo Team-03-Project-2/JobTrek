@@ -52,9 +52,17 @@ module.exports = function (app) {
         res.render("members", { reqUser: reqUser })
     });
 
-    app.get("/members/jobboard", isAuthenticated, function (req, res) {
+    app.get("/members/jobboard", function (req, res) {
+        db.Job.findAll({
+            //user_id:req.user.id
+            user_id: req.user_id
+        }).then(function(data){
+            console.log(data)
+            
+            res.render("jobboard", {job:data})
+        })
 
-        res.render("jobboard")
+        
     });
 
     app.get("/members/jobinfo", isAuthenticated, function (req, res) {
@@ -69,58 +77,61 @@ module.exports = function (app) {
         
     });
 
-    app.get("/api/jobboard", function (req, res) {
+    // app.get("/api/jobboard", function (req, res) {
 
 
-        db.Job.findAll({
-            user_id: 1
-            //user_id: req.user.id
-        }).then(function (dbJobboard) {
+    //     db.Job.findAll({
+            
+    //         user_id: req.user.id
+    //     }).then(function (dbJobboard) {
 
-            res.json(dbJobboard);
-        });
-    });
+    //         res.json(dbJobboard);
+    //     });
+    // });
 
     app.get("/api/jobboard/company", function(req, res){
-        db.Company.findAll().then(function(data){
+        db.Company.findAll({user_id: 1}
+            
+        ).then(function(data){
+           
+            
             res.render("addjob", {companies: data} )
-            console.log(data)
+           
         })
     })
 
     app.get("/api/jobboard/resume", function(req, res){
-        db.Company.findAll().then(function(data){
-            res.render("addjob", {resumies: data} )
-            console.log(data)
+        db.Resume.findAll({user_id:1}).then(function(data){
+            //res.json(data);
+            res.render("addjob", {resumes: data} )
+            //console.log(data)
         })
     })
 
 
     //create
-    app.post("api/jobboard", function (req, res) {
-
-        db.Job.create({
+    app.post("/api/jobboard", isAuthenticated, function (req, res) {
+        //console.log("post method")
+        
             //user_id: req.user.id,
-          
-            //user_id: req.user.id,
-            // job_title: req.body.job_title,
-            // description: req.body.description,
-            // requirement: req.body.requirement,
-            // location: req.body.location,
+          var jobObject = {
+            user_id:req.user_id,
+            job_title: req.body.job_title,
+             description: req.body.describe,
+            requirement: req.body.require,
+             location: req.body.locate,
             //status:req.body.status
-            // //company:req.body.company, querycompany table
-            // notes: req.body.notes,
-            // url: req.body.url
+             //company:req.body.company, querycompany table
+            notes: req.body.note,
 
-
-        })
-            .then(newJob => {
-                res.json(newJob)
-            })
-            .catch(err => {
-                throw err
-            })
-        // if (err) throw err;
+            url: req.body.jobUrl
+          }
+          //console.log(jobObject)
+          db.Job.create(jobObject).then(function(jobDB){
+              res.json(jobDB)
+          })
+        
+       
     });
 
     //update

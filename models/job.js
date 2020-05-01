@@ -28,7 +28,7 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING
     },
     status: {
-      type: DataTypes.STRING
+    type: DataTypes.STRING
     },
     notes: {
       type: DataTypes.TEXT

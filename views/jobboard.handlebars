@@ -32,30 +32,39 @@
           <div class="row container list-title">
             <h5> WishList </h5>
           </div>
-          
+
           <div class="row">
-            
+
           </div>
 
           <div class="row">
+
             <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
               id="col1" ondrop="dropIt(event)" ondragover="allowDrop(event)">
-              <div draggable="true" ondragstart="dragStart(event)" >
+              {{#each job}}
+              <div draggable="true" ondragstart="dragStart(event)">
                 <div style="padding: 2px 2px 10px;">
-                   <div style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
-                <a id="infoLink"  target="popup"  href="/members/jobinfo" onclick="window.open('/members/jobinfo', 'popup', 'width=600, height=600, right=50, top=50')"
-                class="list-group-item list-group-item-action flex-column align-items-start active" style="display: flex; flex-direction: column; color: white; white-space: normal;">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 id="jobtitle" class="mb-1">Job Title</h5>
-                    <small id="time">createdAT</small>
+                  <div
+                    style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
+                    <a id="infoLink" target="popup" href="/members/jobinfo"
+                      onclick="window.open('/members/jobinfo', 'popup', 'width=600, height=600, right=50, top=50')"
+                      class="list-group-item list-group-item-action flex-column align-items-start active"
+                      style="display: flex; flex-direction: column; color: white; white-space: normal;"
+                      data-id="{{ dataValues.id }}" data-userid="{{../reqUser}}">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 id="jobtitle" class="mb-1">{{dataValues.job_title}}</h5>
+                        <small id="time"></small>
+                      </div>
+                      <p id="job-url" class="mb-1">{{dataValues.jobUrl}}</p>
+                      <div class="d-flex justify-content-between"> <button class="btn delJob btn-danger"> <i
+                            class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </button></div>
+                    </a>
                   </div>
-                  <p id="job-url"class="mb-1"> Job URL </p>
-                  <div class="d-flex justify-content-between"> <button class="btn btn-danger"> <i class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </button></div>
-                </a>
+                </div>
               </div>
-              </div>
-              </div>
+              {{/each}}
             </div>
+
           </div>
         </div>
         <div class="col">
@@ -64,27 +73,31 @@
           </div>
 
           <div class="row">
-            
+
           </div>
 
           <div class="row">
             <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
               id="col2" ondrop="dropIt(event)" ondragover="allowDrop(event)">
               <div draggable="true">
-              <div style="padding: 2px 2px 10px;">
-                <div style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Job Title</h5>
-                    <small>createdAT</small>
-                    
+                <div style="padding: 2px 2px 10px;">
+                  <div
+                    style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Job Title</h5>
+                        <small>createdAT</small>
+
+                      </div>
+                      <div>
+                        <p class="mb-1">Job URL</p>
+                      </div>
+                      <div class="d-flex justify-content-between"> <button data-id="{{dataValues.id}}" class="btn btn-danger"> <i
+                            class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </button></div>
+                    </a>
                   </div>
-                  <div> <p class="mb-1">Job URL</p> </div>
-                  <div class="d-flex justify-content-between"> <button class="btn btn-danger"> <i class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </button></div>
-                </a>
+                </div>
               </div>
-            </div>
-            </div>
             </div>
           </div>
         </div>
@@ -94,7 +107,7 @@
           </div>
 
           <div class="row">
-           
+
           </div>
 
           <div class="row">
@@ -102,18 +115,20 @@
               id="col3" ondrop="dropIt(event)" ondragover="allowDrop(event)">
               <div draggable="true">
                 <div style="padding: 2px 2px 10px;">
-                <div style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Job Title</h5>
-                    <small>createdAT</small>
+                  <div
+                    style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Job Title</h5>
+                        <small>createdAT</small>
+                      </div>
+                      <p class="mb-1"> Job URL </p>
+                      <div class="d-flex justify-content-between"> <button class="btn btn-danger"> <i
+                            class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </button></div>
+                    </a>
                   </div>
-                  <p class="mb-1"> Job URL </p>
-                  <div class="d-flex justify-content-between"> <button class="btn btn-danger"> <i class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </button></div>
-                </a>
+                </div>
               </div>
-            </div>
-            </div>
             </div>
           </div>
         </div>
@@ -123,28 +138,30 @@
           </div>
 
           <div class="row">
-            
+
           </div>
 
           <div class="row">
             <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
               id="col4" ondrop="dropIt(event)" ondragover="allowDrop(event)">
               <div draggable="true">
-              <div style="padding: 2px 2px 10px;">
-                <div style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Job Title </h5>
-                    <small>createdAT</small>
+                <div style="padding: 2px 2px 10px;">
+                  <div
+                    style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Job Title </h5>
+                        <small>createdAT</small>
+                      </div>
+                      <p class="mb-1">Job URL</p>
+                      <div class="d-flex justify-content-between"> <button class="btn btn-danger"> <i
+                            class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </button></div>
+                    </a>
                   </div>
-                  <p class="mb-1">Job URL</p>
-                  <div class="d-flex justify-content-between"> <button class="btn btn-danger"> <i class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </button></div>
-                </a>
                 </div>
               </div>
             </div>
-            </div>
-            
+
           </div>
         </div>
         <div class="col">
@@ -153,28 +170,30 @@
           </div>
 
           <div class="row">
-           
+
           </div>
 
           <div class="row">
             <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
               id="col5" ondrop="dropIt(event)" ondragover="allowDrop(event)">
               <div draggable="true">
-              <div style="padding: 2px 2px 10px;">
-                <div style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Job Title</h5>
-                    <small>createdAT</small>
+                <div style="padding: 2px 2px 10px;">
+                  <div
+                    style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Job Title</h5>
+                        <small>createdAT</small>
+                      </div>
+                      <p class="mb-1">Job URL</p>
+
+                      <div class="d-flex justify-content-between"> <button class="btn btn-danger"> <i
+                            class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </button></div>
+                    </a>
                   </div>
-                  <p class="mb-1">Job URL</p>
-                  
-                  <div class="d-flex justify-content-between"> <button class="btn btn-danger"> <i class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </button></div>
-                </a>
+                </div>
               </div>
             </div>
-            </div>
-          </div>
           </div>
         </div>
         <div class="col">
@@ -183,38 +202,39 @@
           </div>
 
           <div class="row">
-            
+
           </div>
 
           <div class="row">
             <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
               id="col6" ondrop="dropIt(event)" ondragover="allowDrop(event)">
               <div draggable="true">
-              <div style="padding: 2px 2px 10px;">
-                <div style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
-              <a href="#"
-                class="list-group-item list-group-item-action flex-column align-items-start active">
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Job Title</h5>
-                  <small>createdAT</small>
+                <div style="padding: 2px 2px 10px;">
+                  <div
+                    style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Job Title</h5>
+                        <small>createdAT</small>
+                      </div>
+                      <p class="mb-1">Job URL</p>
+                      <div class="d-flex justify-content-between"> <button class="btn btn-danger"> <i
+                            class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </button></div>
+                    </a>
+                  </div>
                 </div>
-                <p class="mb-1">Job URL</p>
-                <div class="d-flex justify-content-between"> <button class="btn btn-danger"> <i class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </button></div>
-              </a>
               </div>
-            </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="row">
+      <header>
+        //footer
+      </header>
+    </div>
   </div>
-  <div class="row">
-    <header>
-      //footer
-    </header>
-  </div>
-</div>
 
-<script type="text/javascript" src="/js/dragdrop.js"></script>
-<script type="text/javascript" src="/public/js/jobboard.js"></script>
+  <script type="text/javascript" src="/js/dragdrop.js"></script>
+  <script type="text/javascript" src="/js/jobboard.js"></script>

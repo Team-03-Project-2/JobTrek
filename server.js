@@ -12,15 +12,11 @@ var db = require("./models");
 var app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-<<<<<<< HEAD
-=======
-app.use(express.static("./public"));
->>>>>>> 2c0afde8c1507ec2d25a2bba242b36052e202218
+app.use(express.static("public"));
 
 //app.use(express.static("public"));
 
-app.use(express.static("./public"))
-// Set Handlebars.
+
 var exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -40,21 +36,21 @@ require("./routes/jobboard-routes.js")(app);
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(function() {
 
-   let job = {
+  //  let job = {
     
    
           
-            user_id: 1,
-            job_title: "developer",
-            description: "description",
-            requirement: "requirement",
-            location: "location",
-            status:"status",
-            company:"company", 
-            notes: "notes",
-            url: "www.jobtrek.com"
+  //           user_id: 1,
+  //           job_title: "developer",
+  //           description: "description",
+  //           requirement: "requirement",
+  //           location: "location",
+  //           status:"status",
+  //           company:"company", 
+  //           notes: "notes",
+  //           url: "www.jobtrek.com"
 
-   }
+  //  }
 
   app.listen(PORT, function() {
     console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT);
