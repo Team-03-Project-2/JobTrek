@@ -58,10 +58,10 @@ module.exports = function (app) {
     res.render("dashboard")
   });
 
-  app.get("/members/jobboard", isAuthenticated, function (req, res) {
-    // res.sendFile(path.join(__dirname, "../public/members.html"));
-    res.render("jobboard")
-  });
+  // app.get("/members/jobboard", isAuthenticated, function (req, res) {
+  //   // res.sendFile(path.join(__dirname, "../public/members.html"));
+  //   res.render("jobboard")
+  // });
 
   app.get("/members/maintain", isAuthenticated, function (req, res) {
     // res.sendFile(path.join(__dirname, "../public/members.html"));

@@ -55,14 +55,21 @@ module.exports = function (app) {
     app.get("/members/jobboard", function (req, res) {
         db.Job.findAll({
             //user_id:req.user.id
-            user_id: req.user_id
-        }).then(function(data){
-            console.log(data)
+            user_id: req.user_id,
+            where: { status: "wishlist" }
+        }).then(function (wishlistData) {
+            console.log(wishlistData)
+            db.Job.findAll({
+                user_id: req.user_id,
+                where: { status: "wishlist" }
+            }).then(function(appliedData){
+                res.render("jobboard", {wishlist: wishlistData,
+                applied:appliedData})
+            })
             
-            res.render("jobboard", {job:data})
         })
 
-        
+
     });
 
     app.get("/members/jobinfo", isAuthenticated, function (req, res) {
@@ -74,14 +81,14 @@ module.exports = function (app) {
 
         res.sendFile(path.join(__dirname, '../public', 'jobapi.html'));
         //res.json("something good is coming")
-        
+
     });
 
     // app.get("/api/jobboard", function (req, res) {
 
 
     //     db.Job.findAll({
-            
+
     //         user_id: req.user.id
     //     }).then(function (dbJobboard) {
 
@@ -89,21 +96,21 @@ module.exports = function (app) {
     //     });
     // });
 
-    app.get("/api/jobboard/company", function(req, res){
-        db.Company.findAll({user_id: 1}
-            
-        ).then(function(data){
-           
-            
-            res.render("addjob", {companies: data} )
-           
+    app.get("/api/jobboard/company", function (req, res) {
+        db.Company.findAll({ user_id: 1 }
+
+        ).then(function (data) {
+
+
+            res.render("addjob", { companies: data })
+
         })
     })
 
-    app.get("/api/jobboard/resume", function(req, res){
-        db.Resume.findAll({user_id:1}).then(function(data){
+    app.get("/api/jobboard/resume", function (req, res) {
+        db.Resume.findAll({ user_id: 1 }).then(function (data) {
             //res.json(data);
-            res.render("addjob", {resumes: data} )
+            res.render("addjob", { resumes: data })
             //console.log(data)
         })
     })
@@ -112,26 +119,26 @@ module.exports = function (app) {
     //create
     app.post("/api/jobboard", isAuthenticated, function (req, res) {
         //console.log("post method")
-        
-            //user_id: req.user.id,
-          var jobObject = {
-            user_id:req.user_id,
+
+        //user_id: req.user.id,
+        var jobObject = {
+            user_id: req.user_id,
             job_title: req.body.job_title,
-             description: req.body.describe,
+            description: req.body.describe,
             requirement: req.body.require,
-             location: req.body.locate,
+            location: req.body.locate,
             //status:req.body.status
-             //company:req.body.company, querycompany table
+            //company:req.body.company, querycompany table
             notes: req.body.note,
 
             url: req.body.jobUrl
-          }
-          //console.log(jobObject)
-          db.Job.create(jobObject).then(function(jobDB){
-              res.json(jobDB)
-          })
-        
-       
+        }
+        //console.log(jobObject)
+        db.Job.create(jobObject).then(function (jobDB) {
+            res.json(jobDB)
+        })
+
+
     });
 
     //update
@@ -154,8 +161,8 @@ module.exports = function (app) {
                 notes: req.body.notes,
                 url: req.body.url
             }).then(updatedJob => {
-                    res.json(updatedJob)
-                })
+                res.json(updatedJob)
+            })
                 .catch(err => {
                     throw err
                 })

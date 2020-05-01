@@ -41,8 +41,8 @@ $(".createJobSubmit").on("click", function (event) {
 
 })
 
-$(".delJob").on("click", function (event) {
-    var id = $(this).data("id");
+$(".deleteJob").on("click", function (event) {
+    var id = $(this).data("delete");
 
     // This is the client's way of sending the DELETE request to the server.
     $.ajax("/api/jobboard/" + id, {
