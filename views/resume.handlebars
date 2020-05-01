@@ -46,7 +46,6 @@
                     {{#each resume}}
                     {{#if dataValues.star}}
                     {{> resumep/starResume}}
-
                     {{/if}}
                     {{/each}}
 
@@ -65,10 +64,37 @@
         </div>
     </div>
 
-    <div class="card">
-        <div class="card-body">
-            were additional information goes
-        </div>
+    <div>
+       
+
+
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="viewResumeModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <!-- <h4 class="modal-title">Add Resume</h4> -->
+                        </div>
+
+                        <div class="modal-body">
+                            <h1 id="viewPleaseshow"> </h1>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        
     </div>
 </div>
 
