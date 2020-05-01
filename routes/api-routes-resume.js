@@ -22,7 +22,10 @@ module.exports = function (app) {
     
     let view = req.params.one
     console.log("from ajax",view)
-    db.Resume.findOne({id:view}).then(function(data){
+    db.Resume.findOne(
+      {
+      where:{id:view,}}
+      ).then(function(data){
       console.log(view,"find one:" ,data.dataValues)
       // res.render("resume", {one: data});
       res.json(data.dataValues);
