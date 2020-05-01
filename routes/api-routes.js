@@ -20,15 +20,15 @@ module.exports = function (app) {
   // otherwise send back an error
   app.post("/api/signup", function (req, res) {
 
-  // let test ={
-  //   user_id:1, 
-  //   star:true, 
-  //   fileName : 'testName3', 
-  //   date:Date.now(), 
-  //   role:'software3'
-  // }
+    // let test ={
+    //   user_id:1, 
+    //   star:true, 
+    //   fileName : 'testName3', 
+    //   date:Date.now(), 
+    //   role:'software3'
+    // }
 
-  // db.Resume.create(test).then(()=>console.log("please print something")).catch(error => console.log(error));
+    // db.Resume.create(test).then(()=>console.log("please print something")).catch(error => console.log(error));
 
 
 
@@ -87,10 +87,13 @@ module.exports = function (app) {
   app.get("/api/company", function (req, res) {
     // Otherwise send back 
     console.log("At /api/company GET...")
+    console.log(req)
     db.Company.findAll({
-      // only this user's items, not all...
-      // need where... 
-      user_id: req.user.id
+      where: {
+        // only this user's items, not all...
+        // need where... 
+        user_id: req.user.id
+      }
     }).then(function (dbCompany) {
       // We locate companies
       // console.log('/api/company GET', dbCompany)
@@ -164,6 +167,93 @@ module.exports = function (app) {
 
   //-- api functions for contacts
 
+  // need get(read), post(create), put (update), and delete
+
+  app.get("/api/contact", function (req, res) {
+    // Otherwise send back 
+    console.log("At /api/contact GET...")
+    console.log(req)
+    db.Contact.findAll({
+      where: {
+        user_id: req.user.id
+      }
+    }).then(function (dbcontact) {
+      // We locate companies
+      // console.log('/api/contact GET', dbcontact)
+      res.json(dbcontact);
+    });
+  });
+
+
+  //create
+  app.post("/api/contact", function (req, res) {
+    console.log('/api/contact POST')
+    //, " ", req.body)
+    db.Contact.create({
+      user_id: req.body.user_id1,
+      name: req.body.name,
+      title: req.body.title,
+      company_id: req.body.company_id,
+      contact1: req.body.contact1,
+      contact2: req.body.contact2,
+      notes: req.body.notes,
+      rating: parseFloat(req.body.rating)
+    })
+      .then(newContact => {
+        res.json(newContact)
+      })
+      .catch(err => {
+        throw err
+      })
+    // if (err) throw err;
+  });
+
+  //update
+  app.put("/api/contact", function (req, res) {
+    console.log('/api/contact PUT')
+    //, " ", req.body)
+    db.Contact.findOne({
+      where: {
+        user_id: req.body.user_id1,
+        id: req.body.id
+      }
+    }).then((updateContact) => {
+      updateContact.update({
+        user_id: req.body.user_id1,
+        name: req.body.name,
+        title: req.body.title,
+        company_id: req.body.company_id,
+        contact1: req.body.contact1,
+        contact2: req.body.contact2,
+        notes: req.body.notes,
+        rating: parseFloat(req.body.rating)
+      })
+        .then(updatedContact => {
+          res.json(updatedContact)
+        })
+        .catch(err => {
+          throw err
+        })
+    })
+  });
+
+  app.delete("/api/contact", function (req, res) {
+    console.log('/api/contact DELETE', " ", req.body)
+    db.Contact.destroy({
+      // id:
+      where: {
+        user_id: req.body.user_id,
+        id: req.body.id
+      }
+    })
+      .then(deletedContact => {
+        res.json(deletedContact)
+      })
+      .catch(err => {
+        // throw err;
+        throw err
+      })
+  });
 
 
 
@@ -171,7 +261,108 @@ module.exports = function (app) {
   //-- api functions for resumes. 
 
 
+  // -- api functions for jobs
+  // need getall(read), getone(read), post(create), put (update), and delete
 
+  app.get("/api/job", function (req, res) {
+    // Otherwise send back 
+    console.log("At /api/job GET...")
+    db.Job_Application.findAll({
+      where: {
+        user_id: req.user.id,
+      }
+    }).then(function (dbJob) {
+      res.json(dbJob);
+    });
+  });
+
+  app.get("/api/job/:id", function (req, res) {
+    // Otherwise send back 
+    console.log("At /api/job/:id GET...")
+    db.Job_Application.findAll({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (dbJob) {
+      // console.log(dbJob[0])
+      res.json(dbJob[0]);
+    });
+  });
+
+  //create
+  app.post("/api/job", function (req, res) {
+    console.log('/api/job POST')
+    //, " ", req.body)
+    db.Job_Application.create({
+      user_id: req.body.user_id1,
+      job_title: req.body.jobtitle,
+      description: req.body.description,
+      requirement: req.body.requirement,
+      location: req.body.location1,
+      company_id: parseInt(req.body.company_id),
+      contact_id: parseInt(req.body.contact_id),
+      resume_id: parseInt(req.body.resume_id),
+      status: req.body.status1,
+      notes: req.body.notes,
+      rating: parseFloat(req.body.rating)
+    })
+      .then(newJob => {
+        res.json(newJob)
+      })
+      .catch(err => {
+        throw err
+      })
+  });
+
+  //update
+  app.put("/api/job", function (req, res) {
+    console.log('/api/job PUT')
+    //, " ", req.body)
+    db.Job_Application.findOne({
+      where: {
+        user_id: req.body.user_id1,
+        id: req.body.id
+      }
+    }).then((updateJob) => {
+      updateJob.update({
+        user_id: req.body.user_id1,
+        job_title: req.body.jobtitle,
+        description: req.body.description,
+        requirement: req.body.requirement,
+        location: req.body.location,
+        company_id: req.body.company_id,
+        contact_id: req.body.contact_id,
+        resume_id: req.body.resume_id,
+        status: req.body.status,
+        notes: req.body.notes,
+        rating: parseFloat(req.body.rating)
+      })
+        .then(updatedJob => {
+          res.json(updatedJob)
+        })
+        .catch(err => {
+          throw err
+        })
+    })
+  });
+
+  app.delete("/api/job", function (req, res) {
+    console.log('/api/job DELETE', " ", req.body)
+    db.Job_Application.destroy({
+      // id:
+      where: {
+        user_id: req.body.user_id,
+        id: req.body.id
+      }
+    })
+      .then(deletedJob => {
+        res.json(deletedJob)
+      })
+      .catch(err => {
+        // throw err;
+        throw err
+      })
+  });
 
   //-- end of all apis
 };

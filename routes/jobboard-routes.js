@@ -135,10 +135,10 @@ module.exports = function (app) {
                 description: req.body.describe,
                 requirement: req.body.require,
                 location: req.body.locate,
+                status:req.body.status,
                 //status:req.body.status
                 //company:req.body.company, querycompany table
                 notes: req.body.note,
-
                 url: req.body.jobUrl
             }
             //console.log(jobObject)

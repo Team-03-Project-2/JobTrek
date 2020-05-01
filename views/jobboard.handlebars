@@ -2,6 +2,8 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <span id="{{reqUser}}">User_ID = {{reqUser}} </span>
+      <i class="fas fa-chevron-right"></i> <a href="/members">Members</a>
+      <i class="fas fa-chevron-right"></i> <B> Job Board </b>
       <a class="navbar-brand" href="/logout">
         Logout
       </a>
@@ -52,7 +54,7 @@
                       data-id="{{dataValues.id}}" data-userid="{{dataValues.user_id}}">
                       <div class="d-flex w-100 justify-content-between">
                         <h5 id="jobtitle" class="mb-1">{{dataValues.job_title}}</h5>
-                        <small>{{dataValues.createdAt}}</small>
+                        <small>{{dataValues.location}}</small>
                       </div>
                       <p id="job-url" class="mb-1">{{dataValues.url}}</p>
 
@@ -98,7 +100,7 @@
                       class="btn list-group-item list-group-item-action flex-column align-items-start active">
                       <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">{{dataValues.job_title}}</h5>
-                        <small>{{dataValues.createdAt}}</small>
+                        <small>{{dataValues.location}}</small>
 
                       </div>
                       <div>
@@ -159,7 +161,7 @@
                       class="list-group-item list-group-item-action flex-column align-items-start active">
                       <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">{{dataValues.job_title}}</h5>
-                        <small>{{dataValues.createdAt}}</small>
+                        <small>{{dataValues.location}}</small>
                       </div>
                       <p class="mb-1"> {{dataValues.url}} </p>
                       <div class="d-flex justify-content-between"> <a class="btn btn-danger" 

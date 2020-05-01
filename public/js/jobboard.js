@@ -25,6 +25,7 @@ $(".createJobSubmit").on("click", function (event) {
          describe:$("#jobdescription").val(),
          require:$("#jobrequirement").val(),
          locate:$("#location").val(),
+         status:$("#status").val(),
          //status:$("").val()
         note: $("#jobNotes").val(),
          jobUrl:$("#jobUrl").val()

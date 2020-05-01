@@ -48,9 +48,10 @@ module.exports = function (app) {
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, function (req, res) {
-    console.log(req.user)
+    var reqUser = req.user.id
+    console.log("reqUser = ", reqUser)
     // res.sendFile(path.join(__dirname, "../public/members.html"));
-    res.render("members")
+    res.render("members", { reqUser: reqUser })
   });
 
   app.get("/members/dashboard", isAuthenticated, function (req, res) {
@@ -62,10 +63,29 @@ module.exports = function (app) {
   //   // res.sendFile(path.join(__dirname, "../public/members.html"));
   //   res.render("jobboard")
   // });
+  // app.get("/members/jobboard", isAuthenticated, function (req, res) {
+  //   // res.sendFile(path.join(__dirname, "../public/members.html"));
+  //   db.Job_Application.findAll({
+  //     where: {
+  //       user_id: req.user.id
+  //     }
+  //   }).then(function (dbJob) {
+  //     // We locate companies
+  //     // console.log('/members/company GET', dbCompany)
+  //     var obj = {
+  //       reqUser: req.user.id,
+  //       job_application: dbJob
+  //     }
+  //     // res.render("company", dbCompany);
+  //     res.render("jobboard", obj);
+  //   });
+  //   // res.render("jobboard")
+  // });
 
   app.get("/members/maintain", isAuthenticated, function (req, res) {
+    var reqUser = req.user.id
     // res.sendFile(path.join(__dirname, "../public/members.html"));
-    res.render("maintain")
+    res.render("maintain", { reqUser: reqUser })
   });
 
   app.get("/members/company", isAuthenticated, function (req, res) {
@@ -88,7 +108,39 @@ module.exports = function (app) {
 
   app.get("/members/contact", isAuthenticated, function (req, res) {
     // res.sendFile(path.join(__dirname, "../public/members.html"));
-    res.render("contact")
+    db.Contact.findAll({
+      where: {
+        user_id: req.user.id
+      }
+    }).then(function (dbContact) {
+      // We locate companies
+      // console.log('/members/company GET', dbCompany)
+      var obj = {
+        reqUser: req.user.id,
+        contact: dbContact
+      }
+      // res.render("company", dbCompany);
+      res.render("contact", obj);
+    });
+  });
+
+  app.get("/members/job", isAuthenticated, function (req, res) {
+    // res.sendFile(path.join(__dirname, "../public/members.html"));
+    db.Job_Application.findAll({
+      where: {
+        user_id: req.user.id
+      }
+    }).then(function (dbJob) {
+      // We locate companies
+      // console.log('/members/company GET', dbCompany)
+      var obj = {
+        reqUser: req.user.id,
+        job_application: dbJob
+      }
+      // res.render("company", dbCompany);
+      res.render("job", obj);
+    });
+    // res.render("jobboard")
   });
 
   // app.get("/members/resume", isAuthenticated, function (req, res) {
