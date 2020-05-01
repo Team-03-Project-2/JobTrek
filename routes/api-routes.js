@@ -87,10 +87,13 @@ module.exports = function (app) {
   app.get("/api/company", function (req, res) {
     // Otherwise send back 
     console.log("At /api/company GET...")
+    console.log(req)
     db.Company.findAll({
-      // only this user's items, not all...
-      // need where... 
-      user_id: req.user.id
+      where: {
+        // only this user's items, not all...
+        // need where... 
+        user_id: req.user.id
+      }
     }).then(function (dbCompany) {
       // We locate companies
       // console.log('/api/company GET', dbCompany)
@@ -169,10 +172,11 @@ module.exports = function (app) {
   app.get("/api/contact", function (req, res) {
     // Otherwise send back 
     console.log("At /api/contact GET...")
-    db.contact.findAll({
-      // only this user's items, not all...
-      // need where... 
-      user_id: req.user.id
+    console.log(req)
+    db.Contact.findAll({
+      where: {
+        user_id: req.user.id
+      }
     }).then(function (dbcontact) {
       // We locate companies
       // console.log('/api/contact GET', dbcontact)
@@ -265,7 +269,7 @@ module.exports = function (app) {
     console.log("At /api/job GET...")
     db.Job_Application.findAll({
       where: {
-        user_id: req.body.user_id,
+        user_id: req.user.id,
       }
     }).then(function (dbJob) {
       res.json(dbJob);

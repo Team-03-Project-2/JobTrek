@@ -18,6 +18,19 @@ module.exports = function (app) {
     });
   });
 
+  // this is added by kasey to populate dropdown lists
+  app.get("/api/resume", function (req, res) {
+    // Otherwise send back 
+    console.log("At /api/resume GET...")
+    db.Resume.findAll({
+      where: {
+        user_id: req.user.id
+      }
+    }).then(function (dbResume) {
+      res.json(dbResume);
+    });
+  });
+
   // app.get("/api/resume/id", function (req, res) {
   //   db.resume.findOne().then(function(data){
   //   res.json(data);
