@@ -28,12 +28,12 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING
     },
     contact2: {
-      type: DataTypes.INTEGER
+      type: DataTypes.STRING
     },
     rating: {
       type: DataTypes.INTEGER
     },
-    note: {
+    notes: {
       type: DataTypes.TEXT
     }
 

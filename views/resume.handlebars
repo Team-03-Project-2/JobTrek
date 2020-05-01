@@ -1,4 +1,18 @@
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <span id="{{reqUser}}">User_ID = {{reqUser}} </span>
+            <i class="fas fa-chevron-right"></i> <a href="/members">Members</a>
+            <i class="fas fa-chevron-right"></i> <a href="/members/maintain">Maintainence</a>
+            <i class="fas fa-chevron-right"></i> <B> Resume </b>
+            <a class="navbar-brand" href="/logout">
+                Logout
+            </a>
+        </div>
+    </div>
+</nav>
+
+{{!-- <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand">Welcome, User! Manage your Resume here.</a>
     <form class="form-inline">
 
@@ -6,7 +20,7 @@
         <button class="btn btn-info" type="submit">Search</button>
         <button class="btn btn-light" type="submit">notifications</button>
     </form>
-</nav>
+</nav> --}}
 
 <div class="container">
 
@@ -40,7 +54,9 @@
 
                 <div class="tab-pane fade" id="all-resume" role="tabpanel" aria-labelledby="nav-profile-tab">
                     {{#each resume}}
+
                     {{> resumep/starResume}}
+
                     {{/each}}
                 </div>
             </div>

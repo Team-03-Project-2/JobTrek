@@ -41,8 +41,35 @@ module.exports = function (sequelize, DataTypes) {
     },
     notes: {
       type: DataTypes.TEXT
+    },
+    rating: {
+      type: DataTypes.INTEGER
+    },
+    applied_date: {
+      type: DataTypes.DATE
+    },
+    rejected_date: {
+      type: DataTypes.DATE
+    },
+    responded_date: {
+      type: DataTypes.DATE
+    },
+    interview1_date: {
+      type: DataTypes.DATE
+    },
+    interview2_date: {
+      type: DataTypes.DATE
+    },
+    offerMade_date: {
+      type: DataTypes.DATE
+    },
+    statusChange_date: {
+      type: DataTypes.DATE
     }
   });
-  // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
+  // note: There are only 8 possible values for status:
+  // WISHLIST, APPLIED, REJECTED, RESPONDED,
+  // INTERVIEW1, INTERVIEW2, OFFER MADE, ACCEPTED
+  // ACCEPTED will not be shown. REJECTED is left at the bottom. 
   return Job_Application;
 };
