@@ -1,8 +1,8 @@
 <!-- Trigger the modal with a button -->
-<a type="button" id="addnewjob" class="btn addnewjob btn-primary" data-toggle="modal" data-target="#myModal"> Add Job </a>
+<a type="button" id="addnewjob" class="btn addnewjob btn-primary" data-toggle="modal" data-target="#myaddjobmodal"> Add Job </a>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="myaddjobmodal" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -73,8 +73,18 @@
 
                     <div class="form-group">
                         <label for="status"> Status </label>
-                        <input type="status" class="form-control" id="status" aria-describedby="emailHelp"
-                            placeholder="wishlist">
+                        {{!-- <input type="status" class="form-control" id="status" aria-describedby="emailHelp"
+                            placeholder="wishlist"> --}}
+
+                        {{!-- cristina added dropdown --}}
+                         <select id="newjobstatus" class="form-control">
+                            <option>Wishlist</option>
+                            <option>Applied</option>
+                            <option>Response</option>
+                            <option>Interview</option>
+                            <option>Offers</option>
+                            <option>Rejected</option>
+                        </select> 
                     </div>
 
                     <div class="form-group">
