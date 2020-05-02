@@ -126,7 +126,7 @@ module.exports = function (app) {
 
   app.get("/members/job", isAuthenticated, function (req, res) {
     // res.sendFile(path.join(__dirname, "../public/members.html"));
-    db.Job_Application.findAll({
+    db.Job.findAll({
       where: {
         user_id: req.user.id
       }

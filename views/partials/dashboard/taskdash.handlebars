@@ -1,0 +1,51 @@
+<P>This is taskdash partial handlebars</P>
+
+<div id="inserttable" class="container-fluid">
+
+</div>
+
+<script>
+  $(document).ready(function () {
+
+    //segment of JS to populate the list
+    $.getJSON("/api/task", function (response, status) {
+      if (status == "success") {
+        console.log(response);
+        tb = document.createElement("table");
+        tb.className = "table"
+        var tr = tb.insertRow(-1);
+        var th = document.createElement("th");
+        th.innerHTML = "Task"
+        tr.appendChild(th);
+        var th = document.createElement("th");
+        th.innerHTML = "Status"
+        tr.appendChild(th);
+        var th = document.createElement("th");
+        th.innerHTML = "Job_ID"
+        tr.appendChild(th);
+        var th = document.createElement("th");
+        th.innerHTML = "Deadline"
+        tr.appendChild(th);
+
+        for (var i = 0; i < response.length; i++) {
+          var trow = tb.insertRow(-1)
+          var task = response[i].task
+          var cell = trow.insertCell(-1);
+          cell.innerHTML = task;
+          var status = response[i].task_status
+          var cell = trow.insertCell(-1);
+          cell.innerHTML = status;
+          var jid = response[i].job_id
+          var cell = trow.insertCell(-1);
+          cell.innerHTML = jid;
+          var deadline = new Date(response[i].deadline)
+          var cell = trow.insertCell(-1);
+          cell.innerHTML = deadline.toLocaleDateString("en-US");
+        }
+        var el = document.getElementById("inserttable")
+        el.innerHTML = "";
+        el.appendChild(tb);
+      }
+    });
+  })
+</script>
