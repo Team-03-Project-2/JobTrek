@@ -127,9 +127,9 @@ module.exports = function (app) {
              }
 
         ).then(function (data) {
-            res.json(data)
-
-            //res.render("addjob", { companies: data })
+            //res.json(data)
+            console.log("companies" , data)
+            res.render("addjob", { companies: data })
 
         })
     })
@@ -140,9 +140,23 @@ module.exports = function (app) {
                 user_id: 1
             }
              }).then(function (data) {
-            //res.json(data);
-            res.json(data)
-            // res.render("addjob", { resumes: data })
+           
+          // res.json(data)
+            res.render("addjob", { resumes: data })
+            //console.log(data)
+        })
+    })
+
+
+    app.get("/api/jobboard/task", function (req, res) {
+        db.Task.findAll({
+            where:{
+                user_id: 1
+            }
+             }).then(function (data) {
+            
+            //res.json(data)
+            res.render("addjob", { tasks: data })
             //console.log(data)
         })
     })
@@ -196,16 +210,17 @@ module.exports = function (app) {
     app.put("/api/jobboard/change/:recordId", function (req, res) {
 
         let recId = req.params.recordId;
-        console.log("here at update")
+        console.log("here at update", recId)
         let objUpdate = {
             job_title: req.body.job_title,
             description: req.body.describe,
             requirement: req.body.require,
             location: req.body.locate,
+            status:req.body.statusUpdate.toLowerCase(),
             notes: req.body.note,
             url: req.body.jobUrl
         }
-
+        //console.log("here is obj", objUpdate)
         db.Job.update(objUpdate, {
             where:{
                 id:recId

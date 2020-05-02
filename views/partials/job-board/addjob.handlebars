@@ -1,5 +1,5 @@
 <!-- Trigger the modal with a button -->
-<a type="button" id="addnewjob" class="btn addnewjob btn-primary" data-toggle="modal" data-target="#myaddjobmodal"> Add
+<a type="button" id="createnewjobcard" class="btn addnewjob btn-primary" data-toggle="modal" data-target="#myaddjobmodal"> Add
     Job </a>
 
 <!-- Modal -->
@@ -34,17 +34,17 @@
                             {{!-- {{#each companies}}
                             <option>{{dataValues.company}}</option>
                             {{/each}} --}}
-                            <option id="othercompany">Other</option>
+                            {{!-- <option id="othercompany">Other</option> --}}
 
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="tasklist"> Task </label>
                         <select class="form-control" id="tasklist">
-                            {{!-- {{#each Task}}
+                            {{!-- {{#each tasks}}
                             <option>{{dataValues.task}}</option>
                             {{/each}}  --}}
-                            <option>Other</option>
+                            {{!-- <option>Other</option> --}}
 
                         </select>
                     </div>
@@ -53,9 +53,9 @@
                         <label for="resumelist">Resume</label>
                         <select class="form-control" id="resumelist">
                             {{!-- {{#each resumes}}
-                            <option>{{[dataValues.resume}}</option>
+                            <option>{{dataValues.resume}}</option>
                             {{/each}} --}}
-                            <option> Add new </option>
+                            {{!-- <option> Add new </option> --}}
                         </select>
                     </div>
 
@@ -85,7 +85,7 @@
 
 
                     <div class="form-group">
-                        <label for="job-url"> Job Post </label>
+                        <label for="job-url"> Enter Job Post Url </label>
                         <input type="job-url" class="form-control" id="jobUrl" aria-describedby="emailHelp"
                             placeholder="indeed.com">
                     </div>

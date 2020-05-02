@@ -87,7 +87,7 @@ module.exports = function (app) {
   app.get("/api/company", function (req, res) {
     // Otherwise send back 
     console.log("At /api/company GET...")
-    console.log(req)
+    //console.log(req)
     db.Company.findAll({
       where: {
         // only this user's items, not all...
@@ -172,7 +172,7 @@ module.exports = function (app) {
   app.get("/api/contact", function (req, res) {
     // Otherwise send back 
     console.log("At /api/contact GET...")
-    console.log(req)
+    //console.log(req)
     db.Contact.findAll({
       where: {
         user_id: req.user.id

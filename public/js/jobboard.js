@@ -1,21 +1,63 @@
 $(document).ready(function () {
-  // $(".addnewjob").on("click", function(event){
-  //    // console.log("works")
-  //     $.ajax("/api/jobboard/company",{
-  //         type:"GET"
+  $("#createnewjobcard").on("click", function(event){
+    
+    
+        console.log("works")
+        $.ajax("/api/jobboard/company",{
+          type:"GET"
 
-  //     }).then(function(data){
-  //         $.ajax("/api/jobboard/resume",{
-  //             type:"GET"
-
-  //         }).then(function(data){
-  //     //console.log(resume)
-  //         })
+        }).then(function(companydata){
 
 
-  //     })
-  // })
-  // })
+          $.ajax("/api/jobboard/resume",{
+              type:"GET"
+
+          }).then(function(resumedata){
+      console.log(companydata)
+          })
+          
+
+      })
+  })
+
+  $.getJSON("/api/company", { user_id: 1}, function (response, status) {
+    if (status == "success") {
+      //console.log(response);
+      for (var i = 0; i < response.length; i++) {
+        var str = response[i].company
+        var sid = response[i].id
+        $("#companylist").append("<option value=" + sid + ">" + str + "</option>")
+        
+      }
+    }
+  });
+
+  $.getJSON("/api/task", { user_id: 1}, function (response, status) {
+    if (status == "success") {
+      //console.log(response);
+      for (var i = 0; i < response.length; i++) {
+        var str = response[i].task
+        var sid = response[i].id
+        $("#tasklist").append("<option value=" + sid + ">" + str + "</option>")
+        
+      }
+    }
+  });
+
+  $.getJSON("/api/resume", { user_id: 1}, function (response, status) {
+    if (status == "success") {
+      //console.log(response);
+      for (var i = 0; i < response.length; i++) {
+        var str = response[i].fileName
+        var sid = response[i].id
+        $("#resumelist").append("<option value=" + sid + ">" + str + "</option>")
+        
+      }
+    }
+  });
+
+
+  
 
   $(".createJobSubmit").on("click", function (event) {
     //    event.preventDefault();
@@ -36,7 +78,7 @@ $(document).ready(function () {
         type: "POST",
         data: jobData
       }).then(function () {
-        //location.reload();
+        location.reload();
       });
   });
 
@@ -57,7 +99,7 @@ $("#updatejobposting").on("click", function (event) {
     describe: $("#jobdescription_edit").val(),
     require: $("#jobrequirement_edit").val(),
     locate: $("#location_edit").val(),
-    //status:$("").val()
+    statusUpdate: $("#newjobstatus_edit").val(),
     note: $("#jobNotes_edit").val(),
     jobUrl: $("#jobUrlEdit").val()
   };
@@ -70,7 +112,7 @@ $("#updatejobposting").on("click", function (event) {
     data: updatedData
   }).then(function () {
       console.log("updated job");
-      // location.reload();
+      location.reload();
     }
   );
 });
@@ -112,7 +154,13 @@ $(".updateonejob").on("click", function(event){
     console.log(dataResponse)
 
      $("#updatejobposting").attr("data-update",dataResponse.id);
-
+     $("#newjobstatus_edit").val(dataResponse.status)
+     $("#jobdescription_edit").val(dataResponse.description)
+     $("#jobrequirement_edit").val(dataResponse.requirement)
+     $("#jobNotes_edit").val(dataResponse.notes)
+     $("#jobUrlEdit").val(dataResponse.url)
+     $("#location_edit").val(dataResponse.location)
+     $("#title_edit").val(dataResponse.job_title)
 
   })
 })
