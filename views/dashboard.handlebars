@@ -3,7 +3,7 @@
     <div class="navbar-header">
       <span id="{{reqUser}}">User_ID = {{reqUser}} </span>
       <i class="fas fa-chevron-right"></i> <a href="/members">Members</a>
-      <i class="fas fa-chevron-right"></i> <B> Job Board </b>
+      <i class="fas fa-chevron-right"></i> <B> Dashboard </b>
       <a class="navbar-brand" href="/logout">
         Logout
       </a>
@@ -11,18 +11,25 @@
   </div>
 </nav>
 
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-1"></div>
+    <div class="col-10">
       <h3>Dashboard</h3>
 
       <P>Display contact logs and tasks</P>
 
       <P>Statistics, like (jobs applied), (jobs responded), (jobs interviewed) etc.</P>
 
-      <P>Contact_Log</P>
+      <h3>Contact_Log</h3>
 
-      <P>Tasks</P>
+      {{>dashboard/contactlogdash}}
+
+      <h3>Tasks</h3>
+
+      {{> dashboard/taskdash}}
     </div>
+    <div class="col-1"></div>
+
   </div>
 </div>
