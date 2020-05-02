@@ -4,6 +4,9 @@ var session = require("express-session");
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
 
+var moment = require('moment');
+moment().format();
+
 // Setting up port and requiring models for syncing
 var PORT = process.env.PORT || 3500;
 var db = require("./models");
@@ -19,8 +22,12 @@ app.use(express.static("public"));
 
 var exphbs = require("express-handlebars");
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine("handlebars", exphbs({
+  defaultLayout: "main",
+  helpers: require('./config/handlebars-helpers.js').helpers
+}));
 app.set("view engine", "handlebars");
+
 
 // We need to use sessions to keep track of our user's login status
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
@@ -31,6 +38,7 @@ app.use(passport.session());
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 require("./routes/api-routes-resume.js")(app);
+require("./routes/api-routes-task.js")(app);
 require("./routes/jobboard-routes.js")(app);
 
 // Syncing our database and logging a message to the user upon success
