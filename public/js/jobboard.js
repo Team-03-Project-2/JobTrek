@@ -44,35 +44,35 @@ $(document).ready(function () {
 
 
 
-$(".updatejobbtn").on("click", function (event) {
+$("#updatejobposting").on("click", function (event) {
   // Make sure to preventDefault on a submit event.
+   
   // event.preventDefault();
-  
   var recordId = $(this).data("update");
+
   console.log("update button working", recordId)
 
   var updatedData = {
-    job_title: $("#title").val(),
-    describe: $("#jobdescription").val(),
-    require: $("#jobrequirement").val(),
-    locate: $("#location").val(),
+    job_title: $("#title_edit").val(),
+    describe: $("#jobdescription_edit").val(),
+    require: $("#jobrequirement_edit").val(),
+    locate: $("#location_edit").val(),
     //status:$("").val()
-    note: $("#jobNotes").val(),
-    jobUrl: $("#jobUrl").val()
+    note: $("#jobNotes_edit").val(),
+    jobUrl: $("#jobUrlEdit").val()
   };
 
 
-
+  console.log("is it sending???", updatedData)
   // Send the POST request.
-  // $.ajax("/api/jobboard/" +recordId, {
-  //   type: "PUT",
-  //   data: updatedData
-  // }).then(function () {
-  //     console.log("updated job");
-  //     // Reload the page to get the updated list
-  //     // location.assign("/members/jobboard");
-  //   }
-  // );
+  $.ajax("/api/jobboard/change/" +recordId, {
+    type: "PUT",
+    data: updatedData
+  }).then(function () {
+      console.log("updated job");
+      // location.reload();
+    }
+  );
 });
 
 //delete button is working but nothing seems to be getting deleted.
@@ -100,13 +100,21 @@ $(".deleteJob").on('click', function (event) {
 });
 
 
+
 $(".updateonejob").on("click", function(event){
-
   var jobId = $(this).data("id")
+
+  console.log("jobId", jobId)
 // TODO
-  $.ajax().then(function(){})
+  $.ajax("/api/jobboard/" + jobId,{
+    type:"GET",
+  }).then(function(dataResponse){
+    console.log(dataResponse)
+
+     $("#updatejobposting").attr("data-update",dataResponse.id);
 
 
+  })
 })
 
 
