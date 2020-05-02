@@ -1,6 +1,6 @@
 <P>This is taskdash partial handlebars</P>
 
-<div id="inserttable" class="container-fluid">
+<div id="inserttaskdash" class="container-fluid">
 
 </div>
 <!-- need moment to parse date client-side -->
@@ -45,7 +45,7 @@
 
           cell.innerHTML = deadline.format("YYYY-MM-DD");
         }
-        var el = document.getElementById("inserttable")
+        var el = document.getElementById("inserttaskdash")
         el.innerHTML = "";
         el.appendChild(tb);
       }
