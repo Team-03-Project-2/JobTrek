@@ -143,6 +143,25 @@ module.exports = function (app) {
     // res.render("jobboard")
   });
 
+  app.get("/members/task", isAuthenticated, function (req, res) {
+    // res.sendFile(path.join(__dirname, "../public/members.html"));
+    db.Task.findAll({
+      where: {
+        user_id: req.user.id
+      }
+    }).then(function (dbTask) {
+      // We locate companies
+      // console.log('/members/company GET', dbCompany)
+      var obj = {
+        reqUser: req.user.id,
+        task: dbTask
+      }
+      // res.render("company", dbCompany);
+      res.render("task", obj);
+    });
+    // res.render("jobboard")
+  });
+
   // app.get("/members/resume", isAuthenticated, function (req, res) {
   //   // res.sendFile(path.join(__dirname, "../public/members.html"));
   //   res.render("resume")
