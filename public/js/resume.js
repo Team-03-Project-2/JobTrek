@@ -50,8 +50,9 @@ $(document).ready(function () {
     });
 
     $(".deleteResume").on("click", function(event){
-        let delid = $(this).data("id")
+        let delid = $(this).data("delete")
         console.log("del", delid)
+       
         $.ajax("/api/resume/delete", {
             type: "DELETE",
             data:{id:delid}
@@ -60,4 +61,22 @@ $(document).ready(function () {
         })
     })
 
+    $(".viewResume").on("click", function(e){
+        // e.preventDefault();
+
+        let view = $(this).data("view");
+
+
+        console.log("view", view)
+        $.ajax("/api/resume/find/" + view, {
+            type: "GET",
+        }).then(function(view){
+            $("#viewPleaseshow").text(view.id);
+            console.log(view)
+            
+            // location.reload();
+        })
+
+
+    })
 });

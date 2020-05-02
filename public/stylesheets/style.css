@@ -17,3 +17,7 @@ border-top-right-radius: 4px;
   float: left;
   margin: 2%;
 }
+
+.modal-content {
+  text-decoration: none !important;
+}

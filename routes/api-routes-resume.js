@@ -18,6 +18,18 @@ module.exports = function (app) {
     });
   });
 
+  app.get("/api/resume/find/:one", function (req, res) {
+    
+    let view = req.params.one
+    console.log("from ajax",view)
+    db.Resume.findOne(
+      {
+      where:{id:view,}}
+      ).then(function(data){
+      console.log(view,"find one:" ,data.dataValues)
+      // res.render("resume", {one: data});
+      res.json(data.dataValues);
+   });
   // this is added by kasey to populate dropdown lists
   app.get("/api/resume", function (req, res) {
     // Otherwise send back 
@@ -36,7 +48,7 @@ module.exports = function (app) {
   //   res.json(data);
   //  });
 
-  // });
+  });
 
   app.post("/api/resume/create", function (req, res) {
     console.log("I got called")
