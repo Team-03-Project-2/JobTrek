@@ -6,7 +6,7 @@ var register = function (Handlebars) {
     formatdatetiny: function (dt) {
       if (moment) {
         // can use other formats like 'lll' too
-        return moment(dt).format("yyyy-MM-DD");
+        return moment(dt).format("YYYY-MM-DD");
       };
     }
   }

@@ -1,8 +1,10 @@
 <P>This is taskdash partial handlebars</P>
 
-<div id="inserttable" class="container-fluid">
+<div id="inserttaskdash" class="container-fluid">
 
 </div>
+<!-- need moment to parse date client-side -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
 
 <script>
   $(document).ready(function () {
@@ -38,11 +40,12 @@
           var jid = response[i].job_id
           var cell = trow.insertCell(-1);
           cell.innerHTML = jid;
-          var deadline = new Date(response[i].deadline)
+          var deadline = moment(response[i].deadline)
           var cell = trow.insertCell(-1);
-          cell.innerHTML = deadline.toLocaleDateString("en-US");
+
+          cell.innerHTML = deadline.format("YYYY-MM-DD");
         }
-        var el = document.getElementById("inserttable")
+        var el = document.getElementById("inserttaskdash")
         el.innerHTML = "";
         el.appendChild(tb);
       }

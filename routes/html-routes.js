@@ -143,6 +143,25 @@ module.exports = function (app) {
     // res.render("jobboard")
   });
 
+  app.get("/members/contactlog", isAuthenticated, function (req, res) {
+    // res.sendFile(path.join(__dirname, "../public/members.html"));
+    db.Contact_Log.findAll({
+      where: {
+        user_id: req.user.id
+      }
+    }).then(function (dbContactLog) {
+      // We locate companies
+      // console.log('/members/company GET', dbCompany)
+      var obj = {
+        reqUser: req.user.id,
+        contact_log: dbContactLog
+      }
+      // res.render("company", dbCompany);
+      res.render("contactlog", obj);
+    });
+    // res.render("jobboard")
+  });
+
   app.get("/members/task", isAuthenticated, function (req, res) {
     // res.sendFile(path.join(__dirname, "../public/members.html"));
     db.Task.findAll({
