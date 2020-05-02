@@ -44,7 +44,7 @@
             <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
               id="col1" ondrop="dropIt(event)" ondragover="allowDrop(event)">
               {{#each wishlist}}
-              <div draggable="true" ondragstart="dragStart(event)">
+              <div class="card" draggable="true" ondragstart="dragStart(event)">
                 <div style="padding: 2px 2px 10px;">
                   <div
                     style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
@@ -63,15 +63,16 @@
                           <i class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i>
                         </button>
                       </div> --}}
-                      <div class="d-flex justify-content-between">
-                        <a data-userid="{{../reqUser}}" data-delete="{{dataValues.id}}" class="btn  btn-danger"
-                          data-toggle="modal" data-target="#deleteJobModal">
-                          <i class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i>
-                        </a>
-                      </div>
+
                     </a>
 
                   </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <a data-userid="{{../reqUser}}" data-delete="{{dataValues.id}}" class="btn  btn-danger"
+                    data-toggle="modal" data-target="#deleteJobModal">
+                    <i class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i>
+                  </a>
                 </div>
               </div>
               {{/each}}
@@ -92,7 +93,7 @@
             <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
               id="col2" ondrop="dropIt(event)" ondragover="allowDrop(event)">
               {{#each applied}}
-              <div draggable="true" ondragstart="dragStart(event)">
+              <div class="card" draggable="true" ondragstart="dragStart(event)">
                 <div style="padding: 2px 2px 10px;">
                   <div
                     style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
@@ -106,16 +107,17 @@
                       <div>
                         <p class="mb-1">{{dataValues.url}}</p>
                       </div>
-                      <div class="d-flex justify-content-between"> <a data-id="{{dataValues.id}}"
-                          class="btn btn-danger" data-toggle="modal" data-target="#deleteJobModal">
-                           <i class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i>
-                        </a></div>
+
                     </a>
                   </div>
                 </div>
+                <div class="d-flex justify-content-between"> <a data-id="{{dataValues.id}}" class="btn btn-danger"
+                    data-toggle="modal" data-target="#deleteJobModal">
+                    <i class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i>
+                  </a></div>
               </div>
               {{/each}}
-              <div draggable="true" ondragstart="dragStart(event)">
+              <div class="card" draggable="true" ondragstart="dragStart(event)">
                 <div style="padding: 2px 2px 10px;">
                   {{!-- <div
                     style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
@@ -153,7 +155,7 @@
             <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
               id="col3" ondrop="dropIt(event)" ondragover="allowDrop(event)">
               {{#each response}}
-              <div draggable="true" ondragstart="dragStart(event)">
+              <div class="card" draggable="true" ondragstart="dragStart(event)">
                 <div style="padding: 2px 2px 10px;">
                   <div
                     style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
@@ -164,15 +166,16 @@
                         <small>{{dataValues.location}}</small>
                       </div>
                       <p class="mb-1"> {{dataValues.url}} </p>
-                      <div class="d-flex justify-content-between"> <a class="btn btn-danger" 
-                      data-toggle="modal" data-target="#deleteJobModal"> <i
-                            class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </a></div>
+
                     </a>
                   </div>
                 </div>
+                <div class="d-flex justify-content-between"> <a class="btn btn-danger" data-toggle="modal"
+                    data-target="#deleteJobModal"> <i class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i>
+                  </a></div>
               </div>
               {{/each}}
-              <div draggable="true" ondragstart="dragStart(event)">
+              <div class="card" draggable="true" ondragstart="dragStart(event)">
                 <div style="padding: 2px 2px 10px;">
                   {{!-- <div
                     style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
@@ -204,7 +207,7 @@
           <div class="row">
             <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
               id="col4" ondrop="dropIt(event)" ondragover="allowDrop(event)">
-              <div draggable="true" ondragstart="dragStart(event)">
+              <div class="card" draggable="true" ondragstart="dragStart(event)">
                 <div style="padding: 2px 2px 10px;">
                   <div
                     style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
@@ -215,14 +218,15 @@
                         <small>createdAT</small>
                       </div>
                       <p class="mb-1">Job URL</p>
-                      <div class="d-flex justify-content-between"> <a class="btn btn-danger"
-                      data-toggle="modal" data-target="#deleteJobModal"> <i
-                            class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </a></div>
+
                     </a>
                   </div>
                 </div>
+                <div class="d-flex justify-content-between"> <a class="btn btn-danger" data-toggle="modal"
+                    data-target="#deleteJobModal"> <i class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i>
+                  </a></div>
               </div>
-              <div draggable="true" ondragstart="dragStart(event)">
+              <div class="card" draggable="true" ondragstart="dragStart(event)">
                 <div style="padding: 2px 2px 10px;">
                   {{!-- <div
                     style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
@@ -255,7 +259,7 @@
           <div class="row">
             <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
               id="col5" ondrop="dropIt(event)" ondragover="allowDrop(event)">
-              <div draggable="true" ondragstart="dragStart(event)">
+              <div class="card" draggable="true" ondragstart="dragStart(event)">
                 <div style="padding: 2px 2px 10px;">
                   <div
                     style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
@@ -267,15 +271,16 @@
                       </div>
                       <p class="mb-1">Job URL</p>
 
-                      <div class="d-flex justify-content-between"> <a class="btn btn-danger"
-                      data-toggle="modal" data-target="#deleteJobModal"> <i
-                            class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </a></div>
+
                     </a>
                   </div>
                 </div>
+                  <div class="d-flex justify-content-between"> <a class="btn btn-danger" data-toggle="modal"
+                          data-target="#deleteJobModal"> <i class="fa fa-trash" style='font-size:14px'
+                            aria-hidden="true"></i> </a></div>
               </div>
 
-              <div draggable="true">
+              <div class="card" draggable="true">
                 <div style="padding: 2px 2px 10px;">
                   {{!-- <div
                     style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
@@ -306,7 +311,7 @@
           <div class="row">
             <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
               id="col6" ondrop="dropIt(event)" ondragover="allowDrop(event)">
-              <div draggable="true" ondragstart="dragStart(event)">
+              <div class="card" draggable="true" ondragstart="dragStart(event)">
                 <div style="padding: 2px 2px 10px;">
                   <div
                     style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
@@ -317,13 +322,14 @@
                         <small>createdAT</small>
                       </div>
                       <p class="mb-1">Job URL</p>
-                      <div class="d-flex justify-content-between"> <a class="btn btn-danger"> <i
-                            class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </a></div>
+                      
                     </a>
                   </div>
                 </div>
+                <div class="d-flex justify-content-between"> <a class="btn btn-danger"> <i class="fa fa-trash"
+                            style='font-size:14px' aria-hidden="true"></i> </a></div>
               </div>
-              <div draggable="true">
+              <div class="card" draggable="true">
                 <div style="padding: 2px 2px 10px;">
                   {{!-- <div
                     style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
@@ -388,8 +394,8 @@
 
             <div class="form-group">
               <label for="location"> Location </label>
-              <input type="location" name="location" class="form-control" id="location_edit" value="{{dataValues.locate}}"
-                aria-describedby="emailHelp" placeholder="San Francisco">
+              <input type="location" name="location" class="form-control" id="location_edit"
+                value="{{dataValues.locate}}" aria-describedby="emailHelp" placeholder="San Francisco">
             </div>
 
             <div class="form-group">
@@ -399,7 +405,8 @@
 
             <div class="form-group">
               <label for="jobrequirement"> Job Requirement </label>
-              <textarea class="form-control"name="jobrequirement" id="jobrequirement_edit" rows="3">{{dataValues.require}} </textarea>
+              <textarea class="form-control" name="jobrequirement" id="jobrequirement_edit"
+                rows="3">{{dataValues.require}} </textarea>
             </div>
 
 
@@ -414,7 +421,7 @@
               <textarea class="form-control" name="jobNotes" id="jobNotes_edit" rows="3">{{dataValues.note}} </textarea>
             </div>
             <div class="modal-footer">
-             <button type="button"  class="btn updatejobbtn btn-primary"> Update Job
+              <button type="button" class="btn updatejobbtn btn-primary"> Update Job
               </button>
             </div>
           </div>
@@ -426,7 +433,8 @@
   </form>
 
 
-  <div data-userid="{{../reqUser}}" data-delete="{{dataValues.id}}" class="modal fade" id="deleteJobModal" role="dialog">
+  <div data-userid="{{../reqUser}}" data-delete="{{dataValues.id}}" class="modal fade" id="deleteJobModal"
+    role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -437,18 +445,19 @@
         </div>
         <div class="modal-body">
           <p> You are about to delete this job. Click delete to continue</p>
-          <div class="modal-footer " >
-          <button type="button" id="deleteJob" class="btn btn-danger" data-userid="{{../reqUser}}" data-delete="{{dataValues.id}}"> Delete
+          <div class="modal-footer ">
+            <button type="button" id="deleteJob" class="btn btn-danger" data-userid="{{../reqUser}}"
+              data-delete="{{dataValues.id}}"> Delete
             </button>
           </div>
         </div>
       </div>
     </div>
   </div>
-        
 
 
 
 
-          <script type="text/javascript" src="/js/dragdrop.js"></script>
-          <script type="text/javascript" src="/js/jobboard.js"></script>
+
+  <script type="text/javascript" src="/js/dragdrop.js"></script>
+  <script type="text/javascript" src="/js/jobboard.js"></script>

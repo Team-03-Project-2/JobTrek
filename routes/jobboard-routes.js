@@ -67,10 +67,25 @@ module.exports = function (app) {
                     user_id: req.user_id,
                     where: { status: "response" }
                 }).then(function (responseData) {
+                    db.Job.findAll({
+                        user_id: req.user_id,
+                        where: { status: "interview" }
+                    }).then(function(interviewData){
+                        db.Job.findAll({
+                            user_id: req.user_id,
+                            where: { status: "offers" }
+                    }).then(function(offersData){
+                        db.Job.findAll({
+                            user_id: req.user_id,
+                            where: { status: "rejected" }
+                    }).then(function(rejectedData){
                     res.render("jobboard", {
                         wishlist: wishlistData,
                         applied: appliedData,
-                        response: responseData
+                        response: responseData,
+                        interview: interviewData,
+                        offers: offersData,
+                        rejected: rejectedData
                     })
                 })
 
