@@ -164,8 +164,27 @@ module.exports = function (app) {
 
     });
 
+
+    // find one
+
+    app.get("/api/jobboard/:id", function(req, res){
+
+        let recordId = req.params.id
+        db.Job.findOne({
+            where:{id:recordId}
+        }).then(function(recordResult){
+
+            res.json(recordResult.dataValues)
+        })
+
+    })
+
+
+
+
+
     //update
-    app.put("/api/jobboard/:recordId", function (req, res) {
+    app.put("/api/jobboard/change/:recordId", function (req, res) {
 
         let recId = req.params.recordId;
         console.log("here at update")
@@ -178,7 +197,11 @@ module.exports = function (app) {
             url: req.body.jobUrl
         }
 
-        db.Job.update(recId, objUpdate).then(function (responseSql) {
+        db.Job.update(objUpdate, {
+            where:{
+                id:recId
+            }
+        }).then(function (responseSql) {
             console.log("updated???")
         })
 
