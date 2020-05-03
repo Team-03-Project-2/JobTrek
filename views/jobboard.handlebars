@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <span id="{{reqUser}}">User_ID = {{reqUser}} </span>
+      <span id="{{reqUser}}"> {{reqUser}} </span>
       <i class="fas fa-chevron-right"></i> <a href="/members">Members</a>
       <i class="fas fa-chevron-right"></i> <B> Job Board </b>
       <a class="navbar-brand" href="/logout">
@@ -24,14 +24,13 @@
         <a class="row btn-sm btn-primary" href="/members/jobboard">Job Board</a>
         <a class="row btn-sm btn-secondary" href="/members/resume"> Resume</a>
         <a class="row btn-sm btn-danger" href="/members/maintain"> Maintenance</a>
-        <a class="row btn-sm btn-warning" href="/members/findjobs"> Job Search</a>
         <a class="row btn-sm btn-success" href="/logout"> Logout</a>
       </div>
 
     </div>
 
     {{!-- Job Board column --}}
-    <div class="col-9 container-fluid">
+    <div class="col-10 container-fluid">
       <div class="row container">
         <div class="col">
           <div class="row container text-right list-title">

@@ -100,13 +100,7 @@ module.exports = function (app) {
         res.render("jobinfo")
     });
 
-    app.get("/members/findjobs", isAuthenticated, function (req, res) {
-
-        res.sendFile(path.join(__dirname, '../public', 'jobapi.html'));
-        //res.json("something good is coming")
-
-    });
-
+    
     // app.get("/api/jobboard", function (req, res) {
 
 
@@ -119,8 +113,9 @@ module.exports = function (app) {
     //     });
     // });
 
-    app.get("/api/jobboard/resumeselect", function (req, res) {
-        db.Resume.findAll({ user_id: 1 }
+
+    app.get("/api/jobboard/resumeselect", isAuthenticated, function (req, res) {
+        db.Resume.findAll({ user_id: req.user_id }
 
         ).then(function (data) {
 
@@ -132,7 +127,7 @@ module.exports = function (app) {
     app.get("/api/jobboard/company", function (req, res) {
         db.Company.findAll({
             where:{
-                user_id: 1
+                user_id: req.user.id
             }
              }
 
@@ -144,10 +139,10 @@ module.exports = function (app) {
         })
     })
 
-    app.get("/api/jobboard/resume", function (req, res) {
+    app.get("/api/jobboard/resume", isAuthenticated, function (req, res) {
         db.Resume.findAll({
             where:{
-                user_id: 1
+                user_id: req.user.id
             }
              }).then(function (data) {
            
@@ -158,10 +153,10 @@ module.exports = function (app) {
     })
 
 
-    app.get("/api/jobboard/task", function (req, res) {
+    app.get("/api/jobboard/task", isAuthenticated, function (req, res) {
         db.Task.findAll({
             where:{
-                user_id: 1
+                user_id: req.user.id
             }
              }).then(function (data) {
             
@@ -173,7 +168,7 @@ module.exports = function (app) {
 
 
     //create
-    app.post("/api/jobboard", function (req, res) {
+    app.post("/api/jobboard", isAuthenticated, function (req, res) {
         console.log("post method")
 
         //user_id: req.user.id,
@@ -203,7 +198,7 @@ module.exports = function (app) {
 
     // find one
 
-    app.get("/api/jobboard/:id", function(req, res){
+    app.get("/api/jobboard/:id", isAuthenticated, function(req, res){
 
         let recordId = req.params.id
         db.Job.findOne({
@@ -220,7 +215,7 @@ module.exports = function (app) {
 
 
     //update
-    app.put("/api/jobboard/change/:recordId", function (req, res) {
+    app.put("/api/jobboard/change/:recordId", isAuthenticated, function (req, res) {
 
         let recId = req.params.recordId;
         console.log("here at update", recId)
@@ -271,7 +266,7 @@ module.exports = function (app) {
     });
 
 
-    app.delete("/api/jobboard", function (req, res) {
+    app.delete("/api/jobboard", isAuthenticated, function (req, res) {
         console.log("delete", req.body.jobId)
         db.Job.destroy({
 
