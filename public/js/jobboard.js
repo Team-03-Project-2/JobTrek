@@ -1,39 +1,26 @@
 $(document).ready(function () {
-  $("#addnewjob").on("click", function(event){
-     console.log("works")
-
-      $.ajax("/api/jobboard/resumeselect",{
-          type:"GET"
-
-      }).then(function(data){
-        data.forEach(element => {
-          console.log("element:    ", element)
-          let myOption = $("<option>");
-          myOption.text(element.fileName)
-  
-          $("#modalSelectResume").append(myOption);
-  
-         });
-        })
-    })
-
   $("#createnewjobcard").on("click", function (event) {
+
 
     console.log("works")
     $.ajax("/api/jobboard/company", {
       type: "GET"
 
     }).then(function (companydata) {
+
+
       $.ajax("/api/jobboard/resume", {
         type: "GET"
 
       }).then(function (resumedata) {
         console.log(companydata)
       })
+
+
     })
   })
 
-  $.getJSON("/api/company", { user_id: req.user.id }, function (response, status) {
+  $.getJSON("/api/company", { user_id: 1 }, function (response, status) {
     if (status == "success") {
       //console.log(response);
       for (var i = 0; i < response.length; i++) {
@@ -46,7 +33,7 @@ $(document).ready(function () {
     }
   });
 
-  $.getJSON("/api/task", { user_id: req.user.id }, function (response, status) {
+  $.getJSON("/api/task", { user_id: 1 }, function (response, status) {
     if (status == "success") {
       //console.log(response);
       for (var i = 0; i < response.length; i++) {
@@ -59,7 +46,7 @@ $(document).ready(function () {
     }
   });
 
-  $.getJSON("/api/resume", { user_id: req.user.id }, function (response, status) {
+  $.getJSON("/api/resume", { user_id: 1 }, function (response, status) {
     if (status == "success") {
       //console.log(response);
       for (var i = 0; i < response.length; i++) {
@@ -72,6 +59,9 @@ $(document).ready(function () {
       }
     }
   });
+
+
+
 
   $(".createJobSubmit").on("click", function (event) {
     //    event.preventDefault();
@@ -100,6 +90,8 @@ $(document).ready(function () {
   });
 
 })
+
+
 
 $("#updatejobposting").on("click", function (event) {
   // Make sure to preventDefault on a submit event.
@@ -138,6 +130,8 @@ $("#updatejobposting").on("click", function (event) {
 //delete button is working but nothing seems to be getting deleted.
 
 $(".deleteJob").on('click', function (event) {
+
+
   var id = $(this).data("delete");
   // var userid = $(this).data("userid")
 
@@ -156,6 +150,8 @@ $(".deleteJob").on('click', function (event) {
     }
   );
 });
+
+
 
 $(".updateonejob").on("click", function (event) {
   var jobId = $(this).data("id")
@@ -177,7 +173,3 @@ $(".updateonejob").on("click", function (event) {
 
   })
 })
-
-
-
-
