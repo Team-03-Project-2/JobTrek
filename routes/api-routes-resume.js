@@ -8,17 +8,17 @@ module.exports = function (app) {
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
 
-  app.get("/members/resume", function (req, res) {
+  app.get("/members/resume", isAuthenticated,function (req, res) {
     // console.log(req.user);
     db.Resume.findAll().then(function (data) {
-      console.log("printing all from resume table", data[0])
+      // console.log("printing all from resume table", data[0])
       res.render("resume", {
         resume: data
       });
     });
   });
 
-  app.get("/api/resume/find/:one", function (req, res) {
+  app.get("/api/resume/find/:one", isAuthenticated,function (req, res) {
     
     let view = req.params.one
     console.log("from ajax",view)
@@ -35,7 +35,7 @@ module.exports = function (app) {
   // this is added by kasey to populate dropdown lists
   app.get("/api/resume", function (req, res) {
     // Otherwise send back 
-    console.log("At /api/resume GET...")
+    // console.log("At /api/resume GET...")
     db.Resume.findAll({
       where: {
         user_id: 1
@@ -52,8 +52,8 @@ module.exports = function (app) {
 
  
 
-  app.post("/api/resume/create", function (req, res) {
-    console.log("I got called")
+  app.post("/api/resume/create", isAuthenticated,function (req, res) {
+    console.log("I got called for create")
     let resumeDate;
     if (req.body.date == null || eq.body.date == undefined) {
       resumeDate = Date.now();
@@ -64,8 +64,8 @@ module.exports = function (app) {
     let newResumeObject = {
 
       // user_id : req.user.id,
-      user_id: 1,
-      star: false,
+      user_id: req.user.id,
+      star: true,
       fileName: req.body.fileName,
       date: resumeDate,
       role: req.body.role,
@@ -73,12 +73,12 @@ module.exports = function (app) {
       fileLocation: req.body.fileLocation
 
     }
-    console.log("create objec", newResumeObject);
+    // console.log("create objec", newResumeObject);
     db.Resume.create(newResumeObject).then(function () { })
 
   });
 
-  app.put("/api/resume/update/star", function (req, res) {
+  app.put("/api/resume/update/star", isAuthenticated,function (req, res) {
 
     let starchange = req.body.starValue;
     if (starchange == "true") {
@@ -87,7 +87,7 @@ module.exports = function (app) {
     } else {
       starchange = true;
     }
-    console.log(req.body.starValue, starchange)
+    // console.log(req.body.starValue, starchange)
     db.Resume.update({ star: starchange },
       {
         where: {
@@ -99,7 +99,33 @@ module.exports = function (app) {
   });
 
 
-  app.delete("/api/resume/delete", function (req, res) {
+  app.put("/api/resume/update/alldata", isAuthenticated,function (req, res) {
+
+    let recordId= req.body.idcard;
+    console.log("id ", recordId)
+    let cardObject = {
+            fileName:req.body.resumeTitle,
+            role:req.body.cardrole,
+            date:req.body.creationdate,
+            notes:req.body.specialnotes,
+            fileLocation:req.body.filelocation
+    }
+
+    // console.log("recordId",recordId, cardObject)
+    db.Resume.update(cardObject,
+      {
+        where: {
+          id: recordId
+        }
+      }).then(function (dbResume) {
+        res.json(dbResume)
+      })
+  });
+
+
+
+
+  app.delete("/api/resume/delete", isAuthenticated,function (req, res) {
     // add conditions not to delete if other job applications are linked 
     // this specific resume
     db.Resume.destroy({

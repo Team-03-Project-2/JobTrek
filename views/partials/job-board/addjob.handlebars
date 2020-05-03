@@ -31,7 +31,7 @@
                     <div class="form-group">
                         <label for="companylist">Company</label>
                         <select class="form-control" id="companylist">
-                            {{!-- {{#each companies}}
+                            {{#each companies}}
                             <option>{{dataValues.company}}</option>
                             {{/each}} --}}
                             {{!-- <option id="othercompany">Other</option> --}}
@@ -50,13 +50,16 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="resumelist">Resume</label>
-                        <select class="form-control" id="resumelist">
-                            {{!-- {{#each resumes}}
-                            <option>{{dataValues.resume}}</option>
-                            {{/each}} --}}
-                            {{!-- <option> Add new </option> --}}
+                        <label >Resume</label>
+                        <select id="modalSelectResume" class="form-control" id="resumelist"> 
+                          
                         </select>
+                    </div> 
+
+                    <div class="form-group">
+                        <label for="location"> Location </label>
+                        <input type="location" class="form-control" id="location" aria-describedby="emailHelp"
+                            placeholder="San Francisco">
                     </div>
 
 

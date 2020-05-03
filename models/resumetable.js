@@ -22,7 +22,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false
     },
     notes: {
-      type: DataTypes.BLOB
+      type: DataTypes.TEXT
 
     }, 
     fileLocation:{

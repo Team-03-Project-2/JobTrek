@@ -113,7 +113,18 @@ module.exports = function (app) {
     //     });
     // });
 
-    app.get("/api/jobboard/company",isAuthenticated, function (req, res) {
+
+    app.get("/api/jobboard/resumeselect", isAuthenticated, function (req, res) {
+        db.Resume.findAll({ user_id: req.user_id }
+
+        ).then(function (data) {
+
+            console.log(data)
+            res.json(data)
+        })
+    })
+    
+    app.get("/api/jobboard/company", function (req, res) {
         db.Company.findAll({
             where:{
                 user_id: req.user.id
