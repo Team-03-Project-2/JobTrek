@@ -87,7 +87,8 @@ module.exports = function (app) {
   app.get("/api/company", function (req, res) {
     // Otherwise send back 
     console.log("At /api/company GET...")
-    console.log(req)
+    //console.log(req)
+    // console.log(req)
     db.Company.findAll({
       where: {
         // only this user's items, not all...
@@ -172,7 +173,8 @@ module.exports = function (app) {
   app.get("/api/contact", function (req, res) {
     // Otherwise send back 
     console.log("At /api/contact GET...")
-    console.log(req)
+    //console.log(req)
+    // console.log(req)
     db.Contact.findAll({
       where: {
         user_id: req.user.id
@@ -267,7 +269,7 @@ module.exports = function (app) {
   app.get("/api/job", function (req, res) {
     // Otherwise send back 
     console.log("At /api/job GET...")
-    db.Job_Application.findAll({
+    db.Job.findAll({
       where: {
         user_id: req.user.id,
       }
@@ -279,7 +281,7 @@ module.exports = function (app) {
   app.get("/api/job/:id", function (req, res) {
     // Otherwise send back 
     console.log("At /api/job/:id GET...")
-    db.Job_Application.findAll({
+    db.Job.findAll({
       where: {
         id: req.params.id
       }
@@ -293,7 +295,7 @@ module.exports = function (app) {
   app.post("/api/job", function (req, res) {
     console.log('/api/job POST')
     //, " ", req.body)
-    db.Job_Application.create({
+    db.Job.create({
       user_id: req.body.user_id1,
       job_title: req.body.jobtitle,
       description: req.body.description,
@@ -318,7 +320,7 @@ module.exports = function (app) {
   app.put("/api/job", function (req, res) {
     console.log('/api/job PUT')
     //, " ", req.body)
-    db.Job_Application.findOne({
+    db.Job.findOne({
       where: {
         user_id: req.body.user_id1,
         id: req.body.id
@@ -348,7 +350,7 @@ module.exports = function (app) {
 
   app.delete("/api/job", function (req, res) {
     console.log('/api/job DELETE', " ", req.body)
-    db.Job_Application.destroy({
+    db.Job.destroy({
       // id:
       where: {
         user_id: req.body.user_id,

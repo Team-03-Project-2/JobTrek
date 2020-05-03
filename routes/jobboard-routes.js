@@ -126,14 +126,47 @@ module.exports = function (app) {
 
             console.log(data)
             res.json(data)
+        })
+    })
+    
+    app.get("/api/jobboard/company", function (req, res) {
+        db.Company.findAll({
+            where:{
+                user_id: 1
+            }
+             }
+
+        ).then(function (data) {
+            //res.json(data)
+            console.log("companies" , data)
+            res.render("addjob", { companies: data })
 
         })
     })
 
     app.get("/api/jobboard/resume", function (req, res) {
-        db.Resume.findAll({ user_id: 1 }).then(function (data) {
-            //res.json(data);
+        db.Resume.findAll({
+            where:{
+                user_id: 1
+            }
+             }).then(function (data) {
+           
+          // res.json(data)
             res.render("addjob", { resumes: data })
+            //console.log(data)
+        })
+    })
+
+
+    app.get("/api/jobboard/task", function (req, res) {
+        db.Task.findAll({
+            where:{
+                user_id: 1
+            }
+             }).then(function (data) {
+            
+            //res.json(data)
+            res.render("addjob", { tasks: data })
             //console.log(data)
         })
     })
@@ -151,6 +184,9 @@ module.exports = function (app) {
             requirement: req.body.require,
             location: req.body.locate,
             status: req.body.status.toLowerCase(),
+            company:req.body.company,
+            task:req.body.task,
+            resume:req.body.resume,
             //status:req.body.status
             //company:req.body.company, querycompany table
             notes: req.body.note,
@@ -187,16 +223,20 @@ module.exports = function (app) {
     app.put("/api/jobboard/change/:recordId", function (req, res) {
 
         let recId = req.params.recordId;
-        console.log("here at update")
+        console.log("here at update", recId)
         let objUpdate = {
             job_title: req.body.job_title,
             description: req.body.describe,
             requirement: req.body.require,
             location: req.body.locate,
+            status:req.body.statusUpdate.toLowerCase(),
+            company:req.body.company,
+            task:req.body.task,
+            resume:req.body.resume,
             notes: req.body.note,
             url: req.body.jobUrl
         }
-
+        //console.log("here is obj", objUpdate)
         db.Job.update(objUpdate, {
             where:{
                 id:recId

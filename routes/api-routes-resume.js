@@ -30,13 +30,15 @@ module.exports = function (app) {
       // res.render("resume", {one: data});
       res.json(data.dataValues);
    });
+  });
+
   // this is added by kasey to populate dropdown lists
   app.get("/api/resume", function (req, res) {
     // Otherwise send back 
     // console.log("At /api/resume GET...")
     db.Resume.findAll({
       where: {
-        user_id: req.user.id
+        user_id: 1
       }
     }).then(function (dbResume) {
       res.json(dbResume);
@@ -48,7 +50,7 @@ module.exports = function (app) {
   //   res.json(data);
   //  });
 
-  });
+ 
 
   app.post("/api/resume/create", isAuthenticated,function (req, res) {
     console.log("I got called for create")
