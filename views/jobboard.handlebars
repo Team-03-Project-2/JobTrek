@@ -19,22 +19,23 @@
     </header>
   </div>
   <div class="row">
-    <div class="col-2">
-      <div class="sidenav container">
+    <div class="col-1">
+      <div class="sidenav container-fluid">
         <a class="row btn-sm btn-primary" href="/members/jobboard">Job Board</a>
         <a class="row btn-sm btn-secondary" href="/members/resume"> Resume</a>
         <a class="row btn-sm btn-danger" href="/members/maintain"> Maintenance</a>
-        <a class="row btn-sm btn-info" href="/members/findjobs"> Job Search</a>
+        <a class="row btn-sm btn-warning" href="/members/findjobs"> Job Search</a>
+        <a class="row btn-sm btn-success" href="/logout"> Logout</a>
       </div>
 
     </div>
 
-    {{!-- wishlist column --}}
-    <div class="col-10">
+    {{!-- Job Board column --}}
+    <div class="col-9 container-fluid">
       <div class="row container">
         <div class="col">
-          <div class="row container list-title">
-            <h5> WishList </h5>
+          <div class="row container text-right list-title">
+            <h5> WISHLIST </h5>
           </div>
 
           <div class="row">
@@ -54,7 +55,7 @@
         </div>
         <div class="col">
           <div class="row container">
-            <h5> Applied </h5>
+            <h5> APPLIED </h5>
           </div>
 
           <div class="row">
@@ -67,24 +68,33 @@
               {{#each applied}}
               {{> job-board/jobcard}}
               {{/each}}
-              <div draggable="true" ondragstart="dragStart(event)">
+              <div draggable="true" >
                 <div style="padding: 2px 2px 10px;">
                   {{!-- <div
                     style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
-                    <a href="javascript:void(0);" data-toggle="modal" data-target="#updateJobModal"
-                      class="btn list-group-item list-group-item-action flex-column align-items-start active">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Job Title</h5>
-                        <small>createdAT</small>
 
+
+
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#updateJobModal"
+                      class="updateonejob list-group-item list-group-item-action flex-column align-items-start active"
+                      style="display: flex; flex-direction: column; color: white; white-space: normal;"
+                      data-id="{{dataValues.id}}" data-userid="{{dataValues.user_id}}">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 id="jobtitle" class="mb-1">Job Title</h5>
+                        <small>Location</small>
                       </div>
-                      <div>
-                        <p class="mb-1">Job URL</p>
+
+                      <p class="mb-1"> Job URL </p>
+
+
+                      <div class="d-flex justify-content-between">
+
+                        <a data-delete="{{dataValues.id}}" class="deleteJob btn  btn-danger">
+                          <i class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i>
+                        </a>
                       </div>
-                      <div class="d-flex justify-content-between"> <button data-id="{{dataValues.id}}"
-                          class="btn btn-danger"> <i class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i>
-                        </button></div>
                     </a>
+
                   </div> --}}
                 </div>
               </div>
@@ -94,7 +104,7 @@
         </div>
         <div class="col">
           <div class="row container">
-            <h5> Response </h5>
+            <h5> RESPONSE </h5>
           </div>
 
           <div class="row">
@@ -102,12 +112,13 @@
           </div>
 
           <div class="row">
-            <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
-              id="col3" ondrop="dropIt(event)" ondragover="allowDrop(event)">
+            <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;"
+              class="container-fluid list-group" id="col3" ondrop="dropIt(event)" ondragover="allowDrop(event)">
               {{#each response}}
               {{> job-board/jobcard}}
               {{/each}}
-              <div draggable="true" ondragstart="dragStart(event)">
+
+              <div draggable="true">
                 <div style="padding: 2px 2px 10px;">
                   {{!-- <div
                     style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
@@ -122,6 +133,7 @@
                     </a>
                   </div> --}}
                 </div>
+
               </div>
 
             </div>
@@ -129,7 +141,7 @@
         </div>
         <div class="col">
           <div class="row container">
-            <h5> Interview </h5>
+            <h5> INTERVIEW </h5>
           </div>
 
           <div class="row">
@@ -137,8 +149,8 @@
           </div>
 
           <div class="row">
-            <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
-              id="col4" ondrop="dropIt(event)" ondragover="allowDrop(event)">
+            <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;"
+              class="container-fluid list-group" id="col4" ondrop="dropIt(event)" ondragover="allowDrop(event)">
 
               {{#each interview}}
               {{> job-board/jobcard}}
@@ -167,7 +179,7 @@
         </div>
         <div class="col">
           <div class="row container">
-            <h5> Offers </h5>
+            <h5> OFFERS </h5>
           </div>
 
           <div class="row">
@@ -203,7 +215,7 @@
         </div>
         <div class="col">
           <div class="row container">
-            <h5> Rejected </h5>
+            <h5> REJECTED </h5>
           </div>
 
           <div class="row">
@@ -240,7 +252,7 @@
     </div>
     <div class="row">
       <header>
-        //footer
+        
       </header>
     </div>
   </div>
@@ -265,28 +277,49 @@
 
           <form>
 
-             <div class="form-group">
+            <div class="form-group">
               <label> Job Title </label>
-              <input type="title" name="title" class="form-control" id="title_edit" aria-describedby="emailHelp"
-                placeholder="Job Trek Developer">
+              <input type="text" name="title" class="form-control" id="title_edit" aria-describedby="emailHelp"
+                >
             </div>
 
-            {{!-- <div class="form-group">
-        <label for="companylist">Company</label>
-        <select class="form-control" id="companylist">
-            <option>Google</option>
-            <option>JobTrek</option>
-            <option>Trilogy</option>
-            <option>Facebook</option>
-            <option>Twitter</option>
-        </select>
-    </div> --}}
+
 
             <div class="form-group">
               <label> Location </label>
-              <input type="location" name="location" class="form-control" id="location_edit"
+              <input type="text" name="location" class="form-control" id="location_edit"
                 aria-describedby="emailHelp" placeholder="city, state">
             </div>
+
+
+            <div class="form-group">
+              <label for="companylist">Company</label>
+              <select class="form-control" id="companylist_edit">
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="tasklist"> Task </label>
+              <select class="form-control" id="tasklist_edit">
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="resumelist">Resume</label>
+              <select class="form-control" id="resumelist_edit">
+              </select>
+            </div>
+
+            <div class="form-group">
+                        <label for="status"> Status </label>
+                        <select id="newjobstatus_edit" class="form-control">
+                            <option>Wishlist</option>
+                            <option>Applied</option>
+                            <option>Response</option>
+                            <option>Interview</option>
+                            <option>Offers</option>
+                            <option>Rejected</option>
+                        </select>
+                    </div>
 
             <div class="form-group">
               <label> Job Description </label>
@@ -295,19 +328,18 @@
 
             <div class="form-group">
               <label> Job Requirement </label>
-              <textarea class="form-control" name="jobrequirement" id="jobrequirement_edit"
-                rows="3"> </textarea>
+              <textarea class="form-control" name="jobrequirement" id="jobrequirement_edit" rows="3"> </textarea>
             </div>
 
             <div class="form-group">
               <label> Job Post </label>
-              <input type="job-url" name="job-url" class="form-control" id="jobUrlEdit" value="{{dataValues.jobUrl}}"
-                aria-describedby="emailHelp" placeholder="indeed.com">
+              <input type="job-url" name="job-url" class="form-control" id="jobUrlEdit"
+                aria-describedby="emailHelp">
             </div>
 
             <div class="form-group">
               <label> Notes </label>
-              <textarea class="form-control" name="jobNotes" id="jobNotes_edit" rows="3">{{dataValues.note}} </textarea>
+              <textarea class="form-control" name="jobNotes" id="jobNotes_edit" rows="3"> </textarea>
             </div>
             <div class="modal-footer">
               <button id="updatejobposting" type="submit" class="btn btn-primary"> Update Job
@@ -323,5 +355,5 @@
   </div>
 
 
-<script type="text/javascript" src="/js/dragdrop.js"></script>
-<script type="text/javascript" src="/js/jobboard.js"></script>
+  <script type="text/javascript" src="/js/dragdrop.js"></script>
+  <script type="text/javascript" src="/js/jobboard.js"></script>

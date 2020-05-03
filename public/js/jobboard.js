@@ -1,21 +1,67 @@
 $(document).ready(function () {
-  // $(".addnewjob").on("click", function(event){
-  //    // console.log("works")
-  //     $.ajax("/api/jobboard/company",{
-  //         type:"GET"
-
-  //     }).then(function(data){
-  //         $.ajax("/api/jobboard/resume",{
-  //             type:"GET"
-
-  //         }).then(function(data){
-  //     //console.log(resume)
-  //         })
+  $("#createnewjobcard").on("click", function (event) {
 
 
-  //     })
-  // })
-  // })
+    console.log("works")
+    $.ajax("/api/jobboard/company", {
+      type: "GET"
+
+    }).then(function (companydata) {
+
+
+      $.ajax("/api/jobboard/resume", {
+        type: "GET"
+
+      }).then(function (resumedata) {
+        console.log(companydata)
+      })
+
+
+    })
+  })
+
+  $.getJSON("/api/company", { user_id: 1 }, function (response, status) {
+    if (status == "success") {
+      //console.log(response);
+      for (var i = 0; i < response.length; i++) {
+        var str = response[i].company
+        var sid = response[i].id
+        $("#companylist").append("<option value=" + sid + ">" + str + "</option>")
+        $("#companylist_edit").append("<option value=" + sid + ">" + str + "</option>")
+
+      }
+    }
+  });
+
+  $.getJSON("/api/task", { user_id: 1 }, function (response, status) {
+    if (status == "success") {
+      //console.log(response);
+      for (var i = 0; i < response.length; i++) {
+        var str = response[i].task
+        var sid = response[i].id
+        $("#tasklist").append("<option value=" + sid + ">" + str + "</option>")
+        $("#tasklist_edit").append("<option value=" + sid + ">" + str + "</option>")
+
+      }
+    }
+  });
+
+  $.getJSON("/api/resume", { user_id: 1 }, function (response, status) {
+    if (status == "success") {
+      //console.log(response);
+      for (var i = 0; i < response.length; i++) {
+        var str = response[i].fileName
+        var sid = response[i].id
+        $("#resumelist").append("<option value=" + sid + ">" + str + "</option>")
+        $("#resumelist_edit").append("<option value=" + sid + ">" + str + "</option>")
+
+
+      }
+    }
+  });
+
+
+
 
   $(".createJobSubmit").on("click", function (event) {
     //    event.preventDefault();
@@ -26,6 +72,9 @@ $(document).ready(function () {
       require: $("#jobrequirement").val(),
       locate: $("#location").val(),
       status: $("#newjobstatus").val(),
+      company: $("#companylist").val(),
+      task: $("#tasklist").val(),
+      resume: $("#resumelist").val(),
       //status:$("").val()
       note: $("#jobNotes").val(),
       jobUrl: $("#jobUrl").val()
@@ -36,7 +85,7 @@ $(document).ready(function () {
         type: "POST",
         data: jobData
       }).then(function () {
-        //location.reload();
+        location.reload();
       });
   });
 
@@ -46,7 +95,7 @@ $(document).ready(function () {
 
 $("#updatejobposting").on("click", function (event) {
   // Make sure to preventDefault on a submit event.
-   
+
   // event.preventDefault();
   var recordId = $(this).data("update");
 
@@ -57,7 +106,10 @@ $("#updatejobposting").on("click", function (event) {
     describe: $("#jobdescription_edit").val(),
     require: $("#jobrequirement_edit").val(),
     locate: $("#location_edit").val(),
-    //status:$("").val()
+    statusUpdate: $("#newjobstatus_edit").val(),
+    company: $("#companylist").val(),
+    task: $("#tasklist").val(),
+    resume: $("#resumelist").val(),
     note: $("#jobNotes_edit").val(),
     jobUrl: $("#jobUrlEdit").val()
   };
@@ -65,13 +117,13 @@ $("#updatejobposting").on("click", function (event) {
 
   console.log("is it sending???", updatedData)
   // Send the POST request.
-  $.ajax("/api/jobboard/change/" +recordId, {
+  $.ajax("/api/jobboard/change/" + recordId, {
     type: "PUT",
     data: updatedData
   }).then(function () {
-      console.log("updated job");
-      // location.reload();
-    }
+    console.log("updated job");
+    location.reload();
+  }
   );
 });
 
@@ -101,18 +153,23 @@ $(".deleteJob").on('click', function (event) {
 
 
 
-$(".updateonejob").on("click", function(event){
+$(".updateonejob").on("click", function (event) {
   var jobId = $(this).data("id")
 
   console.log("jobId", jobId)
-// TODO
-  $.ajax("/api/jobboard/" + jobId,{
-    type:"GET",
-  }).then(function(dataResponse){
+  // TODO
+  $.ajax("/api/jobboard/" + jobId, {
+    type: "GET",
+  }).then(function (dataResponse) {
     console.log(dataResponse)
 
-     $("#updatejobposting").attr("data-update",dataResponse.id);
-
+    $("#updatejobposting").attr("data-update", dataResponse.id);
+    $("#newjobstatus_edit").val(dataResponse.status)
+    $("#jobdescription_edit").val(dataResponse.description)
+    $("#jobNotes_edit").val(dataResponse.notes)
+    $("#jobUrlEdit").val(dataResponse.url)
+    $("#location_edit").val(dataResponse.location)
+    $("#title_edit").val(dataResponse.job_title)
 
   })
 })

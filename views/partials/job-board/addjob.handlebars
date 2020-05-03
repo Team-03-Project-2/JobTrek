@@ -1,5 +1,6 @@
 <!-- Trigger the modal with a button -->
-<a type="button" id="addnewjob" class="btn addnewjob btn-primary" data-toggle="modal" data-target="#myaddjobmodal"> Add Job </a>
+<a type="button" id="createnewjobcard" class="btn addnewjob btn-primary" data-toggle="modal" data-target="#myaddjobmodal"> Add
+    Job </a>
 
 <!-- Modal -->
 <div class="modal fade" id="myaddjobmodal" role="dialog">
@@ -20,50 +21,6 @@
                         <input type="title" class="form-control" id="title" aria-describedby="emailHelp"
                             placeholder="Job Trek Developer">
                     </div>
-{{!-- 
-                    <div class="form-group">
-                        <label for="companylist">Company</label>
-                        <select class="form-control" id="companylist">
-                            {{!-- {{#each companies}}
-                            <option>{{dataValues.company}}</option>
-                            {{/each}} --}}
-                            {{!-- <option id="othercompany">Other</option>
-                            <option>JobTrek</option>
-
-                            
-                            <option>Facebook</option>
-                            <option>Twitter</option>
-                        </select>
-                    </div>
-
-                    
-                    <div class="form-group">
-                        <label for="statuslist">Status</label>
-                        <select class="form-control" id="companylist">
-                            {{!-- {{#each}}
-                            <option>{{}}</option>
-                            {{/each}} --}}
-                            {{!-- <option id="status">Other</option>
-                            <option>Wishlist</option>
-                            <option>Applied</option>
-                            <option>Response</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="companylist">Resume</label>
-                        <select class="form-control" id="resumelist"> --}}
-                            {{!-- {{#each resumes}}
-                            {{!-- <option>{{[dataValues.role}}</option> --}}
-                            {{!-- {{/each}} --}} 
-                             {{!-- <option id="otherresume"> Add new </option>
-                            <option>one</option>
-
-                            
-                            <option>two</option>
-                            <option>Three</option>
-                        </select>
-                    </div> --}}
 
                     <div class="form-group">
                         <label for="location"> Location </label>
@@ -72,19 +29,48 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="status"> Status </label>
-                        {{!-- <input type="status" class="form-control" id="status" aria-describedby="emailHelp"
-                            placeholder="wishlist"> --}}
+                        <label for="companylist">Company</label>
+                        <select class="form-control" id="companylist">
+                            {{!-- {{#each companies}}
+                            <option>{{dataValues.company}}</option>
+                            {{/each}} --}}
+                            {{!-- <option id="othercompany">Other</option> --}}
 
-                        {{!-- cristina added dropdown --}}
-                         <select id="newjobstatus" class="form-control">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tasklist"> Task </label>
+                        <select class="form-control" id="tasklist">
+                            {{!-- {{#each tasks}}
+                            <option>{{dataValues.task}}</option>
+                            {{/each}}  --}}
+                            {{!-- <option>Other</option> --}}
+
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="resumelist">Resume</label>
+                        <select class="form-control" id="resumelist">
+                            {{!-- {{#each resumes}}
+                            <option>{{dataValues.resume}}</option>
+                            {{/each}} --}}
+                            {{!-- <option> Add new </option> --}}
+                        </select>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="status"> Status </label>
+                        <select id="newjobstatus" class="form-control">
                             <option>Wishlist</option>
                             <option>Applied</option>
                             <option>Response</option>
                             <option>Interview</option>
                             <option>Offers</option>
                             <option>Rejected</option>
-                        </select> 
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -99,7 +85,7 @@
 
 
                     <div class="form-group">
-                        <label for="job-url"> Job Post </label>
+                        <label for="job-url"> Enter Job Post Url </label>
                         <input type="job-url" class="form-control" id="jobUrl" aria-describedby="emailHelp"
                             placeholder="indeed.com">
                     </div>
@@ -117,7 +103,8 @@
 
             </div>
             <div class="modal-footer ">
-                <button type="button" class="btn createJobSubmit btn-primary" id="createJobSubmit" data-dismiss="modal"> Add </button>
+                <button type="button" class="btn createJobSubmit btn-primary" id="createJobSubmit" data-dismiss="modal">
+                    Add </button>
             </div>
         </div>
     </div>
@@ -125,4 +112,3 @@
 </div>
 
 <hr>
-

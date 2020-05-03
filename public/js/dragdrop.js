@@ -9,18 +9,18 @@ function allowDrop(event) {
 
 function dragStart(event) {
   // add target element's id to the data transfer object
-  event.dataTransfer.setData("text/plain", event.target.id);
+  event.dataTransfer.setData("text", event.target.id);
 }
 
 function dropIt(event) {
   event.preventDefault();
   //get element by id
   //sourceID ev.dataTransfer.getData("href")
-  var source = document.getElementById(event.dataTransfer.getData("text/plain"));
-  var sourceParent = source.parentNode;
+  var source = document.getElementById(event.dataTransfer.getData("text"));
+  var sourceParent = source.parentElement;
 
   let target = document.getElementById(event.target.id)
-  let targetParent = target.parentNode;
+  let targetParent = target.parentElement;
 
   // var target = event.currentTarget.firstElementChild;
 

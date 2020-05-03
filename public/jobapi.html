@@ -4,8 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link rel="icon" type="image/png"
-        href="https://github.com/chindowns/covid19-tracker/blob/master/assets/images/logo-covid-project-1.png" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
@@ -24,40 +22,32 @@
 
     <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
     <title>Job Finder</title>
-    
+    <style>
+        #map {
+
+            width: 100%;
+            height: 480px;
+            margin-top: 2rem;
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+    </style>
 </head>
 
 
 <body>
-   
+    <div class="col">
+        <div class="row">
+            <div class="tile" id="map">
 
-    <header class="hero is-12 has-background-dark">
-        <div class="hero-body">
-            <div class="columns is-mobile is-centered is-vcentered">
-
-                <span class="title is-1 has-text-light is-marginless has-text-centered">Find Jobs on JobTrek</span>
-            </div>
+        </div class="col">
+        <div id="job-post">
+            
         </div>
-    </header>
-
-    <main class="tile is-12 is-mobile is-ancestor is-marginless has has-background-white-ter">
-        <div class="tile is-8 has-text-centered has-background-white-ter is-parent" id="map-Id">
-            <div class="tile is-child">
-                <div class="columns is-mobile is-centered is-vcentered">
-                    <span class="title is-3 has-text-dark is-marginless"> Map </span>
-                </div>
-                <div class="tile" id="map">
-
-                </div>
-                <!-- moved CANVAS below the </div> above so it displays when MAP display is set to none. -->
-                <canvas id="myChart"></canvas>
-            </div>
+        
         </div>
 
-
-        </div>
-    </main>
-
+    </div>
     <!-- <script src="assets/js/map.js"></script> -->
     <script src="js/findjob.js"></script>
 

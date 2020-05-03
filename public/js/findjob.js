@@ -1,8 +1,35 @@
 
 var accessToken = 'pk.eyJ1IjoianVsaWV0LWdlb3JnZSIsImEiOiJjazhnOXNzN3gwMXoyM2RxbjNzbXdrYXJjIn0.a653svYKdCmg2wkjY5HxVg';
-var map = L.map('map').setView([39,-98], 4);
+
 var state;
-var jobtitle
+var jobtitle;
+
+
+
+var lat;
+var lng;
+var map;
+
+
+
+function currentLocation(position) {
+    lat = position.coords.latitude;
+    lng = position.coords.longitude;
+   map = L.map('map').setView([lat,lng], 4);
+}
+
+window.navigator.geolocation
+  .getCurrentPosition(currentLocation, console.log);
+
+ 
+    
+    
+    
+
+
+
+
+
 
 // Add tiles from the Mapbox Static Tiles API
 // (https://docs.mapbox.com/api/maps/#static-tiles)
@@ -25,58 +52,58 @@ var circle1 = L.circle([37.786542, -122.386022], {
 
 function onClick(e) {  
 alert(this.key);
-state = (this.key);
+// state = (this.key);
 getJobs();
 }
 
 
 function getJobs() {
-    
- var jobQuery = "https://jobs.github.com/positions.json?description=" + jobtitle + "python&full_time=true&location=" + state
+    state ="CA"
+    jobtitle= "software"
+ var jobQuery = "https://jobs.github.com/positions.json?description=" + jobtitle + "&full_time=true&location=" + state
+ console.log(jobQuery)
     $.ajax({
         url: jobQuery,
         method: "GET"
     }).then(function (response) {
         console.log(response)
-    //     $("#news-box").empty();
-    //     var articles = response.articles
-    //     for (var i = 0; i < 10; i++) {
-    //         console.log(articles[i]);
-    //         var headline = articles[i].title
-    //         var link = articles[i].url
-    //         var author = articles[i].author
-    //         if (author !== null) {
-    //             console.log(author)
-    //         }
-    //         var pubSource = articles[i].source.name
-    //         var pubDate = articles[i].publishedAt
-    //         $("#news-box").append($articleList);
-    //         var $articleList = $("<ul>");
-    //         $articleList.addClass("list-group");
-    //         // Cerate list it
-    //         var $articleListItem = $("<li class='list-group-item articleHeadline'>");
-    //         // Append Title and url
-    //         $articleListItem.append("<h5><a href='" + link + "' target='_blank'>" + headline + "</a></h5>");
-    //         // Append article source
-    //         $articleListItem.append("<h5>Source: " + pubSource + "</h5>")
-    //         // If author exists, append to article list
-    //         if (author !== null) {
-    //             $articleListItem.append("<h5>Author: " + author + "</h5>");
-    //         }
-    //         // Append pubDatea to document if exists
-    //         $articleListItem.append("<h5>" + pubDate + "</h5>");
-    //         // Append hr to separate article data
-    //         $articleListItem.append("<br/>");
-    //         // Append the article
-    //         $articleList.append($articleListItem);
-    //     }
+            //$("#job-post").empty();
+
+            //data = response[0]
+            //console.log(data)
+
+            $("#job-post").html("<h4 class=\"mt-3\"> Job Posts </h4>").append("<div class=\"row\">");
+
+            for(var i = 0; i < response.length; i++){
+            var companyName = response[i].company;
+            var companyURL = response[i].company_url;
+            var jobUrl = response[i].url;
+            var jobLocation = response[i].location;
+            var jobtitle = response[i].title;
+            var companyLogo = response[i].company_logo
+            //console.log(companyName) , works
+            var col = $("<div>").addClass("row");
+            var card = $("<div>").addClass("card bg-primary text-white").css("width", "18rem");
+            var body = $("<div>").addClass("card-body p-2");
+            var title = $("<h5>").addClass("card-title").text("Job Title: " + jobtitle);
+            var img = $("<img>").attr("src", companyLogo);
+            var p1 = $("<p>").addClass("card-text").text("Company Name: " + companyName);
+            var p2 = $("<p>").addClass("card-text").text("Job Location: " + jobLocation);
+            var aTag = $("<a>").attr("href", companyURL).html("Company Website").addClass("btn btn-info");
+            var aTag2 = $("<a>").attr("href",jobUrl).html("Job Post").addClass("btn btn-info");
+
+            col.append(card.append(body.append(title, img, p1, p2, aTag, aTag2)));
+            $("#job-post .row").append(col)
+            }
+            
+      })
 
     // });
 }
 
 
 
-
+// var map = L.map('map').setView([39,-98], 4);
 
 
 var circle2 = L.circle([44.50, -89.50], {radius: 200}).addTo(map).on('mouseover', onClick); //Wisconsin, the USA

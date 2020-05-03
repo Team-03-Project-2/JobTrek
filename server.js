@@ -8,7 +8,7 @@ var moment = require('moment');
 moment().format();
 
 // Setting up port and requiring models for syncing
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 3500;
 var db = require("./models");
 
 // Creating express app and configuring middleware needed for authentication
@@ -27,6 +27,8 @@ app.engine("handlebars", exphbs({
   helpers: require('./config/handlebars-helpers.js').helpers
 }));
 app.set("view engine", "handlebars");
+
+// Handlebars.registerPartial('addjob', '{{addjob}}');
 
 
 // We need to use sessions to keep track of our user's login status
