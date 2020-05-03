@@ -142,7 +142,7 @@ module.exports = function (app) {
     })
 
 
-    app.get("/api/jobboard/task", isAuthenticated function (req, res) {
+    app.get("/api/jobboard/task", isAuthenticated, function (req, res) {
         db.Task.findAll({
             where:{
                 user_id: req.user.id
