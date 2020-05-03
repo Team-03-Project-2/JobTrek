@@ -1,8 +1,35 @@
 
 var accessToken = 'pk.eyJ1IjoianVsaWV0LWdlb3JnZSIsImEiOiJjazhnOXNzN3gwMXoyM2RxbjNzbXdrYXJjIn0.a653svYKdCmg2wkjY5HxVg';
-var map = L.map('map').setView([39,-98], 4);
+
 var state;
 var jobtitle;
+
+
+
+var lat;
+var lng;
+var map;
+
+
+
+function currentLocation(position) {
+    lat = position.coords.latitude;
+    lng = position.coords.longitude;
+   map = L.map('map').setView([lat,lng], 4);
+}
+
+window.navigator.geolocation
+  .getCurrentPosition(currentLocation, console.log);
+
+ 
+    
+    
+    
+
+
+
+
+
 
 // Add tiles from the Mapbox Static Tiles API
 // (https://docs.mapbox.com/api/maps/#static-tiles)
@@ -40,17 +67,35 @@ function getJobs() {
         method: "GET"
     }).then(function (response) {
         console.log(response)
-            $("#job-post").empty();
+            //$("#job-post").empty();
 
-            data = response[0]
-            console.log(data)
+            //data = response[0]
+            //console.log(data)
 
-            var companyName = data.company;
-            var companyURL = data.company_url
-            var jobLocation = data.location
-            var jobtitle = data.title
+            $("#job-post").html("<h4 class=\"mt-3\"> Job Posts </h4>").append("<div class=\"row\">");
 
+            for(var i = 0; i < response.length; i++){
+            var companyName = response[i].company;
+            var companyURL = response[i].company_url;
+            var jobUrl = response[i].url;
+            var jobLocation = response[i].location;
+            var jobtitle = response[i].title;
+            var companyLogo = response[i].company_logo
+            //console.log(companyName) , works
+            var col = $("<div>").addClass("row");
+            var card = $("<div>").addClass("card bg-primary text-white").css("width", "18rem");
+            var body = $("<div>").addClass("card-body p-2");
+            var title = $("<h5>").addClass("card-title").text("Job Title: " + jobtitle);
+            var img = $("<img>").attr("src", companyLogo);
+            var p1 = $("<p>").addClass("card-text").text("Company Name: " + companyName);
+            var p2 = $("<p>").addClass("card-text").text("Job Location: " + jobLocation);
+            var aTag = $("<a>").attr("href", companyURL).html("Company Website").addClass("btn btn-info");
+            var aTag2 = $("<a>").attr("href",jobUrl).html("Job Post").addClass("btn btn-info");
 
+            col.append(card.append(body.append(title, img, p1, p2, aTag, aTag2)));
+            $("#job-post .row").append(col)
+            }
+            
       })
 
     // });
@@ -58,7 +103,7 @@ function getJobs() {
 
 
 
-
+// var map = L.map('map').setView([39,-98], 4);
 
 
 var circle2 = L.circle([44.50, -89.50], {radius: 200}).addTo(map).on('mouseover', onClick); //Wisconsin, the USA

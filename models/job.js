@@ -16,6 +16,15 @@ module.exports = function (sequelize, DataTypes) {
     location: {
       type: DataTypes.STRING
     },
+    company: {
+      type: DataTypes.STRING
+    },
+    resume: {
+      type: DataTypes.STRING
+    },
+    task: {
+      type: DataTypes.STRING
+    },
     status: {
       type: DataTypes.STRING
     },

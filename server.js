@@ -41,15 +41,16 @@ require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 require("./routes/api-routes-resume.js")(app);
 require("./routes/api-routes-task.js")(app);
+require("./routes/api-routes-contactlog.js")(app);
 require("./routes/jobboard-routes.js")(app);
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(function () {
 
   //  let job = {
-    
-   
-          
+
+
+
   //           user_id: 1,
   //           job_title: "developer",
   //           description: "description",

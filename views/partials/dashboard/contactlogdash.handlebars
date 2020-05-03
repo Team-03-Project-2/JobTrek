@@ -1,0 +1,54 @@
+<P>This is contactlogdash handlebars</P>
+
+<div id="insertcontactlogdash" class="container-fluid">
+
+</div>
+<!-- need moment to parse date client-side -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
+
+<script>
+  $(document).ready(function () {
+
+    //segment of JS to populate the list
+    $.getJSON("/api/contactlog", function (response, status) {
+      if (status == "success") {
+        console.log(response);
+        tb = document.createElement("table");
+        tb.className = "table"
+        var tr = tb.insertRow(-1);
+        var th = document.createElement("th");
+        th.innerHTML = "contact_id"
+        tr.appendChild(th);
+        var th = document.createElement("th");
+        th.innerHTML = "job_id"
+        tr.appendChild(th);
+        var th = document.createElement("th");
+        th.innerHTML = "note"
+        tr.appendChild(th);
+        var th = document.createElement("th");
+        th.innerHTML = "timestamp"
+        tr.appendChild(th);
+
+        for (var i = 0; i < response.length; i++) {
+          var trow = tb.insertRow(-1)
+          var contact_id = response[i].contact_id
+          var cell = trow.insertCell(-1);
+          cell.innerHTML = contact_id;
+          var job_id = response[i].job_id
+          var cell = trow.insertCell(-1);
+          cell.innerHTML = job_id;
+          var note = response[i].note
+          var cell = trow.insertCell(-1);
+          cell.innerHTML = note;
+          var timestamp = moment(response[i].timestamp)
+          var cell = trow.insertCell(-1);
+
+          cell.innerHTML = timestamp.format("YYYY-MM-DD");
+        }
+        var el = document.getElementById("insertcontactlogdash")
+        el.innerHTML = "";
+        el.appendChild(tb);
+      }
+    });
+  })
+</script>

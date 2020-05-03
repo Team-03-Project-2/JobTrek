@@ -19,18 +19,19 @@
     </header>
   </div>
   <div class="row">
-    <div class="col-2">
-      <div class="sidenav container">
+    <div class="col-1">
+      <div class="sidenav container-fluid">
         <a class="row btn-sm btn-primary" href="/members/jobboard">Job Board</a>
         <a class="row btn-sm btn-secondary" href="/members/resume"> Resume</a>
         <a class="row btn-sm btn-danger" href="/members/maintain"> Maintenance</a>
         <a class="row btn-sm btn-warning" href="/members/findjobs"> Job Search</a>
+        <a class="row btn-sm btn-success" href="/logout"> Logout</a>
       </div>
 
     </div>
 
-    {{!-- wishlist column --}}
-    <div class="col-10">
+    {{!-- Job Board column --}}
+    <div class="col-9 container-fluid">
       <div class="row container">
         <div class="col">
           <div class="row container text-right list-title">
@@ -251,7 +252,7 @@
     </div>
     <div class="row">
       <header>
-        //footer
+        
       </header>
     </div>
   </div>
@@ -293,18 +294,18 @@
 
             <div class="form-group">
               <label for="companylist">Company</label>
-              <select class="form-control" id="companylist">
+              <select class="form-control" id="companylist_edit">
               </select>
             </div>
             <div class="form-group">
               <label for="tasklist"> Task </label>
-              <select class="form-control" id="tasklist">
+              <select class="form-control" id="tasklist_edit">
               </select>
             </div>
 
             <div class="form-group">
               <label for="resumelist">Resume</label>
-              <select class="form-control" id="resumelist">
+              <select class="form-control" id="resumelist_edit">
               </select>
             </div>
 

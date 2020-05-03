@@ -174,6 +174,9 @@ module.exports = function (app) {
             requirement: req.body.require,
             location: req.body.locate,
             status: req.body.status.toLowerCase(),
+            company:req.body.company,
+            task:req.body.task,
+            resume:req.body.resume,
             //status:req.body.status
             //company:req.body.company, querycompany table
             notes: req.body.note,
@@ -217,6 +220,9 @@ module.exports = function (app) {
             requirement: req.body.require,
             location: req.body.locate,
             status:req.body.statusUpdate.toLowerCase(),
+            company:req.body.company,
+            task:req.body.task,
+            resume:req.body.resume,
             notes: req.body.note,
             url: req.body.jobUrl
         }

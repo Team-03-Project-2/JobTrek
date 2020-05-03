@@ -126,7 +126,7 @@ module.exports = function (app) {
 
   app.get("/members/job", isAuthenticated, function (req, res) {
     // res.sendFile(path.join(__dirname, "../public/members.html"));
-    db.Job_Application.findAll({
+    db.Job.findAll({
       where: {
         user_id: req.user.id
       }
@@ -139,6 +139,25 @@ module.exports = function (app) {
       }
       // res.render("company", dbCompany);
       res.render("job", obj);
+    });
+    // res.render("jobboard")
+  });
+
+  app.get("/members/contactlog", isAuthenticated, function (req, res) {
+    // res.sendFile(path.join(__dirname, "../public/members.html"));
+    db.Contact_Log.findAll({
+      where: {
+        user_id: req.user.id
+      }
+    }).then(function (dbContactLog) {
+      // We locate companies
+      // console.log('/members/company GET', dbCompany)
+      var obj = {
+        reqUser: req.user.id,
+        contact_log: dbContactLog
+      }
+      // res.render("company", dbCompany);
+      res.render("contactlog", obj);
     });
     // res.render("jobboard")
   });
