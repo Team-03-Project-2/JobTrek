@@ -1,33 +1,47 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <span id="{{reqUser}}">User_ID = {{reqUser}} </span>
+      {{!-- <span id="{{reqUser}}">User_ID = {{reqUser}} </span> --}}
       <i class="fas fa-chevron-right"></i> <a href="/members">Members</a>
       <i class="fas fa-chevron-right"></i> <B>Maintainence</B>
-      <a class="navbar-brand" href="/logout">
+      {{!-- <a class="navbar-brand" href="/logout">
         Logout
-      </a>
+      </a> --}}
     </div>
   </div>
 </nav>
 
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <H3>Maintainence menu</H3>
-
-
-      <P>Probably link to CRUD of
-        <UL>
-          <LI><a href="/members/company">Company</a></LI>
-          <LI><a href="/members/contact">Contact</a></LI>
-          <LI><a href="/members/contactlog">Contact Log</a></LI>
-          <LI><a href="/members/job">Job</a></LI>
-          <LI><a href="/members/resume">Resume</a></LI>
-          <LI><a href="/members/task">Task</a></LI>
-        </UL>
-      </P>
+    <div class="col-1">
+      <div class="sidenav container">
+        <a class="row btn-sm btn-primary" href="/members/jobboard">Job Board</a>
+        <a class="row btn-sm btn-info" href="/members/dashboard"> Dashboard</a>
+        <a class="row btn-sm btn-secondary" href="/members/resume"> Resumes</a>
+        <a class="row btn-sm btn-danger" href="/members/maintain"> Maintenance</a>
+        <a class="row btn-sm btn-success" href="/logout"> Logout</a>
+      </div>
 
     </div>
+    <div class="col-10">
+
+      <div class="alert alert-warning" role="alert">
+        Warning: these buttons will directly edit the related data. There is no undoing changes here! Use with
+        caution! </div>
+
+      <P><a href="/members/company" class="btn btn-lg btn-warning">Company</a></P>
+
+      <P><a href="/members/contact" class="btn btn-lg btn-warning">Contact</a>
+      </P>
+
+      <P><a href="/members/contactlog" class="btn btn-lg btn-warning">Contact Log</a>
+      </P>
+
+      {{!-- <P><a href="/members/job" class="btn btn-lg btn-warning">Job</a>
+      </P> --}}
+
+      <P><a href="/members/task" class="btn btn-lg btn-warning">Task</a></P>
+    </div>
+    <div class="col-1"></div>
   </div>
 </div>
