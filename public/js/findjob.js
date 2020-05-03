@@ -2,7 +2,7 @@
 var accessToken = 'pk.eyJ1IjoianVsaWV0LWdlb3JnZSIsImEiOiJjazhnOXNzN3gwMXoyM2RxbjNzbXdrYXJjIn0.a653svYKdCmg2wkjY5HxVg';
 var map = L.map('map').setView([39,-98], 4);
 var state;
-var jobtitle
+var jobtitle;
 
 // Add tiles from the Mapbox Static Tiles API
 // (https://docs.mapbox.com/api/maps/#static-tiles)
@@ -25,51 +25,33 @@ var circle1 = L.circle([37.786542, -122.386022], {
 
 function onClick(e) {  
 alert(this.key);
-state = (this.key);
+// state = (this.key);
 getJobs();
 }
 
 
 function getJobs() {
-    
- var jobQuery = "https://jobs.github.com/positions.json?description=" + jobtitle + "python&full_time=true&location=" + state
+    state ="CA"
+    jobtitle= "software"
+ var jobQuery = "https://jobs.github.com/positions.json?description=" + jobtitle + "&full_time=true&location=" + state
+ console.log(jobQuery)
     $.ajax({
         url: jobQuery,
         method: "GET"
     }).then(function (response) {
         console.log(response)
-    //     $("#news-box").empty();
-    //     var articles = response.articles
-    //     for (var i = 0; i < 10; i++) {
-    //         console.log(articles[i]);
-    //         var headline = articles[i].title
-    //         var link = articles[i].url
-    //         var author = articles[i].author
-    //         if (author !== null) {
-    //             console.log(author)
-    //         }
-    //         var pubSource = articles[i].source.name
-    //         var pubDate = articles[i].publishedAt
-    //         $("#news-box").append($articleList);
-    //         var $articleList = $("<ul>");
-    //         $articleList.addClass("list-group");
-    //         // Cerate list it
-    //         var $articleListItem = $("<li class='list-group-item articleHeadline'>");
-    //         // Append Title and url
-    //         $articleListItem.append("<h5><a href='" + link + "' target='_blank'>" + headline + "</a></h5>");
-    //         // Append article source
-    //         $articleListItem.append("<h5>Source: " + pubSource + "</h5>")
-    //         // If author exists, append to article list
-    //         if (author !== null) {
-    //             $articleListItem.append("<h5>Author: " + author + "</h5>");
-    //         }
-    //         // Append pubDatea to document if exists
-    //         $articleListItem.append("<h5>" + pubDate + "</h5>");
-    //         // Append hr to separate article data
-    //         $articleListItem.append("<br/>");
-    //         // Append the article
-    //         $articleList.append($articleListItem);
-    //     }
+            $("#job-post").empty();
+
+            data = response[0]
+            console.log(data)
+
+            var companyName = data.company;
+            var companyURL = data.company_url
+            var jobLocation = data.location
+            var jobtitle = data.title
+
+
+      })
 
     // });
 }
