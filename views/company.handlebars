@@ -1,23 +1,33 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <span id="user_id_{{reqUser}}">User_ID = {{reqUser}} </span>
+      {{!-- <span id="user_id_{{reqUser}}">User_ID = {{reqUser}} </span> --}}
       <i class="fas fa-chevron-right"></i> <a href="/members">Members</a>
       <i class="fas fa-chevron-right"></i> <a href="/members/maintain">Maintainence</a>
       <i class="fas fa-chevron-right"></i> <B>Company </B>
       <input type="hidden" id="user_id" name="user_id" value={{reqUser}}>
-      <a class="navbar-brand" href="/logout">
+      {{!-- <a class="navbar-brand" href="/logout">
         Logout
-      </a>
+      </a> --}}
     </div>
   </div>
 </nav>
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-1"></div>
+    <div class="col-1">
+      <div class="sidenav container">
+        <a class="row btn-sm btn-primary" href="/members/jobboard">Job Board</a>
+        <a class="row btn-sm btn-info" href="/members/dashboard"> Dashboard</a>
+        <a class="row btn-sm btn-secondary" href="/members/resume"> Resumes</a>
+        <a class="row btn-sm btn-danger" href="/members/maintain"> Maintenance</a>
+        <a class="row btn-sm btn-success" href="/logout"> Logout</a>
+      </div>
+    </div>
     <div class="col-10">
-      <P>This is for CRUD of Company table</P>
+      <div class="alert alert-warning" role="alert">
+        You are editing the company table directly! There is no undo! Beware!
+      </div>
 
       {{!-- <P>{{this[0].dataValues}}</P> --}}
       <table class="table" id="results">
