@@ -41,8 +41,9 @@
 
             <div class="tab-content" id="nav-tabContent">
 
-                <div class="tab-pane fade show active" id="stared-resume" role="tabpanel"
-                    aria-labelledby="nav-home-tab">
+                <div class="tab-pane  show active " id="stared-resume" role="tabpanel"
+                    aria-labelledby="nav-home-tab ">
+                    
                     {{#each resume}}
                     {{#if dataValues.star}}
                     {{> resumep/starResume}}
@@ -65,37 +66,98 @@
     </div>
 
     <div>
-       
+        <!-- Modal -->
+        <div class="modal fade" id="viewResumeModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p>Resume Information</p>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <!-- <h4 class="modal-title">Add Resume</h4> -->
+                    </div>
 
+                    <div class="modal-body">
+                        <h1 id="resumeTitle"></h1>
 
+                        <h5>Role:</h5>
+                        <p id="viewRole"></p>
 
+                        <h5>Resume Date:</h5>
+                        <p id="viewDate"></p>
 
-            <!-- Modal -->
-            <div class="modal fade" id="viewResumeModal" role="dialog">
-                <div class="modal-dialog">
+                        <h5>Special Notes:</h5>
+                        <p id="viewNotes"></p>
 
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <!-- <h4 class="modal-title">Add Resume</h4> -->
-                        </div>
+                        <h5>file location:</h5>
+                        <a id="viewFileLocation"></a>
 
-                        <div class="modal-body">
-                            <h1 id="viewPleaseshow"> </h1>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a id="updateresumecard" type="button" class="btn btn-default" data-toggle="modal"
+                            href="#updateResumeModal" data-dismiss="modal">Update</a>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
-
-
-
-
-        
+        </div>
     </div>
+
+    <div>
+        <!-- Modal update info -->
+        <div class="modal fade" id="updateResumeModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p>Resume update Information</p>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <form>
+                            <div class="form-group">
+                                <label>Resume Title</label>
+                                <input id="updateresumeTitle" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Resume main Role</label>
+                                <input id="updateviewRole" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Resume creation date:</label>
+                                <input id="updateviewDate" class="form-control">
+
+
+                            </div>
+                            <div class="form-group">
+                                <label>Special Notes</label>
+                                <textarea class="form-control" id="updateviewNotes" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>File Location:</label>
+                                <input id="updateviewFileLocation" class="form-control">
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="updateresumecardfinal" type="button" class="btn btn-default"
+                            data-dismiss="modal">Update</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </div>
 
 

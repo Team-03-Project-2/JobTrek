@@ -1,10 +1,10 @@
 <div class="container">
     <h2>Add New Resume</h2>
     <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">ADD</button>
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#createResumeCard">ADD</button>
 
     <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal fade" id="createResumeCard" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -21,29 +21,47 @@
                         <label for="exampleFormControlFile1">Upload your resume</label>
                         <input type="file" class="form-control-file" id="exampleFormControlFile1">
                     </div> --}}
-                        <label for="exampleFormControlFile1">Resume Title</label>
-                        <input type="text" class="form-control-file" id="resumetitle">
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Resume Title</label>
+                            <input type="text" class="form-control-file" id="resumetitle">
 
-                        <label for="exampleFormControlFile1">Resume Version</label>
-                        <input type="text" class="form-control-file" id="resumeversion">
+                        </div>
 
-                        <label for="exampleFormControlFile1">Main Role for this Resume</label>
-                        <input type="text" class="form-control-file" id="roletitle">
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Resume Version</label>
+                            <input type="text" class="form-control-file" id="resumeversion">
 
-                        <label for="exampleFormControlFile1">Date resume was created</label>
-                        <input type="text" class="form-control-file" id="dateresume">
+                        </div>
 
-                        <label for="exampleFormControlFile1">Special Notes</label>
-                        <input type="text" class="form-control-file" id="notesresume">
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Main Role for this Resume</label>
+                            <input type="text" class="form-control-file" id="roletitle">
 
-                        <label for="exampleFormControlFile1">Upload external link of resume</label>
-                        <input type="text" class="form-control-file" id="resumeLink">
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="exampleFormControlFile1">Date resume was created</label>
+                            <input type="text" class="form-control-file" id="dateresume">
+
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Special Notes</label>
+                            <input type="text" class="form-control-file" id="notesresume">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Upload external link of resume</label>
+                            <input type="text" class="form-control-file" id="resumeLink">
+                        </div>
 
                         <button id="createResumeSubmit" type="submit"
                             class="createResumeSubmit btn btn-secondary">save</button>
                     </form>
 
-                    <hr>
+
                     {{!-- <h3>create new resume</h3> --}}
                     <!-- complete new one -->
                     <!-- new version out of an existing one -->

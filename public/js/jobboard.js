@@ -1,22 +1,35 @@
 $(document).ready(function () {
-  $("#createnewjobcard").on("click", function (event) {
+  $("#addnewjob").on("click", function(event){
+     console.log("works")
 
+      $.ajax("/api/jobboard/resumeselect",{
+          type:"GET"
+
+      }).then(function(data){
+        data.forEach(element => {
+          console.log("element:    ", element)
+          let myOption = $("<option>");
+          myOption.text(element.fileName)
+  
+          $("#modalSelectResume").append(myOption);
+  
+         });
+        })
+    })
+
+  $("#createnewjobcard").on("click", function (event) {
 
     console.log("works")
     $.ajax("/api/jobboard/company", {
       type: "GET"
 
     }).then(function (companydata) {
-
-
       $.ajax("/api/jobboard/resume", {
         type: "GET"
 
       }).then(function (resumedata) {
         console.log(companydata)
       })
-
-
     })
   })
 
@@ -60,9 +73,6 @@ $(document).ready(function () {
     }
   });
 
-
-
-
   $(".createJobSubmit").on("click", function (event) {
     //    event.preventDefault();
     console.log("add button listens")
@@ -90,8 +100,6 @@ $(document).ready(function () {
   });
 
 })
-
-
 
 $("#updatejobposting").on("click", function (event) {
   // Make sure to preventDefault on a submit event.
@@ -130,8 +138,6 @@ $("#updatejobposting").on("click", function (event) {
 //delete button is working but nothing seems to be getting deleted.
 
 $(".deleteJob").on('click', function (event) {
-
-
   var id = $(this).data("delete");
   // var userid = $(this).data("userid")
 
@@ -150,8 +156,6 @@ $(".deleteJob").on('click', function (event) {
     }
   );
 });
-
-
 
 $(".updateonejob").on("click", function (event) {
   var jobId = $(this).data("id")
