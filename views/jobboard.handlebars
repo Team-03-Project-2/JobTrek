@@ -15,61 +15,62 @@
 <div class="col">
   <div class="row">
     <header>
-      <a>{{>job-board/addjob}} </a>
-    </header>
-  </div>
-  <div class="row">
-    <div class="col-2">
-      <div class="sidenav container">
-        <a class="row btn-sm btn-primary" href="/members/jobboard">Job Board</a>
-        <a class="row btn-sm btn-secondary" href="/members/resume"> Resume</a>
-        <a class="row btn-sm btn-danger" href="/members/maintain"> Maintenance</a>
-        <a class="row btn-sm btn-info" href="/members/findjobs"> Job Search</a>
-      </div>
+      <a>{{>jobboard/addjob}} </a>
 
+  </header>
+</div>
+<div class="row">
+  <div class="col-2">
+    <div class="sidenav container">
+      <a class="row btn-sm btn-primary" href="/members/jobboard">Job Board</a>
+      <a class="row btn-sm btn-secondary" href="/members/resume"> Resume</a>
+      <a class="row btn-sm btn-danger" href="/members/maintain"> Maintenance</a>
+      <a class="row btn-sm btn-info" href="/members/findjobs"> Job Search</a>
     </div>
 
-    {{!-- wishlist column --}}
-    <div class="col-10">
-      <div class="row container">
-        <div class="col">
-          <div class="row container list-title">
-            <h5> WishList </h5>
-          </div>
+  </div>
 
-          <div class="row">
-
-          </div>
-
-          <div class="row">
-
-            <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
-              id="col1" ondrop="dropIt(event)" ondragover="allowDrop(event)">
-              {{#each wishlist}}
-              {{> job-board/jobcard}}
-              {{/each}}
-            </div>
-
-          </div>
+  {{!-- wishlist column --}}
+  <div class="col-10">
+    <div class="row container">
+      <div class="col">
+        <div class="row container list-title">
+          <h5> WishList </h5>
         </div>
-        <div class="col">
-          <div class="row container">
-            <h5> Applied </h5>
+
+        <div class="row">
+
+        </div>
+
+        <div class="row">
+
+          <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
+            id="col1" ondrop="dropIt(event)" ondragover="allowDrop(event)">
+            {{#each wishlist}}
+            {{> jobboard/jobcard}}
+            {{/each}}
           </div>
 
-          <div class="row">
+        </div>
+      </div>
+      <div class="col">
+        <div class="row container">
+          <h5> Applied </h5>
+        </div>
 
-          </div>
+        <div class="row">
 
-          <div class="row">
-            <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
-              id="col2" ondrop="dropIt(event)" ondragover="allowDrop(event)">
-              {{#each applied}}
-              {{> job-board/jobcard}}
-              {{/each}}
-              <div draggable="true" ondragstart="dragStart(event)">
-                <div style="padding: 2px 2px 10px;">
-                  {{!-- <div
+        </div>
+
+        <div class="row">
+          <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
+            id="col2" ondrop="dropIt(event)" ondragover="allowDrop(event)">
+            {{#each applied}}
+            {{> jobboard/jobcard}}
+            {{/each}}
+            <div draggable="true" ondragstart="dragStart(event)">
+              <div style="padding: 2px 2px 10px;">
+                {{!-- <div
                     style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
                     <a href="javascript:void(0);" data-toggle="modal" data-target="#updateJobModal"
                       class="btn list-group-item list-group-item-action flex-column align-items-start active">
@@ -86,30 +87,30 @@
                         </button></div>
                     </a>
                   </div> --}}
-                </div>
               </div>
-
             </div>
+
           </div>
         </div>
-        <div class="col">
-          <div class="row container">
-            <h5> Response </h5>
-          </div>
+      </div>
+      <div class="col">
+        <div class="row container">
+          <h5> Response </h5>
+        </div>
 
-          <div class="row">
+        <div class="row">
 
-          </div>
+        </div>
 
-          <div class="row">
-            <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
-              id="col3" ondrop="dropIt(event)" ondragover="allowDrop(event)">
-              {{#each response}}
-              {{> job-board/jobcard}}
-              {{/each}}
-              <div draggable="true" ondragstart="dragStart(event)">
-                <div style="padding: 2px 2px 10px;">
-                  {{!-- <div
+        <div class="row">
+          <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
+            id="col3" ondrop="dropIt(event)" ondragover="allowDrop(event)">
+            {{#each response}}
+            {{> jobboard/jobcard}}
+            {{/each}}
+            <div draggable="true" ondragstart="dragStart(event)">
+              <div style="padding: 2px 2px 10px;">
+                {{!-- <div
                     style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
                     <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
                       <div class="d-flex w-100 justify-content-between">
@@ -121,32 +122,32 @@
                             class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </button></div>
                     </a>
                   </div> --}}
-                </div>
               </div>
-
             </div>
+
           </div>
         </div>
-        <div class="col">
-          <div class="row container">
-            <h5> Interview </h5>
-          </div>
+      </div>
+      <div class="col">
+        <div class="row container">
+          <h5> Interview </h5>
+        </div>
 
-          <div class="row">
+        <div class="row">
 
-          </div>
+        </div>
 
-          <div class="row">
-            <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
-              id="col4" ondrop="dropIt(event)" ondragover="allowDrop(event)">
+        <div class="row">
+          <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
+            id="col4" ondrop="dropIt(event)" ondragover="allowDrop(event)">
 
-              {{#each interview}}
-              {{> job-board/jobcard}}
-              {{/each}}
+            {{#each interview}}
+            {{> jobboard/jobcard}}
+            {{/each}}
 
-              <div draggable="true" ondragstart="dragStart(event)">
-                <div style="padding: 2px 2px 10px;">
-                  {{!-- <div
+            <div draggable="true" ondragstart="dragStart(event)">
+              <div style="padding: 2px 2px 10px;">
+                {{!-- <div
                     style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
                     <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
                       <div class="d-flex w-100 justify-content-between">
@@ -158,33 +159,33 @@
                             class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </button></div>
                     </a>
                   </div> --}}
-                </div>
               </div>
-
             </div>
 
           </div>
+
         </div>
-        <div class="col">
-          <div class="row container">
-            <h5> Offers </h5>
-          </div>
+      </div>
+      <div class="col">
+        <div class="row container">
+          <h5> Offers </h5>
+        </div>
 
-          <div class="row">
+        <div class="row">
 
-          </div>
+        </div>
 
-          <div class="row">
-            <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
-              id="col5" ondrop="dropIt(event)" ondragover="allowDrop(event)">
+        <div class="row">
+          <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
+            id="col5" ondrop="dropIt(event)" ondragover="allowDrop(event)">
 
-              {{#each offers}}
-              {{> job-board/jobcard}}
-              {{/each}}
+            {{#each offers}}
+            {{> jobboard/jobcard}}
+            {{/each}}
 
-              <div draggable="true">
-                <div style="padding: 2px 2px 10px;">
-                  {{!-- <div
+            <div draggable="true">
+              <div style="padding: 2px 2px 10px;">
+                {{!-- <div
                     style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
                     <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
                       <div class="d-flex w-100 justify-content-between">
@@ -196,30 +197,30 @@
                             class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </button></div>
                     </a>
                   </div> --}}
-                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col">
-          <div class="row container">
-            <h5> Rejected </h5>
-          </div>
+      </div>
+      <div class="col">
+        <div class="row container">
+          <h5> Rejected </h5>
+        </div>
 
-          <div class="row">
+        <div class="row">
 
-          </div>
+        </div>
 
-          <div class="row">
-            <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
-              id="col6" ondrop="dropIt(event)" ondragover="allowDrop(event)">
-              {{#each rejected}}
-              {{> job-board/jobcard}}
-              {{/each}}
+        <div class="row">
+          <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
+            id="col6" ondrop="dropIt(event)" ondragover="allowDrop(event)">
+            {{#each rejected}}
+            {{> jobboard/jobcard}}
+            {{/each}}
 
-              <div draggable="true">
-                <div style="padding: 2px 2px 10px;">
-                  {{!-- <div
+            <div draggable="true">
+              <div style="padding: 2px 2px 10px;">
+                {{!-- <div
                     style="background-color: rgba(144, 19, 254, 0.85); box-shadow: rgba(25, 4, 69, 0.15) 0px 0px 3px; border-radius: 4px; cursor: pointer; position: relative; border: 1px solid rgba(25, 4, 69, 0.1);">
                     <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
                       <div class="d-flex w-100 justify-content-between">
@@ -231,47 +232,47 @@
                             class="fa fa-trash" style='font-size:14px' aria-hidden="true"></i> </button></div>
                     </a>
                   </div> --}}
-                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="row">
-      <header>
-        //footer
-      </header>
-    </div>
   </div>
+  <div class="row">
+    <header>
+      //footer
+    </header>
+  </div>
+</div>
 
 
 
 
 
 
-  <!-- Modal -->
-  <div class="modal fade" id="updateJobModal" role="dialog">
-    <div class="modal-dialog">
+<!-- Modal -->
+<div class="modal fade" id="updateJobModal" role="dialog">
+  <div class="modal-dialog">
 
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <!-- <h4 class="modal-title">Add Resume</h4> -->
-        </div>
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <!-- <h4 class="modal-title">Add Resume</h4> -->
+      </div>
 
-        <div class="modal-body">
+      <div class="modal-body">
 
-          <form>
+        <form>
 
-             <div class="form-group">
-              <label> Job Title </label>
-              <input type="title" name="title" class="form-control" id="title_edit" aria-describedby="emailHelp"
-                placeholder="Job Trek Developer">
-            </div>
+          <div class="form-group">
+            <label> Job Title </label>
+            <input type="title" name="title" class="form-control" id="title_edit" aria-describedby="emailHelp"
+              placeholder="Job Trek Developer">
+          </div>
 
-            {{!-- <div class="form-group">
+          {{!-- <div class="form-group">
         <label for="companylist">Company</label>
         <select class="form-control" id="companylist">
             <option>Google</option>
@@ -282,45 +283,44 @@
         </select>
     </div> --}}
 
-            <div class="form-group">
-              <label> Location </label>
-              <input type="location" name="location" class="form-control" id="location_edit"
-                aria-describedby="emailHelp" placeholder="city, state">
-            </div>
+          <div class="form-group">
+            <label> Location </label>
+            <input type="location" name="location" class="form-control" id="location_edit" aria-describedby="emailHelp"
+              placeholder="city, state">
+          </div>
 
-            <div class="form-group">
-              <label> Job Description </label>
-              <textarea class="form-control" id="jobdescription_edit" rows="3"></textarea>
-            </div>
+          <div class="form-group">
+            <label> Job Description </label>
+            <textarea class="form-control" id="jobdescription_edit" rows="3"></textarea>
+          </div>
 
-            <div class="form-group">
-              <label> Job Requirement </label>
-              <textarea class="form-control" name="jobrequirement" id="jobrequirement_edit"
-                rows="3"> </textarea>
-            </div>
+          <div class="form-group">
+            <label> Job Requirement </label>
+            <textarea class="form-control" name="jobrequirement" id="jobrequirement_edit" rows="3"> </textarea>
+          </div>
 
-            <div class="form-group">
-              <label> Job Post </label>
-              <input type="job-url" name="job-url" class="form-control" id="jobUrlEdit" value="{{dataValues.jobUrl}}"
-                aria-describedby="emailHelp" placeholder="indeed.com">
-            </div>
+          <div class="form-group">
+            <label> Job Post </label>
+            <input type="job-url" name="job-url" class="form-control" id="jobUrlEdit" value="{{dataValues.jobUrl}}"
+              aria-describedby="emailHelp" placeholder="indeed.com">
+          </div>
 
-            <div class="form-group">
-              <label> Notes </label>
-              <textarea class="form-control" name="jobNotes" id="jobNotes_edit" rows="3">{{dataValues.note}} </textarea>
-            </div>
-            <div class="modal-footer">
-              <button id="updatejobposting" type="submit" class="btn btn-primary"> Update Job
-              </button>
-          </form>
+          <div class="form-group">
+            <label> Notes </label>
+            <textarea class="form-control" name="jobNotes" id="jobNotes_edit" rows="3">{{dataValues.note}} </textarea>
+          </div>
+          <div class="modal-footer">
+            <button id="updatejobposting" type="submit" class="btn btn-primary"> Update Job
+            </button>
+        </form>
 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
+</div>
 
 
 <script type="text/javascript" src="/js/dragdrop.js"></script>

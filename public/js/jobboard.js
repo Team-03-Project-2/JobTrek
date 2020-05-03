@@ -1,21 +1,25 @@
 $(document).ready(function () {
-  // $(".addnewjob").on("click", function(event){
-  //    // console.log("works")
-  //     $.ajax("/api/jobboard/company",{
-  //         type:"GET"
+  $("#addnewjob").on("click", function(event){
+     console.log("works")
 
-  //     }).then(function(data){
-  //         $.ajax("/api/jobboard/resume",{
-  //             type:"GET"
+      $.ajax("/api/jobboard/resumeselect",{
+          type:"GET"
 
-  //         }).then(function(data){
-  //     //console.log(resume)
-  //         })
+      }).then(function(data){
 
+       data.forEach(element => {
+        console.log("element:    ", element)
+        let myOption = $("<option>");
+        myOption.text(element.fileName)
 
-  //     })
-  // })
-  // })
+        $("#modalSelectResume").append(myOption);
+
+       });
+    
+
+      })
+  })
+ 
 
   $(".createJobSubmit").on("click", function (event) {
     //    event.preventDefault();

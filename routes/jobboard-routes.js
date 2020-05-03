@@ -119,13 +119,13 @@ module.exports = function (app) {
     //     });
     // });
 
-    app.get("/api/jobboard/company", function (req, res) {
-        db.Company.findAll({ user_id: 1 }
+    app.get("/api/jobboard/resumeselect", function (req, res) {
+        db.Resume.findAll({ user_id: 1 }
 
         ).then(function (data) {
 
-
-            res.render("addjob", { companies: data })
+            console.log(data)
+            res.json(data)
 
         })
     })

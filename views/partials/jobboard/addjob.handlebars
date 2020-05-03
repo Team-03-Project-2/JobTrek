@@ -1,5 +1,5 @@
 <!-- Trigger the modal with a button -->
-<a type="button" id="addnewjob" class="btn addnewjob btn-primary" data-toggle="modal" data-target="#myaddjobmodal"> Add Job </a>
+<a type="button" id="addnewjob" class="btn btn-primary" data-toggle="modal" data-target="#myaddjobmodal"> Add Job </a>
 
 <!-- Modal -->
 <div class="modal fade" id="myaddjobmodal" role="dialog">
@@ -20,23 +20,20 @@
                         <input type="title" class="form-control" id="title" aria-describedby="emailHelp"
                             placeholder="Job Trek Developer">
                     </div>
-{{!-- 
                     <div class="form-group">
                         <label for="companylist">Company</label>
                         <select class="form-control" id="companylist">
-                            {{!-- {{#each companies}}
+                            {{#each companies}}
                             <option>{{dataValues.company}}</option>
                             {{/each}} --}}
-                            {{!-- <option id="othercompany">Other</option>
-                            <option>JobTrek</option>
-
-                            
+                             <option id="othercompany">Other</option>
+                            {{!-- <option>JobTrek</option>       
                             <option>Facebook</option>
-                            <option>Twitter</option>
+                            <option>Twitter</option> --}}
                         </select>
                     </div>
 
-                    
+                    {{!--  
                     <div class="form-group">
                         <label for="statuslist">Status</label>
                         <select class="form-control" id="companylist">
@@ -48,22 +45,14 @@
                             <option>Applied</option>
                             <option>Response</option>
                         </select>
-                    </div>
+                    </div>--}}
 
                     <div class="form-group">
-                        <label for="companylist">Resume</label>
-                        <select class="form-control" id="resumelist"> --}}
-                            {{!-- {{#each resumes}}
-                            {{!-- <option>{{[dataValues.role}}</option> --}}
-                            {{!-- {{/each}} --}} 
-                             {{!-- <option id="otherresume"> Add new </option>
-                            <option>one</option>
-
-                            
-                            <option>two</option>
-                            <option>Three</option>
+                        <label >Resume</label>
+                        <select id="modalSelectResume" class="form-control" id="resumelist"> 
+                          
                         </select>
-                    </div> --}}
+                    </div> 
 
                     <div class="form-group">
                         <label for="location"> Location </label>
