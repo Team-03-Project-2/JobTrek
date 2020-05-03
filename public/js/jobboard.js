@@ -24,16 +24,12 @@ $(document).ready(function () {
       type: "GET"
 
     }).then(function (companydata) {
-
-
       $.ajax("/api/jobboard/resume", {
         type: "GET"
 
       }).then(function (resumedata) {
         console.log(companydata)
       })
-
-
     })
   })
 
@@ -104,8 +100,6 @@ $(document).ready(function () {
   });
 
 })
-
-
 
 $("#updatejobposting").on("click", function (event) {
   // Make sure to preventDefault on a submit event.
