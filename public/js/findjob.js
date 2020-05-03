@@ -6,34 +6,11 @@ var jobtitle;
 
 
 
-var lat;
-var lng;
-var map;
+
+var map = L.map('map').setView([39,-98], 4);
 
 
 
-function currentLocation(position) {
-    lat = position.coords.latitude;
-    lng = position.coords.longitude;
-   map = L.map('map').setView([lat,lng], 4);
-}
-
-window.navigator.geolocation
-  .getCurrentPosition(currentLocation, console.log);
-
- 
-    
-    
-    
-
-
-
-
-
-
-// Add tiles from the Mapbox Static Tiles API
-// (https://docs.mapbox.com/api/maps/#static-tiles)
-// Tiles are 512x512 pixels and are offset by 1 zoom level
 L.tileLayer(
 'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=' + accessToken, {
     tileSize: 512,
@@ -51,14 +28,16 @@ var circle1 = L.circle([37.786542, -122.386022], {
 }).addTo(map);   
 
 function onClick(e) {  
-alert(this.key);
-// state = (this.key);
-getJobs();
+
+state = (this.key);
+state = state.toLowerCase()
+getJobs(state);
+console.log(state)
 }
 
 
 function getJobs() {
-    state ="CA"
+    //state ="CA"
     jobtitle= "software"
  var jobQuery = "https://jobs.github.com/positions.json?description=" + jobtitle + "&full_time=true&location=" + state
  console.log(jobQuery)
@@ -67,7 +46,7 @@ function getJobs() {
         method: "GET"
     }).then(function (response) {
         console.log(response)
-            //$("#job-post").empty();
+            $("#job-post").empty();
 
             //data = response[0]
             //console.log(data)
@@ -103,7 +82,7 @@ function getJobs() {
 
 
 
-// var map = L.map('map').setView([39,-98], 4);
+
 
 
 var circle2 = L.circle([44.50, -89.50], {radius: 200}).addTo(map).on('mouseover', onClick); //Wisconsin, the USA

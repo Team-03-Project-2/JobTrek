@@ -20,7 +20,7 @@ $(document).ready(function () {
     })
   })
 
-  $.getJSON("/api/company", { user_id: 1 }, function (response, status) {
+  $.getJSON("/api/company", { user_id: req.user.id }, function (response, status) {
     if (status == "success") {
       //console.log(response);
       for (var i = 0; i < response.length; i++) {
@@ -33,7 +33,7 @@ $(document).ready(function () {
     }
   });
 
-  $.getJSON("/api/task", { user_id: 1 }, function (response, status) {
+  $.getJSON("/api/task", { user_id: req.user.id }, function (response, status) {
     if (status == "success") {
       //console.log(response);
       for (var i = 0; i < response.length; i++) {
@@ -46,7 +46,7 @@ $(document).ready(function () {
     }
   });
 
-  $.getJSON("/api/resume", { user_id: 1 }, function (response, status) {
+  $.getJSON("/api/resume", { user_id: req.user.id }, function (response, status) {
     if (status == "success") {
       //console.log(response);
       for (var i = 0; i < response.length; i++) {
