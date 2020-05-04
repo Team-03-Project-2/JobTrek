@@ -98,11 +98,10 @@ module.exports = function (app) {
       })
   });
 
-
   app.put("/api/resume/update/alldata", isAuthenticated,function (req, res) {
 
     let recordId= req.body.idcard;
-    console.log("id ", recordId)
+    // console.log("id ", recordId)
     let cardObject = {
             fileName:req.body.resumeTitle,
             role:req.body.cardrole,
