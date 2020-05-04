@@ -68,39 +68,23 @@ $(document).ready(function () {
 
     // view one resume
     $(".viewResume").on("click", function(e){
-        // e.preventDefault();
-
         let view = $(this).data("view");
-
-
-        console.log("view this resume", view)
+        // console.log("view this resume", view)
         $.ajax("/api/resume/find/" + view, {
             type: "GET",
         }).then(function(view){
-
-           
+      
             $("#resumeTitle").text(view.fileName);
-            
             $("#viewRole").text(view.role);
-
             $("#viewDate").text(view.date.toString());
-
             $("#viewNotes").text(view.notes);
-
             $("#viewFileLocation").text(view.fileLocation);
             $("#viewFileLocation").attr("href",view.fileLocation);
             $("#viewFileLocation").attr("_target","_blank");
-           
-           
             $("#updateresumecard").attr("data-cardid", view.id.toString());
             
-           
-            console.log(view)
-            
+            // console.log(view)
 
-
-
-            // location.reload();
         })
     })
 
@@ -112,29 +96,17 @@ $(document).ready(function () {
         $.ajax("/api/resume/find/" + cardid, {
             type: "GET",
         }).then(function(view){
-        
             $("#updateresumeTitle").val(view.fileName);
-            
             $("#updateviewRole").val(view.role);
-
             $("#updateviewDate").val(view.date.toString());
-
             $("#updateviewNotes").val(view.notes);
-
             $("#updateviewFileLocation").val(view.fileLocation);
-           
             $("#updateresumecardfinal").attr("data-cardid", view.id);
-
-            console.log(view)
-            
-            // location.reload();
         })
 
     })
 
     $("#updateresumecardfinal").on("click", function(e){
-
-
         let objectCard = {
             idcard:$(this).data("cardid"),
             resumeTitle:$("#updateresumeTitle").val(),
@@ -143,8 +115,6 @@ $(document).ready(function () {
             specialnotes:$("#updateviewNotes").val(),
             filelocation:$("#updateviewFileLocation").val(),
         }
-        console.log(objectCard);
-
         $.ajax("/api/resume/update/alldata", 
         {
             type:"PUT",
