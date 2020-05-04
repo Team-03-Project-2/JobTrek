@@ -75,12 +75,9 @@ $(document).ready(function () {
         $("#resumelist").append("<option value=" + sid + ">" + str + "</option>")
         $("#resumelist_edit").append("<option value=" + sid + ">" + str + "</option>")
 
-
       }
     }
   });
-
-
 
 
   $(".createJobSubmit").on("click", function (event) {
@@ -170,7 +167,6 @@ $(".deleteJob").on('click', function (event) {
     }
   );
 });
-
 
 
 $(".updateonejob").on("click", function (event) {
