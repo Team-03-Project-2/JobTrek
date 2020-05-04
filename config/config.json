@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "password",
-    "database": "jobtrek",
-    "host": "127.0.0.1",
+    "username": "bfb91052f0ec07",
+    "password": "57dea6b6",
+    "database": "heroku_6e860b37685e628",
+    "host": "us-cdbr-east-06.cleardb.net",
     "dialect": "mysql"
   },
   "test": {
@@ -14,10 +14,11 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "username": "bfb91052f0ec07",
+    "password": "57dea6b6",
+    "database": "heroku_6e860b37685e628",
+    "host": "us-cdbr-east-06.cleardb.net",
     "dialect": "mysql"
   }
 }
+
