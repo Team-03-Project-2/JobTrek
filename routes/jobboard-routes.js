@@ -173,7 +173,7 @@ module.exports = function (app) {
 
         //user_id: req.user.id,
         var jobObject = {
-            user_id: req.user_id,
+            user_id: req.user.id,
             job_title: req.body.job_title,
             description: req.body.describe,
             requirement: req.body.require,
