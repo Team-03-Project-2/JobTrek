@@ -28,13 +28,13 @@ NOTE: This is NOT a secure demo. While the password field is encrypted by bCrypt
 
 The team made the decision to freeze features on SATURDAY morning and only perform bug fixes for the rest of the project work time, as the app already meets MVP. 
 
-Drag and drop a job from column to column would have been nice to have. 
+Drag and drop a job from column to column works intermittently and needs to be debugged. 
 
 "Automatic tasks" and "automatic contactlog" were never implemented. For example, when a job changes from "applied" to "responded" it should automatically generate corresponding entries in contactlog such as "Received email from X indicating interest, will follow up to set interview time", and a matching entry in task "Reminder to followup for interview". That was left on the wishlist. 
 
 The dashboard is also missing a lot of convenience features such as highlighting overdue items in red, or highlighting "almost there" items in yellow. 
 
-Many of the data entry modal dialog boxes can also use a bit more user-friendly features like drop-doown menus. Also the fields are only minimally validated, when all of them should have full jQueryValidation incorporated. 
+Many of the data entry modal dialog boxes can also use a bit more user-friendly features like drop-doown lists. Also the fields are only minimally validated, when all of them should have full jQueryValidation incorporated. 
 
 ## Pie in Sky Stretch Goals
 
