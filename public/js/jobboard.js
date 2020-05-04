@@ -20,7 +20,27 @@ $(document).ready(function () {
     })
   })
 
-  $.getJSON("/api/company", { user_id: 1 }, function (response, status) {
+  $(document).ready(function () {
+    $("#addnewjob").on("click", function(event){
+       console.log("works")
+  
+        $.ajax("/api/jobboard/resumeselect",{
+            type:"GET"
+  
+        }).then(function(data){
+          data.forEach(element => {
+            console.log("element:    ", element)
+            let myOption = $("<option>");
+            myOption.text(element.fileName)
+    
+            $("#modalSelectResume").append(myOption);
+    
+           });
+          })
+      })
+  
+
+  $.getJSON("/api/company", { user_id: req.user_id}, function (response, status) {
     if (status == "success") {
       //console.log(response);
       for (var i = 0; i < response.length; i++) {
@@ -33,7 +53,7 @@ $(document).ready(function () {
     }
   });
 
-  $.getJSON("/api/task", { user_id: 1 }, function (response, status) {
+  $.getJSON("/api/task", { user_id: req.user_id}, function (response, status) {
     if (status == "success") {
       //console.log(response);
       for (var i = 0; i < response.length; i++) {
@@ -46,7 +66,7 @@ $(document).ready(function () {
     }
   });
 
-  $.getJSON("/api/resume", { user_id: 1 }, function (response, status) {
+  $.getJSON("/api/resume", { user_id: req.user_id }, function (response, status) {
     if (status == "success") {
       //console.log(response);
       for (var i = 0; i < response.length; i++) {
