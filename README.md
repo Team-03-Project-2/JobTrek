@@ -26,11 +26,11 @@ NOTE: This is NOT a secure demo. While the password field is encrypted by bCrypt
 
 ## Wishlist features
 
-The team made the decision to freeze features on SATURDAY morning and only perform bug fixes for the rest of the project work time, as the app already meets MVP, even though it did not quite do everything we wished it would do. 
+The team made the decision to freeze features on SATURDAY morning and only perform bug fixes for the rest of the project work time, as the app already meets MVP. 
 
-We had wished for a more full-featured jobboard. Significant amount of time was spent trying to implement drag-and-drop from one column to next, but it never worked reliably. So that feature was eventually dropped late Friday. 
+Drag and drop a job from column to column would have been nice to have. 
 
-As a result, features like "automatic tasks" and "automatic contactlog" were never implemented. For example, when a job changes from "applied" to "responded" it should automatically generate corresponding entries in contactlog such as "Received email from X indicating interest, will follow up to set interview time", and a matching entry in task "Reminder to followup for interview". That was left on the wishlist. 
+"Automatic tasks" and "automatic contactlog" were never implemented. For example, when a job changes from "applied" to "responded" it should automatically generate corresponding entries in contactlog such as "Received email from X indicating interest, will follow up to set interview time", and a matching entry in task "Reminder to followup for interview". That was left on the wishlist. 
 
 The dashboard is also missing a lot of convenience features such as highlighting overdue items in red, or highlighting "almost there" items in yellow. 
 
