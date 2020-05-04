@@ -38,7 +38,7 @@ $(document).ready(function () {
            });
           })
       })
-  
+    })
 
   $.getJSON("/api/company", { user_id: req.user_id}, function (response, status) {
     if (status == "success") {
